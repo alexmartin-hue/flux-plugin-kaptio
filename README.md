@@ -2,7 +2,7 @@
 
 Teaches Cursor agents to apply the [Flux design system](https://flux.kaptio.com) when building or reviewing Kaptio UI.
 
-This repository is a **Cursor Agent Skill**. Clone it from GitLab and link it into each developer's `~/.cursor/skills/` directory so Cursor can discover it automatically.
+This repository is a **Cursor Agent Skill** hosted on GitHub. Clone it and link it into each developer's `~/.cursor/skills/` directory so Cursor can discover it automatically.
 
 ## What is included
 
@@ -18,14 +18,12 @@ Coverage includes foundations (colors, typography, spacing, shadows, tokens, ico
 
 ## Quick install
 
-### 1. Clone from GitLab
+### 1. Clone from GitHub
 
 ```bash
-git clone git@gitlab.com:kaptio1/<group>/flux-plugin-kaptio.git
+git clone https://github.com/alexmartin-hue/flux-plugin-kaptio.git
 cd flux-plugin-kaptio
 ```
-
-Replace the path with your team's GitLab project URL once the repo is hosted.
 
 ### 2. Link into Cursor skills
 
@@ -49,7 +47,7 @@ This creates a junction/symlink at `~/.cursor/skills/flux` pointing at this repo
 For a team working in one repository, add this repo as a submodule so the skill travels with the project:
 
 ```bash
-git submodule add git@gitlab.com:kaptio1/<group>/flux-plugin-kaptio.git .cursor/skills/flux
+git submodule add https://github.com/alexmartin-hue/flux-plugin-kaptio.git .cursor/skills/flux
 ```
 
 Cursor also discovers skills under `.cursor/skills/` in the workspace.
@@ -92,29 +90,26 @@ python scripts/scrape_flux.py
 
 Then skim `references/changelog.md` and update `references/quick-reference.md` if tokens or components changed materially.
 
-In GitLab CI, trigger the **update-references** job (manual or scheduled) to scrape and commit updated `references/` automatically.
+In GitHub Actions, run the **Flux references** workflow manually (Actions → Flux references → Run workflow) to scrape and commit updated `references/` automatically. It also runs on a weekly schedule (Mondays 06:00 UTC).
 
-## GitLab CI
+## GitHub Actions
 
 | Job | When | Purpose |
 |-----|------|---------|
-| `validate-scrape` | Merge requests and default branch | Ensures committed references match flux.kaptio.com |
-| `update-references` | Manual, web, or schedule | Re-scrapes and commits reference updates |
-
-To enable scheduled refreshes, add a pipeline schedule in GitLab (e.g. weekly). The update job requires permission for `CI_JOB_TOKEN` to push to the default branch.
+| `validate-scrape` | Pull requests and pushes to `main` | Ensures committed references match flux.kaptio.com |
+| `update-references` | Manual dispatch or weekly schedule | Re-scrapes and commits reference updates |
 
 ## Team rollout checklist
 
-1. Push this repository to GitLab under a shared group (e.g. `kaptio1/platform-and-services/flux-plugin-kaptio`).
-2. Share the clone URL with the team.
-3. Each developer runs `scripts/install.ps1` or `scripts/install.sh` after cloning.
-4. Optionally add a weekly GitLab schedule to run `update-references`.
-5. When Flux releases change tokens or components, review `references/changelog.md` and update `references/quick-reference.md`.
+1. Share the GitHub repo URL with the team: https://github.com/alexmartin-hue/flux-plugin-kaptio
+2. Each developer clones the repo and runs `scripts/install.ps1` or `scripts/install.sh`.
+3. Optionally enable GitHub Actions on the repo (on by default for public repos).
+4. When Flux releases change tokens or components, review `references/changelog.md` and update `references/quick-reference.md`.
 
 ## Limitations
 
 - Component reference files are **text extracted** from the docs site. Interactive examples and visuals remain on https://flux.kaptio.com.
-- For exhaustive token lists in code, prefer `flux.json` in the [kaptio-flux](https://gitlab.com/kaptio1/platform-and-services/edge/kaptio-flux) repo (`src/tokens/flux.json`), not only the scraped markdown.
+- For exhaustive token lists in code, prefer `flux.json` in the kaptio-flux repo on GitLab (`kaptio1/platform-and-services/edge/kaptio-flux`, path `src/tokens/flux.json`), not only the scraped markdown.
 
 ## Repository layout
 
@@ -129,7 +124,8 @@ flux-plugin-kaptio/
 │   ├── scrape_flux.py
 │   ├── install.ps1
 │   └── install.sh
-├── .gitlab-ci.yml
+├── .github/workflows/
+│   └── references.yml
 └── README.md
 ```
 
@@ -137,4 +133,4 @@ flux-plugin-kaptio/
 
 - Flux design system: https://flux.kaptio.com
 - Token exports: https://flux.kaptio.com/assets
-- Canonical token source: `kaptio1/platform-and-services/edge/kaptio-flux`
+- Canonical token source (GitLab): `kaptio1/platform-and-services/edge/kaptio-flux`

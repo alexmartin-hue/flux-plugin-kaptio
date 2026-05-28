@@ -1,0 +1,59 @@
+name: Flux references
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+  workflow_dispatch:
+  schedule:
+    - cron: "0 6 * * 1"
+
+jobs:
+  validate-scrape:
+    if: github.event_name == 'pull_request' || (github.event_name == 'push' && github.ref == 'refs/heads/main')
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Scrape flux.kaptio.com
+        run: python scripts/scrape_flux.py
+
+      - name: Check references are up to date
+        run: |
+          if ! git diff --quiet references/; then
+            echo "references/ is out of date with flux.kaptio.com."
+            echo "Run 'python scripts/scrape_flux.py' locally and commit, or trigger the Update references workflow."
+            git diff --stat references/
+            exit 1
+          fi
+
+  update-references:
+    if: github.event_name == 'workflow_dispatch' || github.event_name == 'schedule'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Scrape flux.kaptio.com
+        run: python scripts/scrape_flux.py
+
+      - name: Commit and push if changed
+        run: |
+          if git diff --quiet references/; then
+            echo "No reference changes detected."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add references/
+          git commit -m "chore: refresh Flux references from flux.kaptio.com"
+          git push

@@ -1,0 +1,44 @@
+stages:
+  - validate
+  - update
+
+variables:
+  GIT_DEPTH: "0"
+
+validate-scrape:
+  stage: validate
+  image: python:3.12-slim
+  script:
+    - python scripts/scrape_flux.py
+    - |
+      if ! git diff --quiet references/; then
+        echo "references/ is out of date with flux.kaptio.com."
+        echo "Run 'python scripts/scrape_flux.py' locally and commit, or trigger the update-references job."
+        git diff --stat references/
+        exit 1
+      fi
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "merge_request_event"
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
+
+update-references:
+  stage: update
+  image: python:3.12-slim
+  script:
+    - apt-get update -qq && apt-get install -y -qq git
+    - python scripts/scrape_flux.py
+    - |
+      if git diff --quiet references/; then
+        echo "No reference changes detected."
+        exit 0
+      fi
+    - git config user.email "gitlab-ci@kaptio.com"
+    - git config user.name "GitLab CI"
+    - git add references/
+    - git commit -m "chore: refresh Flux references from flux.kaptio.com"
+    - git push "https://gitlab-ci-token:${CI_JOB_TOKEN}@${CI_SERVER_HOST}/${CI_PROJECT_PATH}.git" "HEAD:${CI_COMMIT_REF_NAME}"
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "schedule"
+    - if: $CI_PIPELINE_SOURCE == "web"
+    - when: manual
+  allow_failure: false

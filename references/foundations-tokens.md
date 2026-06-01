@@ -38,7 +38,7 @@ Figma Tokens Studio format. The canonical source.
 }
 }
 }
-}   flux.css
+}                flux.css
 
 CSS custom properties. Drop into any web project.
 
@@ -46,7 +46,7 @@ CSS custom properties. Drop into any web project.
 --flux-primary-400: #056F82;
 --flux-yellow-400: #FFBC42;
 /* ... */
-}   tokens.ts
+}                tokens.ts
 
 TypeScript export. Used by the Flux site components.
 

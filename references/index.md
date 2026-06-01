@@ -44,6 +44,7 @@ Scraped from https://flux.kaptio.com. Regenerate: `python scripts/scrape_flux.py
 - [/components/textarea](components-textarea.md)
 - [/components/tooltip](components-tooltip.md)
 - [/donts](donts.md)
+- [/for-ai](for-ai.md)
 - [/foundations](foundations.md)
 - [/foundations/colors](foundations-colors.md)
 - [/foundations/iconography](foundations-iconography.md)
@@ -61,3 +62,4 @@ Scraped from https://flux.kaptio.com. Regenerate: `python scripts/scrape_flux.py
 - [/products/edge](products-edge.md)
 - [/products/quest](products-quest.md)
 - [/products/voyage](products-voyage.md)
+- [/prototyping](prototyping.md)

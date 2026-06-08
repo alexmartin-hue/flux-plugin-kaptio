@@ -29,7 +29,6 @@ Scraped from https://flux.kaptio.com. Regenerate: `python scripts/scrape_flux.py
 - [/components/input](components-input.md)
 - [/components/journey](components-journey.md)
 - [/components/modal](components-modal.md)
-- [/components/multi-select](components-multi-select.md)
 - [/components/note](components-note.md)
 - [/components/outcome-complete](components-outcome-complete.md)
 - [/components/outcome-header](components-outcome-header.md)

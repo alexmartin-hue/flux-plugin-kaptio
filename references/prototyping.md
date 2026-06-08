@@ -11,6 +11,23 @@ A two-minute setup so prototypes you build in Cursor (or any AI tool) actually l
 like Kaptio — not generic AI or Tailwind defaults. No code experience needed: you mostly
 just paste a few lines and tell the agent to follow Flux.
 
+## Quick start
+
+In a hurry? Paste this into the agent at the start of a prototype. The steps below explain
+each part.
+
+Build this using the Kaptio Flux design system as the single source of truth.
+
+1. Follow https://flux.kaptio.com/llms.txt (tokens, rules, component conventions).
+2. In my global CSS, after the Tailwind import, add:
+@import url("https://flux.kaptio.com/tokens/flux-tailwind.css");
+(Not using Tailwind? Use https://flux.kaptio.com/tokens/flux.css instead.)
+3. Use only --flux-* tokens — no raw hex, no gray-*/blue-* defaults.
+Font: Lexend (300/700 only). Focus rings are Flux primary, never blue.
+4. Clone real component markup from
+https://flux.kaptio.com/components/source/<name>.txt (e.g. button, input, table).
+
+Do not mix in Bootstrap, MUI, or Spotlight.
 ## 1. Point the AI at Flux
 
 In your very first message to the agent, tell it to treat Flux as the single source of

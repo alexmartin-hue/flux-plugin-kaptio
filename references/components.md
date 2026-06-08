@@ -19,9 +19,7 @@ Toggle individual options on or off.](/components/checkbox)[Date Picker
 
 Five interactive date selection styles: inline calendar, popover input, range picker, compact chip, and full calendar with prominent navigation.](/components/date-picker)[Input
 
-Text fields for single-line data entry.](/components/input)[Multi Select
-
-Keyboard-navigable dropdown for selecting multiple items with action labels.](/components/multi-select)[Radio
+Text fields for single-line data entry, including multi-select.](/components/input)[Radio
 
 Select one option from a mutually exclusive group.](/components/radio)[Select
 

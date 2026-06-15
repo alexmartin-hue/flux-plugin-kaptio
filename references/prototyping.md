@@ -28,6 +28,14 @@ Font: Lexend (300/700 only). Focus rings are Flux primary, never blue.
 https://flux.kaptio.com/components/source/<name>.txt (e.g. button, input, table).
 
 Do not mix in Bootstrap, MUI, or Spotlight.
+Stop the leaks
+
+The Flux preset auto-corrects most generic styling, but ask the agent to avoid the two
+things it can't catch: no “arbitrary” bracket values like
+`bg-[#3b82f6]` or `text-[15px]`, and Lexend at 300 / 700 only
+(no medium/semibold). Focus rings should be Flux teal, never blue — and the
+`flux-tailwind.css` import must come last.
+
 ## 1. Point the AI at Flux
 
 In your very first message to the agent, tell it to treat Flux as the single source of

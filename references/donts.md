@@ -174,6 +174,47 @@ skeletons, and reserve the `--flux-orange-*` error and `--flux-green-*` resolved
 Note: the optional 2px top accent bar on the Outcome Header is a sanctioned pattern detail — it is the one
 exception to the “no single-edge accent” rule, and applies only here, not to ordinary cards.
 
+## Composition and generic AI patterns
+
+Tokens fix wrong colours and weights, but they can't stop generic composition habits.
+Reproduce Flux's restraint — don't apply default landing-page / marketing-site instincts to product UI.
+
+-  Don't invent a coloured eyebrow / kicker above headings (e.g. an uppercase
+coral “GO-LIVES” label). Do use the one Flux eyebrow convention when a
+kicker is needed: `text-xs font-bold tracking-widest uppercase` in
+`--flux-grey-300` (or `--flux-primary-400` for emphasis) — never a warm/accent
+colour, and used sparingly, not on every hero.
+
+-  Don't put an uppercase eyebrow on every card header or stack multiple kickers on
+one slide. Do use one kicker per section, sparingly.
+
+-  Don't colour headline words or emphasis/body text `--flux-yellow-400` on
+dark grounds (e.g. `--flux-primary-800` heroes/slides). Do keep the whole
+headline white and body/emphasis text white or `--flux-primary-100`; reserve
+`--flux-yellow-400` for a single eyebrow/subtitle or a CTA accent — never to highlight
+running text or bullet lead-ins.
+
+-  Don't use gradient text or gradient-filled buttons. Do use flat Flux
+fills — the primary button is `--flux-primary-600`; headings are `--flux-black` or white.
+
+-  Don't add glow or large coloured drop-shadows. Do use the subtle
+teal-tinted [Shadow](/foundations/shadows)
+tokens (cap interactive cards at `--flux-shadow-md`).
+
+-  Don't put emoji in headings or use them as the icon system. Do use real
+[Iconography](/foundations/iconography).
+
+-  Don't “pill-everything” or over-round corners. Do use the
+Flux radius scale (`--flux-radius-sm` for buttons; `rounded-full` only for badges, avatars, pills).
+
+-  Don't reflexively reach for the generic centred hero with three identical icon feature cards,
+or a “trusted by” logo strip. Do use documented Components and Patterns; don't treat
+the marketing layout as the default app shell.
+
+-  Don't use arbitrary accent colours for section labels or badges. Do map every
+label/status to a Flux token. When unsure of a pattern, clone real markup from
+`/components/source/.txt` rather than inventing one.
+
 ## Keeping this list current
 
 When review or tooling keeps proposing the same incorrect pattern, add a short bullet under the

@@ -12,6 +12,7 @@ Flux. The goal: stop agents from leaking generic Tailwind defaults and keep gene
 output on-brand. These are consumer-facing rules for your repo — not for
 maintaining this site.
 
+Flux tokens Tailwind preset Slide deck kit Cursor & Copilot
 Machine-readable sources
 
 Agent context lives at [/llms.txt](/llms.txt),
@@ -166,6 +167,26 @@ https://flux.kaptio.com/slide-examples/source/<type>.txt
 - customer / partner introduction        -> customer
 - product status / progress / roadmap    -> status-grid
 - before vs after / two options          -> compare
+- agenda / what we'll cover              -> agenda
+- single big number / KPI                -> stat
+- quote / testimonial                    -> quote
+- closing / thank-you / CTA              -> closing
+- feature section opener (screenshots)   -> recap
+- feature explainer (what/value)         -> feature
+- feature with impact + product fit      -> feature-impact
+- customer intro with location map       -> customer-map
+- two categorized lists / taxonomy       -> lists
+- platform / product positioning panel   -> platform
+- forward roadmap / timeline / horizons  -> roadmap
+- customer logo strip / social proof     -> logos
+- team / leadership                      -> team
+- process / how it works / journey steps -> journey
+- Q&A before close                       -> qa
+- implementation / onboarding phases     -> implementation
+- security / trust / compliance          -> security
+- competitive feature matrix             -> matrix
+- growth chart / trend line              -> chart
+- global footprint / regions             -> global
 - If no template matches, use the NEAREST template's structure — do not invent a new layout.
 - Slide self-check: white headline on dark grounds (never yellow/colored headline words);
 yellow at most ONCE per slide as a single small accent (e.g. cover date eyebrow); one
@@ -382,7 +403,7 @@ clone the matching template from the
 then swap only copy, images, and data. Raw template source is served at
 `/slide-examples/source/.txt`:
 
-Slide content Template Source     Deck opener / title slide [Cover](/slide-examples/template-cover) [cover.txt](/slide-examples/source/cover.txt)   Section break / chapter divider [Chapter](/slide-examples/template-chapter) [chapter.txt](/slide-examples/source/chapter.txt)   One big idea / thesis / focus [Statement](/slide-examples/template-statement) [statement.txt](/slide-examples/source/statement.txt)   Explainer with supporting visual [Content](/slide-examples/template-content) [content.txt](/slide-examples/source/content.txt)   Customer / partner introduction [Customer intro](/slide-examples/template-customer) [customer.txt](/slide-examples/source/customer.txt)   Product status / progress / roadmap state [Status grid](/slide-examples/template-status-grid) [status-grid.txt](/slide-examples/source/status-grid.txt)   Before vs after / us vs them / two options [Compare](/slide-examples/template-compare) [compare.txt](/slide-examples/source/compare.txt)
+Slide content Template Source     Deck opener / title slide [Cover](/slide-examples/template-cover) [cover.txt](/slide-examples/source/cover.txt)   Section break / chapter divider [Chapter](/slide-examples/template-chapter) [chapter.txt](/slide-examples/source/chapter.txt)   One big idea / thesis / focus [Statement](/slide-examples/template-statement) [statement.txt](/slide-examples/source/statement.txt)   Explainer with supporting visual [Content](/slide-examples/template-content) [content.txt](/slide-examples/source/content.txt)   Customer / partner introduction [Customer intro](/slide-examples/template-customer) [customer.txt](/slide-examples/source/customer.txt)   Product status / progress / roadmap state [Status grid](/slide-examples/template-status-grid) [status-grid.txt](/slide-examples/source/status-grid.txt)   Before vs after / us vs them / two options [Compare](/slide-examples/template-compare) [compare.txt](/slide-examples/source/compare.txt)   Agenda / what we'll cover [Agenda](/slide-examples/template-agenda) [agenda.txt](/slide-examples/source/agenda.txt)   Single big number / KPI [Big stat](/slide-examples/template-stat) [stat.txt](/slide-examples/source/stat.txt)   Quote / testimonial [Quote](/slide-examples/template-quote) [quote.txt](/slide-examples/source/quote.txt)   Closing / thank-you / CTA [Closing](/slide-examples/template-closing) [closing.txt](/slide-examples/source/closing.txt)   Feature section opener (screenshots) [Recap intro](/slide-examples/template-recap) [recap.txt](/slide-examples/source/recap.txt)   Feature explainer (what/value) [Feature detail](/slide-examples/template-feature) [feature.txt](/slide-examples/source/feature.txt)   Feature with impact + product fit [Feature impact](/slide-examples/template-feature-impact) [feature-impact.txt](/slide-examples/source/feature-impact.txt)   Customer intro with location map [Customer map](/slide-examples/template-customer-map) [customer-map.txt](/slide-examples/source/customer-map.txt)   Two categorized lists / taxonomy [Lists](/slide-examples/template-lists) [lists.txt](/slide-examples/source/lists.txt)   Platform / product positioning panel [Platform](/slide-examples/template-platform) [platform.txt](/slide-examples/source/platform.txt)   Forward roadmap / timeline / horizons [Roadmap](/slide-examples/template-roadmap) [roadmap.txt](/slide-examples/source/roadmap.txt)   Customer logo strip / social proof [Logo strip](/slide-examples/template-logos) [logos.txt](/slide-examples/source/logos.txt)   Team / leadership [Team](/slide-examples/template-team) [team.txt](/slide-examples/source/team.txt)   Process / how it works / journey steps [Journey](/slide-examples/template-journey) [journey.txt](/slide-examples/source/journey.txt)   Q&A before close [Q&A](/slide-examples/template-qa) [qa.txt](/slide-examples/source/qa.txt)   Implementation / onboarding phases [Implementation](/slide-examples/template-implementation) [implementation.txt](/slide-examples/source/implementation.txt)   Security / trust / compliance [Security](/slide-examples/template-security) [security.txt](/slide-examples/source/security.txt)   Competitive feature matrix [Matrix](/slide-examples/template-matrix) [matrix.txt](/slide-examples/source/matrix.txt)   Growth chart / trend line [Chart](/slide-examples/template-chart) [chart.txt](/slide-examples/source/chart.txt)   Global footprint / regions [Global presence](/slide-examples/template-global) [global.txt](/slide-examples/source/global.txt)
 - Fallback: if no template matches the content, use the nearest template's structure plus the composition rules — do not invent a new layout.
 - Slide self-check: white headline on dark grounds (never yellow/colored headline words); `--flux-yellow-400` at most once per slide as a single small accent (e.g. the cover date eyebrow); one kicker/eyebrow per slide max; Lexend 300/700 only; only `--flux-*` tokens; light content slides, dark cover and chapter slides; at most one emoji per slide; no gradient text, no glow shadows, no coral accents.
 - Tools working inside the Flux repo should clone `src/pages/slide-examples/template-*.astro` directly.

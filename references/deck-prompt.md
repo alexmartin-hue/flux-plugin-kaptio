@@ -11,6 +11,7 @@ Need a Kaptio-branded slide deck? Copy the prompt below, paste it into a Slack m
 Kai, and fill in your deck outline at the bottom. Kai does the rest — every slide is built
 from the official Flux deck kit, so the result is on-brand by default.
 
+Deck kit Slack + Kai Copy & paste flux.kaptio.com
 ## How to use it
 
 - Copy the prompt — use the button below.
@@ -32,6 +33,26 @@ Routing table (slide content -> template -> source):
 - Customer / partner introduction -> Customer intro -> https://flux.kaptio.com/slide-examples/source/customer.txt
 - Product status / progress / roadmap -> Status grid -> https://flux.kaptio.com/slide-examples/source/status-grid.txt
 - Before vs after / two options -> Compare -> https://flux.kaptio.com/slide-examples/source/compare.txt
+- Agenda / what we'll cover -> Agenda -> https://flux.kaptio.com/slide-examples/source/agenda.txt
+- Single big number / KPI -> Big stat -> https://flux.kaptio.com/slide-examples/source/stat.txt
+- Quote / testimonial -> Quote -> https://flux.kaptio.com/slide-examples/source/quote.txt
+- Closing / thank-you / CTA -> Closing -> https://flux.kaptio.com/slide-examples/source/closing.txt
+- Feature section opener -> Recap intro -> https://flux.kaptio.com/slide-examples/source/recap.txt
+- Feature explainer (what/value) -> Feature detail -> https://flux.kaptio.com/slide-examples/source/feature.txt
+- Feature impact + product fit -> Feature impact -> https://flux.kaptio.com/slide-examples/source/feature-impact.txt
+- Customer intro with map -> Customer map -> https://flux.kaptio.com/slide-examples/source/customer-map.txt
+- Two categorized lists / taxonomy -> Lists -> https://flux.kaptio.com/slide-examples/source/lists.txt
+- Platform / product positioning panel -> Platform -> https://flux.kaptio.com/slide-examples/source/platform.txt
+- Forward roadmap / timeline / horizons -> Roadmap -> https://flux.kaptio.com/slide-examples/source/roadmap.txt
+- Customer logo strip / social proof -> Logo strip -> https://flux.kaptio.com/slide-examples/source/logos.txt
+- Team / leadership -> Team -> https://flux.kaptio.com/slide-examples/source/team.txt
+- Process / how it works / journey steps -> Journey -> https://flux.kaptio.com/slide-examples/source/journey.txt
+- Q&A before close -> Q&A -> https://flux.kaptio.com/slide-examples/source/qa.txt
+- Implementation / onboarding phases -> Implementation -> https://flux.kaptio.com/slide-examples/source/implementation.txt
+- Security / trust / compliance -> Security -> https://flux.kaptio.com/slide-examples/source/security.txt
+- Competitive feature matrix -> Matrix -> https://flux.kaptio.com/slide-examples/source/matrix.txt
+- Growth chart / trend line -> Chart -> https://flux.kaptio.com/slide-examples/source/chart.txt
+- Global footprint / regions -> Global presence -> https://flux.kaptio.com/slide-examples/source/global.txt
 
 3. If no template matches, use the NEAREST template's structure — do not invent a new layout.
 

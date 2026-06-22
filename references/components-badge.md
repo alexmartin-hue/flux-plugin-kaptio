@@ -12,7 +12,9 @@ DefaultSuccessWarningError
 ### Outline
 DefaultSuccessWarningError
 ### Sizes
-SmallLarge
+Same solid “Default” fill as above (`--flux-primary-200` on `--flux-black` text) — only padding and type scale change.
+
+SmallMediumLarge
 ### Status
 Colour-coded status badges indicating required action or current state. Consistent across all system views.
 
@@ -20,7 +22,7 @@ Action RequiredUser needs to take actionPendingAwaiting user responseAwaiting Su
 ### Quantity / Inventory
 System colour codes for inventory and availability status pills. All colours meet WCAG AAA contrast on white backgrounds.
 
-Live InventoryAPI#B4D4DAAAA 10.25:1Allotment (8)AL (8)#C6DAFFAAA 11.4:1Free SaleFS#D5CFFFAAA 10.88:1MixedMX#F5C3E4AAA 11.41:1On RequestRQ#FFD78EAAA 11.77:1ClosedC#FFA99BAAA 8.74:1Not AvailableNA#FFA99BAAA 8.74:1Sold OutSO#FFA99BAAA 8.74:1PromotionsAAA#BFE5B8AAA 11.58:1       Source  BadgeDemo.tsx
+Live InventoryAPIvar(--flux-primary-200)AAA 10.25:1Allotment (8)AL (8)var(--flux-blue-200)AAA 11.4:1Free SaleFSvar(--flux-purple-200)AAA 10.88:1MixedMXvar(--flux-pink-200)AAA 11.41:1On RequestRQvar(--flux-yellow-300)AAA 11.77:1ClosedCvar(--flux-orange-300)AAA 8.74:1Not AvailableNAvar(--flux-orange-300)AAA 8.74:1Sold OutSOvar(--flux-orange-300)AAA 8.74:1PromotionsAAAvar(--flux-green-200)AAA 11.58:1       Source  BadgeDemo.tsx
 The exact code behind the live demo above. Fetch it raw at
 [/components/source/badge.txt](/components/source/badge.txt).
 
@@ -59,25 +61,25 @@ meaning: string;
 }
 
 const statusBadges: StatusBadge[] = [
-{ label: 'Action Required', bg: '#FFD78E', text: '#1A1A1A', dot: '#FFD78E', meaning: 'User needs to take action' },
-{ label: 'Pending', bg: '#FFD78E', text: '#1A1A1A', dot: '#FFD78E', meaning: 'Awaiting user response' },
-{ label: 'Awaiting Supplier', bg: '#C6DAFF', text: '#1A1A1A', dot: '#C6DAFF', meaning: 'Waiting on supplier confirmation' },
-{ label: 'Confirmed', bg: '#BFE5B8', text: '#1A1A1A', dot: '#BFE5B8', meaning: 'Confirmed and ready' },
-{ label: 'Completed', bg: '#BFE5B8', text: '#1A1A1A', dot: '#BFE5B8', meaning: 'Successfully completed' },
-{ label: 'Cancelled', bg: '#FFA99B', text: '#1A1A1A', dot: '#FFA99B', meaning: 'Cancelled by user or system' },
-{ label: 'Rejected', bg: '#FFA99B', text: '#1A1A1A', dot: '#FFA99B', meaning: 'Rejected by supplier' },
+{ label: 'Action Required', bg: 'var(--flux-yellow-300)', text: 'var(--flux-black)', dot: 'var(--flux-yellow-300)', meaning: 'User needs to take action' },
+{ label: 'Pending', bg: 'var(--flux-yellow-300)', text: 'var(--flux-black)', dot: 'var(--flux-yellow-300)', meaning: 'Awaiting user response' },
+{ label: 'Awaiting Supplier', bg: 'var(--flux-blue-200)', text: 'var(--flux-black)', dot: 'var(--flux-blue-200)', meaning: 'Waiting on supplier confirmation' },
+{ label: 'Confirmed', bg: 'var(--flux-green-200)', text: 'var(--flux-black)', dot: 'var(--flux-green-200)', meaning: 'Confirmed and ready' },
+{ label: 'Completed', bg: 'var(--flux-green-200)', text: 'var(--flux-black)', dot: 'var(--flux-green-200)', meaning: 'Successfully completed' },
+{ label: 'Cancelled', bg: 'var(--flux-orange-300)', text: 'var(--flux-black)', dot: 'var(--flux-orange-300)', meaning: 'Cancelled by user or system' },
+{ label: 'Rejected', bg: 'var(--flux-orange-300)', text: 'var(--flux-black)', dot: 'var(--flux-orange-300)', meaning: 'Rejected by supplier' },
 ];
 
 const inventoryPills: InventoryPill[] = [
-{ label: 'Live Inventory', code: 'API', bg: '#B4D4DA', text: '#1A1A1A', contrast: '10.25' },
-{ label: 'Allotment (8)', code: 'AL (8)', bg: '#C6DAFF', text: '#1A1A1A', contrast: '11.4' },
-{ label: 'Free Sale', code: 'FS', bg: '#D5CFFF', text: '#1A1A1A', contrast: '10.88' },
-{ label: 'Mixed', code: 'MX', bg: '#F5C3E4', text: '#1A1A1A', contrast: '11.41' },
-{ label: 'On Request', code: 'RQ', bg: '#FFD78E', text: '#1A1A1A', contrast: '11.77' },
-{ label: 'Closed', code: 'C', bg: '#FFA99B', text: '#1A1A1A', contrast: '8.74' },
-{ label: 'Not Available', code: 'NA', bg: '#FFA99B', text: '#1A1A1A', contrast: '8.74' },
-{ label: 'Sold Out', code: 'SO', bg: '#FFA99B', text: '#1A1A1A', contrast: '8.74' },
-{ label: 'Promotions', code: 'AAA', bg: '#BFE5B8', text: '#1A1A1A', contrast: '11.58' },
+{ label: 'Live Inventory', code: 'API', bg: 'var(--flux-primary-200)', text: 'var(--flux-black)', contrast: '10.25' },
+{ label: 'Allotment (8)', code: 'AL (8)', bg: 'var(--flux-blue-200)', text: 'var(--flux-black)', contrast: '11.4' },
+{ label: 'Free Sale', code: 'FS', bg: 'var(--flux-purple-200)', text: 'var(--flux-black)', contrast: '10.88' },
+{ label: 'Mixed', code: 'MX', bg: 'var(--flux-pink-200)', text: 'var(--flux-black)', contrast: '11.41' },
+{ label: 'On Request', code: 'RQ', bg: 'var(--flux-yellow-300)', text: 'var(--flux-black)', contrast: '11.77' },
+{ label: 'Closed', code: 'C', bg: 'var(--flux-orange-300)', text: 'var(--flux-black)', contrast: '8.74' },
+{ label: 'Not Available', code: 'NA', bg: 'var(--flux-orange-300)', text: 'var(--flux-black)', contrast: '8.74' },
+{ label: 'Sold Out', code: 'SO', bg: 'var(--flux-orange-300)', text: 'var(--flux-black)', contrast: '8.74' },
+{ label: 'Promotions', code: 'AAA', bg: 'var(--flux-green-200)', text: 'var(--flux-black)', contrast: '11.58' },
 ];
 
 export default function BadgeDemo() {
@@ -85,16 +87,16 @@ return (
 <div>
 <Section title="Solid">
 <div className="flex flex-wrap gap-3">
-<span className={solidBadge} style={{ backgroundColor: '#B4D4DA', color: '#1A1A1A' }}>
+<span className={solidBadge} style={{ backgroundColor: 'var(--flux-primary-200)', color: 'var(--flux-black)' }}>
 Default
 </span>
-<span className={solidBadge} style={{ backgroundColor: '#BFE5B8', color: '#1A1A1A' }}>
+<span className={solidBadge} style={{ backgroundColor: 'var(--flux-green-200)', color: 'var(--flux-black)' }}>
 Success
 </span>
-<span className={solidBadge} style={{ backgroundColor: '#FFD78E', color: '#1A1A1A' }}>
+<span className={solidBadge} style={{ backgroundColor: 'var(--flux-yellow-300)', color: 'var(--flux-black)' }}>
 Warning
 </span>
-<span className={solidBadge} style={{ backgroundColor: '#FFA99B', color: '#1A1A1A' }}>
+<span className={solidBadge} style={{ backgroundColor: 'var(--flux-orange-300)', color: 'var(--flux-black)' }}>
 Error
 </span>
 </div>
@@ -118,11 +120,27 @@ Error
 </Section>
 
 <Section title="Sizes">
+<p className="text-xs text-[var(--flux-black)] mb-3">
+Same solid &ldquo;Default&rdquo; fill as above (<code>--flux-primary-200</code> on{' '}
+<code>--flux-black</code> text) — only padding and type scale change.
+</p>
 <div className="flex flex-wrap items-center gap-3">
-<span className="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-bold bg-[var(--flux-primary-100)] text-[var(--flux-primary-400)]">
+<span
+className={solidBadge}
+style={{ backgroundColor: 'var(--flux-primary-200)', color: 'var(--flux-black)' }}
+>
 Small
 </span>
-<span className="inline-flex items-center px-3 py-1 rounded-full text-sm font-bold bg-[var(--flux-primary-100)] text-[var(--flux-primary-400)]">
+<span
+className="inline-flex items-center px-3 py-1.5 rounded-full text-sm font-bold"
+style={{ backgroundColor: 'var(--flux-primary-200)', color: 'var(--flux-black)' }}
+>
+Medium
+</span>
+<span
+className="inline-flex items-center px-4 py-2 rounded-full text-base font-bold"
+style={{ backgroundColor: 'var(--flux-primary-200)', color: 'var(--flux-black)' }}
+>
 Large
 </span>
 </div>
@@ -164,7 +182,9 @@ style={{ backgroundColor: pill.bg, color: pill.text }}
 >
 {pill.code}
 </span>
-<span className="text-xs font-mono text-[var(--flux-grey-300)] w-16">{pill.bg}</span>
+<span className="text-xs font-mono text-[var(--flux-grey-300)] shrink-0 w-40 break-all" title={pill.bg}>
+{pill.bg}
+</span>
 <span className="text-xs text-[var(--flux-grey-300)]">AAA {pill.contrast}:1</span>
 </div>
 ))}

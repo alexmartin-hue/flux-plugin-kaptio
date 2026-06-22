@@ -50,7 +50,107 @@ and a checked item list. Clone this for roadmap or readiness updates.](/slide-ex
 Two-column compare (light)
 
 Before / after — two subtle cards contrasting today's state with what Kaptio gives you. Built to
-demonstrate the anti-leak rules: one muted kicker, one bold black headline, no colored emphasis.](/slide-examples/template-compare) [Client listing
+demonstrate the anti-leak rules: one muted kicker, one bold black headline, no colored emphasis.](/slide-examples/template-compare) [Template · Recap intro
+
+Recap intro (light)
+
+Feature-section opener — centered bold headline and light subtitle over a fan of tilted
+screenshot cards bleeding off the bottom edge. Clone this to open a recap chapter.](/slide-examples/template-recap) [Template · Feature detail
+
+Feature detail (light)
+
+Feature explainer — left column with "what is it / what is the value" Q&A blocks and a
+large screenshot card extending off the right edge. Clone this for feature walkthroughs.](/slide-examples/template-feature) [Template · Customer intro (map)
+
+Customer intro with map (dark)
+
+Richer customer introduction — a tall teal panel with a logo card and a dotted world map
+marking the customer's market, beside a big white headline. Clone this when location matters.](/slide-examples/template-customer-map) [Template · Feature impact
+
+Feature impact (light)
+
+Feature with impact statement and product-fit pills — description, bold "Impact:" lead,
+applicable-product pills, a persona pill, and a large screenshot card off the right edge.](/slide-examples/template-feature-impact) [Template · Agenda
+
+Agenda (light)
+
+"What we'll cover" — one muted kicker, a bold headline, and a vertical numbered list with
+teal numbers, bold titles, and short light descriptions. Clone this to set expectations.](/slide-examples/template-agenda) [Template · Big stat
+
+Big stat (light)
+
+One number carries the story — a muted kicker, a giant seagreen numeral, a light support
+line, and an optional footnote. Clone this for a single KPI or headline figure.](/slide-examples/template-stat) [Template · Quote
+
+Quote (light)
+
+Customer voice or leadership statement — a large Lexend Light quote in a centered column
+with bold name and light role attribution. Clone this for testimonials.](/slide-examples/template-quote) [Template · Closing
+
+Closing (dark)
+
+Thank-you / CTA ender — the cover's photo and teal layer stack with a centered white
+headline, one light support line, and the Kaptio logo. Clone this to end a deck.](/slide-examples/template-closing) [Template · Categorized lists
+
+Categorized lists (light)
+
+Two-column taxonomy — full-width header chips (primary and yellow tints) with bulleted
+lists below. Clone this for extension categories or product groupings.](/slide-examples/template-lists) [Template · Platform panel
+
+Platform panel (dark)
+
+Product positioning — full-bleed photo with a left teal panel containing the title, body
+copy with up to three yellow accent verbs, and the Kaptio logo.](/slide-examples/template-platform) [Template · Roadmap
+
+Roadmap (light)
+
+Forward-looking timeline — four quarter columns with Flux Badge phase pills, bold phase
+names, and bullet items. Clone this for horizon planning.](/slide-examples/template-roadmap) [Template · Logo strip
+
+Logo strip (light)
+
+Social proof — optional "Trusted by" kicker, headline, support line, and a grid of logo
+placeholder cells. Clone this for customer logo walls.](/slide-examples/template-logos) [Template · Team
+
+Team (light)
+
+Leadership row — four person cards with circular avatar placeholders, bold names, and
+light role labels. Clone this to introduce key people.](/slide-examples/template-team) [Template · Process / journey
+
+Process / journey (light)
+
+How-it-works steps — four horizontal tiles with numbered badges, grey arrow connectors,
+bold step titles, and light descriptions.](/slide-examples/template-journey) [Template · Q&A
+
+Q&A (dark)
+
+Pre-closing Q&A — dark photo layer stack with a centered white "Questions?" headline,
+optional support line, and the Kaptio logo. No yellow, no emoji.](/slide-examples/template-qa) [Template · Implementation
+
+Implementation (light)
+
+Enterprise onboarding — four equal columns with teal phase numbers, bold titles, and
+bullet items separated by subtle vertical dividers.](/slide-examples/template-implementation) [Template · Security & trust
+
+Security & trust (light)
+
+Trust narrative — 2×2 grid of cards with inline SVG icons, bold titles, and light
+descriptions. Clone this for compliance and security messaging.](/slide-examples/template-security) [Template · Feature matrix
+
+Feature matrix (light)
+
+Competitive comparison table — Flux table in a card wrapper with uppercase headers,
+green checkmarks for Kaptio, and dashes for alternatives.](/slide-examples/template-matrix) [Template · Chart
+
+Chart (light)
+
+Growth narrative — dual headline stats on the left, inline SVG line chart placeholder on
+the right, optional low-opacity background photo.](/slide-examples/template-chart) [Template · Global presence
+
+Global presence (light)
+
+Follow-the-sun footprint — regional banner pills, dotted world map on a light ground,
+and primary-teal regional markers with labels.](/slide-examples/template-global) [Client listing
 
 FIT Ecosystem
 

@@ -544,7 +544,7 @@ function JourneyCard({ step, index, onClick }: { step: CardStep; index: number; 
 return (
 <button
 onClick={onClick}
-className="group rounded border border-[var(--flux-grey-100)] bg-[var(--flux-surface)] overflow-hidden transition-shadow duration-300 hover:shadow-lg text-left cursor-pointer w-full"
+className="group rounded border border-[var(--flux-grey-100)] bg-[var(--flux-surface)] overflow-hidden flux-glow-card text-left cursor-pointer w-full"
 >
 <div className="relative h-28 overflow-hidden">
 <img

@@ -53,11 +53,8 @@ Source  CardDemo.tsx
 The exact code behind the live demo above. Fetch it raw at
 [/components/source/card.txt](/components/source/card.txt).
 
-// Matches the homepage MagicBento light-card hover (see src/components/MagicBento.css):
-// border-color -> --flux-primary-200, soft --flux-primary-400 glow, 0.3s transition, no lift.
-const cardHover =
-'transition-all duration-300 hover:border-[var(--flux-primary-200)] ' +
-'hover:shadow-[0_4px_20px_color-mix(in_srgb,var(--flux-primary-400)_15%,transparent),0_0_30px_color-mix(in_srgb,var(--flux-primary-400)_8%,transparent)]';
+// Flux card hover — directional Flux-teal edge glow (see .flux-glow-card in global.css).
+const cardHover = 'flux-glow-card';
 
 function Section({ title, children }: { title: string; children: React.ReactNode }) {
 return (

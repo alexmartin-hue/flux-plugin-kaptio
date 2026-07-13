@@ -30,6 +30,7 @@ Routing table (slide content -> template -> source):
 - Section break / chapter divider -> Chapter -> https://flux.kaptio.com/slide-examples/source/chapter.txt
 - One big idea / thesis / focus -> Statement -> https://flux.kaptio.com/slide-examples/source/statement.txt
 - Explainer with supporting visual -> Content -> https://flux.kaptio.com/slide-examples/source/content.txt
+- Photo or hero image with copy (split) -> Split visual -> https://flux.kaptio.com/slide-examples/source/split-visual.txt
 - Customer / partner introduction -> Customer intro -> https://flux.kaptio.com/slide-examples/source/customer.txt
 - Product status / progress / roadmap -> Status grid -> https://flux.kaptio.com/slide-examples/source/status-grid.txt
 - Before vs after / two options -> Compare -> https://flux.kaptio.com/slide-examples/source/compare.txt
@@ -42,11 +43,13 @@ Routing table (slide content -> template -> source):
 - Feature impact + product fit -> Feature impact -> https://flux.kaptio.com/slide-examples/source/feature-impact.txt
 - Customer intro with map -> Customer map -> https://flux.kaptio.com/slide-examples/source/customer-map.txt
 - Two categorized lists / taxonomy -> Lists -> https://flux.kaptio.com/slide-examples/source/lists.txt
+- A few named concepts / layers (icon cards) -> Item cards -> https://flux.kaptio.com/slide-examples/source/item-rows.txt
 - Platform / product positioning panel -> Platform -> https://flux.kaptio.com/slide-examples/source/platform.txt
 - Forward roadmap / timeline / horizons -> Roadmap -> https://flux.kaptio.com/slide-examples/source/roadmap.txt
 - Customer logo strip / social proof -> Logo strip -> https://flux.kaptio.com/slide-examples/source/logos.txt
 - Team / leadership -> Team -> https://flux.kaptio.com/slide-examples/source/team.txt
 - Process / how it works / journey steps -> Journey -> https://flux.kaptio.com/slide-examples/source/journey.txt
+- Numbered cards on light/dark seam -> Cards band -> https://flux.kaptio.com/slide-examples/source/cards-band.txt
 - Q&A before close -> Q&A -> https://flux.kaptio.com/slide-examples/source/qa.txt
 - Implementation / onboarding phases -> Implementation -> https://flux.kaptio.com/slide-examples/source/implementation.txt
 - Security / trust / compliance -> Security -> https://flux.kaptio.com/slide-examples/source/security.txt
@@ -55,6 +58,19 @@ Routing table (slide content -> template -> source):
 - Global footprint / regions -> Global presence -> https://flux.kaptio.com/slide-examples/source/global.txt
 
 3. If no template matches, use the NEAREST template's structure — do not invent a new layout.
+
+3b. Screenshot frames (content, feature detail, feature impact, recap intro):
+- The white screenshot card is an IMAGE-ONLY frame — not a second text column.
+- Outer wrapper: border-radius, box-shadow, overflow:hidden, background --flux-surface.
+- Inner: exactly one <img> with display:block; width:100%; height:100%; object-fit:cover.
+- Swap ONLY the img src when you have a product screenshot. Keep wrapper markup identical.
+- NEVER put bullet lists, mock UI, colored rows, labels, or duplicate slide copy inside the frame.
+All narrative text stays in the LEFT column (or centered headline on recap).
+- Compare and Lists templates are for text — do NOT put that pattern inside a screenshot frame.
+- Full-height photo with copy: use Split visual, not content/feature screenshot frame.
+- A few named concepts / layers (icon + label + description): use Item cards slide — not inside a screenshot frame.
+- Numbered cards on a light/dark seam: use Cards band — not inside a screenshot frame.
+- If no screenshot exists yet, leave the frame empty (white) — do not invent placeholder UI inside it.
 
 4. Self-check every slide:
 - Headline on dark grounds is entirely white — never yellow/colored headline words.
@@ -65,10 +81,11 @@ Routing table (slide content -> template -> source):
 - Content slides are light; cover and chapter slides are dark.
 - At most one emoji per slide — never in headings or as the icon system.
 - No gradient text, no glow shadows, no coral accent eyebrows.
+- Screenshot frames: image only inside the white card — one full-bleed img, object-fit:cover; no text, lists, or mock UI in the frame.
 
 5. Output the deck as a single self-contained HTML file (or your closest supported format) using the cloned template markup, one 16:9 slide per section.
 
-6. Asset paths: the deck must work as a standalone file. Rewrite every root-relative path from the templates to an absolute URL — /tokens/flux.css becomes https://flux.kaptio.com/tokens/flux.css, /images/... becomes https://flux.kaptio.com/images/... — and verify each URL resolves. Template photos are placeholders; swap in imagery relevant to the deck content where provided, otherwise keep the absolute placeholder URLs.
+6. Asset paths: the deck must work as a standalone file. Rewrite every root-relative path from the templates to an absolute URL — /tokens/flux.css becomes https://flux.kaptio.com/tokens/flux.css, /images/... becomes https://flux.kaptio.com/images/... — and verify each URL resolves. For screenshot frames, set each img src to a real product screenshot URL when provided; otherwise leave the frame empty (white surface) — never fill it with text or mock UI.
 
 ---
 MY DECK:

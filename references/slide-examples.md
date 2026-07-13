@@ -25,7 +25,12 @@ white headline, and the Kaptio logo. Clone this to open any section.](/slide-exa
 Content (light)
 
 Anchor template for the light content system — left text column of subhead + paragraph blocks
-and a white card placeholder for a screenshot. Clone this for explainer slides.](/slide-examples/template-content) [Template · Cover
+and a white card placeholder for a screenshot. Clone this for explainer slides.](/slide-examples/template-content) [Template · Split visual
+
+Split visual (light)
+
+Copy left, full-height photo right — edge to edge with no shadow box. Use for hero
+imagery or lifestyle photos, not product UI in a floating frame.](/slide-examples/template-split-visual) [Template · Cover
 
 Cover (dark)
 
@@ -75,7 +80,12 @@ applicable-product pills, a persona pill, and a large screenshot card off the ri
 Agenda (light)
 
 "What we'll cover" — one muted kicker, a bold headline, and a vertical numbered list with
-teal numbers, bold titles, and short light descriptions. Clone this to set expectations.](/slide-examples/template-agenda) [Template · Big stat
+teal numbers, bold titles, and short light descriptions. Clone this to set expectations.](/slide-examples/template-agenda) [Template · Agenda with video
+
+Agenda with flower motion (dark)
+
+Dark agenda variant with the numbered list on the left and a looping flower bloom
+integrated into the dark ground on the right.](/slide-examples/template-agenda-video-dark) [Template · Big stat
 
 Big stat (light)
 
@@ -95,7 +105,12 @@ headline, one light support line, and the Kaptio logo. Clone this to end a deck.
 Categorized lists (light)
 
 Two-column taxonomy — full-width header chips (primary and yellow tints) with bulleted
-lists below. Clone this for extension categories or product groupings.](/slide-examples/template-lists) [Template · Platform panel
+lists below. Clone this for extension categories or product groupings.](/slide-examples/template-lists) [Template · Item cards
+
+Item cards (light)
+
+Centered headline and intro, then a row of icon cards (icon, label, description).
+Use for a few named concepts or layers — not inside a screenshot frame.](/slide-examples/template-item-rows) [Template · Platform panel
 
 Platform panel (dark)
 
@@ -120,7 +135,12 @@ light role labels. Clone this to introduce key people.](/slide-examples/template
 Process / journey (light)
 
 How-it-works steps — four horizontal tiles with numbered badges, grey arrow connectors,
-bold step titles, and light descriptions.](/slide-examples/template-journey) [Template · Q&A
+bold step titles, and light descriptions.](/slide-examples/template-journey) [Template · Cards band
+
+Cards band (light + dark seam)
+
+Centered headline over a light/dark horizontal seam with numbered cards straddling the
+transition. Use for pillars, parallel themes, or process steps.](/slide-examples/template-cards-band) [Template · Q&A
 
 Q&A (dark)
 

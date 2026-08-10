@@ -107,7 +107,7 @@ Error
 <span className={`${outlineBadge} border-[var(--flux-primary-400)] text-[var(--flux-primary-400)]`}>
 Default
 </span>
-<span className={`${outlineBadge} border-[var(--flux-green-400)] text-[var(--flux-green-400)]`}>
+<span className={`${outlineBadge} border-[var(--flux-green-400)] text-[var(--flux-green-600)]`}>
 Success
 </span>
 <span className={`${outlineBadge} border-[var(--flux-yellow-800)] text-[var(--flux-yellow-800)]`}>

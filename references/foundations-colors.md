@@ -546,11 +546,11 @@ Fail
 ## Semantic
 Functional colors for system feedback.
 
-Success#10B981Success states, confirmations
+Success#0A7954Success states, confirmations; AAA-safe text on light grounds
 
-Error#C1121FErrors, destructive actions
+Error#C1121FErrors, destructive actions; AAA-safe text on light grounds
 
-Warning#F59E0BWarnings, caution
+Warning#945F06Warnings, caution; AAA-safe text on light grounds
 
 Info#056F82Informational
 

@@ -101,7 +101,23 @@ Reference the names, not the hex values. Full list at
 /* Spacing */ --flux-space-1 … --flux-space-24   (4px grid)
 /* Type    */ --flux-text-xs … --flux-text-5xl
 /* Weight  */ --flux-weight-light (300)  --flux-weight-bold (700)
-/* Font    */ --flux-font-sans (Lexend)  --flux-font-mono (JetBrains Mono)
+/* Font    */ --flux-font-sans (Lexend)  --flux-font-mono (JetBrains Mono)               Text contrast (WCAG AAA). Body/headlines are `--flux-black` on light
+(14:1+) or white on dark (14.5:1) — already AAA. Every other text colour must be ≥4.5:1 on its
+ground, so only these tokens are text-safe:
+
+/* Light grounds — text-safe */
+--flux-black  --flux-grey-700/500/300  --flux-primary-800…400  --flux-pink-600
+--flux-yellow-800  --flux-error  --flux-success  --flux-warning  --flux-info
+--flux-blue-600/400  --flux-green-600  --flux-orange-800/600  --flux-purple-600/400
+
+/* Dark grounds (primary-900/800/700) — text-safe */
+--flux-white  --flux-primary-100/200/300  --flux-grey-200  --flux-yellow-400/300
+--flux-pink-300/200  --flux-green-300  --flux-orange-300  --flux-blue-300
+
+/* NEVER as text (graphics/fills only) */
+--flux-pink-400 (the dot)  --flux-yellow-400/600 on light  --flux-green-400
+--flux-orange-400 on light  --flux-grey-200 on light  --flux-primary-400 on dark
+--flux-primary-300 on light  --flux-layer-* and --flux-*-accent (product colours)
 ## 4. Drop-in Cursor rule
 
 Save this as `.cursor/rules/flux.mdc` in your repo so Cursor applies Flux

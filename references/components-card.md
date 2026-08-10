@@ -177,7 +177,7 @@ className="h-40 w-full object-cover"
 <Section title="Muted / disabled">
 <div className="max-w-sm rounded border border-[var(--flux-grey-100)] bg-[var(--flux-grey-50)] p-5 opacity-60">
 <h4 className="text-sm font-bold text-[var(--flux-grey-300)] mb-1">Archived Package</h4>
-<p className="text-xs text-[var(--flux-grey-200)] leading-relaxed">
+<p className="text-xs text-[var(--flux-grey-300)] leading-relaxed">
 This package is no longer available for new bookings.
 </p>
 </div>

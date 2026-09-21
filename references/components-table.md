@@ -1,135 +1,102 @@
-# Flux — /components/table
+# Flux — /components/table/
 
-Source: https://flux.kaptio.com/components/table
+Source: https://flux.kaptio.com/components/table/
 
-[Flux](/)       [Components](/components) / Data Display
+Component
 
 # Table
-Structured data in rows and columns.
+Quiet data table. Horizontal dividers only, tabular figures, badge status cells.
+
+Plain-text source, for agents and clipboard use: [/components/source/table.txt](/components/source/table.txt)
+
+## When to use it
+Presents rows of comparable records. Flux tables are deliberately quiet — the data carries the visual weight, and the chrome recedes to horizontal hairlines.
+
+Not thisDo not use a table for layout. For a small number of records with heterogeneous content, a list of cards reads better and adapts to narrow screens.
+## Examples
 
 ### Default
-NameDestinationStatusPriceNorthern Lights TourReykjavik, IcelandConfirmed$2,450Amalfi Coast EscapeNaples, ItalyPending$3,800Safari AdventureNairobi, KenyaConfirmed$5,200Patagonia TrekEl Calafate, ArgentinaCancelled$4,100Kyoto Heritage WalkKyoto, JapanConfirmed$3,150
-### Striped
-NameDestinationStatusPriceNorthern Lights TourReykjavik, IcelandConfirmed$2,450Amalfi Coast EscapeNaples, ItalyPending$3,800Safari AdventureNairobi, KenyaConfirmed$5,200Patagonia TrekEl Calafate, ArgentinaCancelled$4,100Kyoto Heritage WalkKyoto, JapanConfirmed$3,150       Source  TableDemo.tsx
-The exact code behind the live demo above. Fetch it raw at
-[/components/source/table.txt](/components/source/table.txt).
 
-import React from "react";
+Reference
+Departure
+Status
+Pax
+Total
 
-function Section({ title, children }: { title: string; children: React.ReactNode }) {
-return (
-<div className="mb-8">
-<h3 className="text-sm font-bold text-[var(--flux-heading)] mb-3">{title}</h3>
-<div className="p-6 rounded border border-[var(--flux-grey-100)] bg-[var(--flux-surface)]">
-{children}
-</div>
-</div>
-);
-}
+KB-104928
+Reykjavik → Akureyri, 12 Sep
+Confirmed
+4
+486,000
 
-const columns = ["Name", "Destination", "Status", "Price"] as const;
+KB-104931
+Golden Circle, 14 Sep
+On request
+12
+1,240,500
 
-interface Row {
-name: string;
-destination: string;
-status: string;
-price: string;
-}
+KB-104940
+South Coast, 19 Sep
+Awaiting supplier
+2
+198,000
 
-// Flux badge colours — matches flux.kaptio.com/components/badge/
-const BADGE_COLORS: Record<string, { bg: string }> = {
-confirmed:           { bg: "#BFE5B8" },
-completed:           { bg: "#BFE5B8" },
-pending:             { bg: "#FFD78E" },
-"action required":   { bg: "#FFD78E" },
-"on request":        { bg: "#FFD78E" },
-"awaiting supplier": { bg: "#C6DAFF" },
-cancelled:           { bg: "#FFA99B" },
-rejected:            { bg: "#FFA99B" },
-expired:             { bg: "#FFA99B" },
-};
+htmlCopy`
 
-function StatusBadge({ status }: { status: string }) {
-const { bg } = BADGE_COLORS[status.toLowerCase()] ?? { bg: "#B4D4DA" };
-return (
-<span
-className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-bold"
-style={{ backgroundColor: bg, color: "#1A1A1A" }}
->
-{status}
-</span>
-);
-}
+Reference
+Departure
+Status
+Pax
+Total
 
-const rows: Row[] = [
-{ name: "Northern Lights Tour",    destination: "Reykjavik, Iceland",       status: "Confirmed", price: "$2,450" },
-{ name: "Amalfi Coast Escape",     destination: "Naples, Italy",            status: "Pending",   price: "$3,800" },
-{ name: "Safari Adventure",        destination: "Nairobi, Kenya",           status: "Confirmed", price: "$5,200" },
-{ name: "Patagonia Trek",          destination: "El Calafate, Argentina",   status: "Cancelled", price: "$4,100" },
-{ name: "Kyoto Heritage Walk",     destination: "Kyoto, Japan",             status: "Confirmed", price: "$3,150" },
-];
+KB-104928
+Reykjavik → Akureyri, 12 Sep
+Confirmed
+4
+486,000
 
-const thClass =
-"text-xs font-bold uppercase tracking-wider text-[var(--flux-grey-300)] border-b border-[var(--flux-grey-100)] pb-3 text-left";
-const tdClass = "py-3 border-b border-[var(--flux-grey-100)] text-[var(--flux-black)] font-light";
+KB-104931
+Golden Circle, 14 Sep
+On request
+12
+1,240,500
 
-export default function TableDemo() {
-return (
-<div>
-<Section title="Default">
-<table className="w-full text-left text-sm">
-<thead>
-<tr>
-{columns.map((col) => (
-<th key={col} className={thClass}>
-{col}
-</th>
-))}
-</tr>
-</thead>
-<tbody>
-{rows.map((row) => (
-<tr key={row.name}>
-<td className={tdClass}>{row.name}</td>
-<td className={tdClass}>{row.destination}</td>
-<td className={tdClass}>
-<StatusBadge status={row.status} />
-</td>
-<td className={tdClass}>{row.price}</td>
-</tr>
-))}
-</tbody>
-</table>
-</Section>
+KB-104940
+South Coast, 19 Sep
+Awaiting supplier
+2
+198,000
 
-<Section title="Striped">
-<table className="w-full text-left text-sm">
-<thead>
-<tr>
-{columns.map((col) => (
-<th key={col} className={thClass}>
-{col}
-</th>
-))}
-</tr>
-</thead>
-<tbody>
-{rows.map((row, i) => (
-<tr
-key={row.name}
-className={i % 2 === 1 ? "bg-[var(--flux-background)]" : ""}
->
-<td className={tdClass}>{row.name}</td>
-<td className={tdClass}>{row.destination}</td>
-<td className={tdClass}>
-<StatusBadge status={row.status} />
-</td>
-<td className={tdClass}>{row.price}</td>
-</tr>
-))}
-</tbody>
-</table>
-</Section>
-</div>
-);
-}                  [← Switch](/components/switch) [Tabs →](/components/tabs)
+`
+## Anatomy
+PartDescriptionWrapperBordered, rounded surface that also provides horizontal scroll.HeaderMono, uppercase, extra-small, letter-spaced, in text-subtle.RowsDivided by a single hairline. The last row has none.Numeric columnsRight-aligned with tabular figures so digits line up.
+## API
+NameKindDescription`flux-table-wrap`classBordered surface and scroll container. Always wrap the table.`flux-table`classThe table element itself.`data-numeric`attributeRight-aligns and applies tabular figures. Put it on both th and td.`scope`attributeRequired on every header cell so the header/data relationship is programmatic.
+## States
+StateTreatmentRow hoverlayer-hover-01 fill across the row.Last rowBottom divider removed.
+## Keyboard
+KeysAction`Tab`Moves through interactive cells only. A static table is not a tab stop.
+## Accessibility
+
+- Every header cell needs scope="col" or scope="row"; without it the table is a grid of unrelated cells to a screen reader.
+- Give the table a caption or an aria-label when its purpose is not obvious from surrounding copy.
+- Status is announced from the badge text, not inferred from the tint.
+- The wrapper scrolls horizontally on narrow screens rather than shrinking text below the minimum readable size.
+## Tokens
+The tier-3 and tier-2 tokens this component binds to. Change the token, not the component.
+
+- --flux-table-cell-padding-y
+- --flux-table-cell-padding-x
+- --flux-table-divider
+- --flux-table-header-text
+- --flux-table-row-hover
+## Do and don’t
+Do
+
+- Right-align money, quantities and dates that are compared down a column.
+- Use the Badge component for status cells.
+- Keep reference codes in Lexend Light so they do not compete with the data.Don’t
+
+- Do not add vertical column borders or a border on every cell.
+- Do not zebra-stripe and divide at the same time; choose one.
+- Do not invent status colours that differ from the badge set.[PreviousBadge](/components/badge/)[NextModal](/components/modal/)

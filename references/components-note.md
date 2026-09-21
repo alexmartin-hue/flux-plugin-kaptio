@@ -1,139 +1,79 @@
-# Flux — /components/note
+# Flux — /components/note/
 
-Source: https://flux.kaptio.com/components/note
+Source: https://flux.kaptio.com/components/note/
 
-[Flux](/)       [Components](/components) / Data Display
+Component
 
 # Note
-Contextual callouts for info, success, warning, and error states.
+Inline contextual message in one of four semantic tones.
 
-### Variants
-Information
+Plain-text source, for agents and clipboard use: [/components/source/note.txt](/components/source/note.txt)
 
-This itinerary includes a layover in Amsterdam. Allow at least 2 hours for the connection.
+## When to use it
+Explains something about the region it sits in — a constraint, a consequence, a result. It stays in the layout rather than floating over it.
 
-Booking Confirmed
+Not thisFor a transient confirmation of something the user just did, use a toast. For a blocking decision, use a modal. For per-field validation, use the field error text.
+## Examples
 
-Your reservation for the Northern Lights Tour has been confirmed. Check your email for details.
+### Tones
 
-Visa Required
+Read-only environment
 
-Travellers to this destination require a valid visa. Processing may take up to 15 business days.
+Changes made here are not written back to Salesforce.
 
-Payment Failed
+Evidence pack signed
 
-We were unable to process the payment. Please verify the card details and try again.
+Countersigned at close of trial and attached to the account record.
 
-Source  NoteDemo.tsx
-The exact code behind the live demo above. Fetch it raw at
-[/components/source/note.txt](/components/source/note.txt).
+Three departures awaiting supplier
 
-import React from "react";
+They will not appear on the site until the supplier confirms.
 
-function Section({ title, children }: { title: string; children: React.ReactNode }) {
-return (
-<div className="mb-8">
-<h3 className="text-sm font-bold text-[var(--flux-heading)] mb-3">{title}</h3>
-<div className="p-6 rounded border border-[var(--flux-grey-100)] bg-[var(--flux-surface)]">
-{children}
-</div>
-</div>
-);
-}
+Price rule conflict
 
-function InfoIcon() {
-return (
-<svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-<circle cx="10" cy="10" r="8" stroke="var(--flux-info)" strokeWidth="1.5" />
-<path d="M10 9v4" stroke="var(--flux-info)" strokeWidth="1.5" strokeLinecap="round" />
-<circle cx="10" cy="7" r="0.75" fill="var(--flux-info)" />
-</svg>
-);
-}
+Two rules target the B2C channel for the same date range. Resolve one before publishing.
 
-function SuccessIcon() {
-return (
-<svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-<circle cx="10" cy="10" r="8" stroke="var(--flux-success)" strokeWidth="1.5" />
-<path d="M7 10l2 2 4-4" stroke="var(--flux-success)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-</svg>
-);
-}
+htmlCopy`
 
-function WarningIcon() {
-return (
-<svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path d="M10 3l8 14H2L10 3z" stroke="var(--flux-warning)" strokeWidth="1.5" strokeLinejoin="round" />
-<path d="M10 9v3" stroke="var(--flux-warning)" strokeWidth="1.5" strokeLinecap="round" />
-<circle cx="10" cy="14.5" r="0.75" fill="var(--flux-warning)" />
-</svg>
-);
-}
+Read-only environment
+Changes made here are not written back to Salesforce.
 
-function ErrorIcon() {
-return (
-<svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-<circle cx="10" cy="10" r="8" stroke="var(--flux-error)" strokeWidth="1.5" />
-<path d="M7.5 7.5l5 5M12.5 7.5l-5 5" stroke="var(--flux-error)" strokeWidth="1.5" strokeLinecap="round" />
-</svg>
-);
-}
+Evidence pack signed
+Countersigned at close of trial and attached to the account record.
 
-interface NoteProps {
-icon: React.ReactNode;
-title: string;
-description: string;
-bgColor: string;
-}
+Three departures awaiting supplier
+They will not appear on the site until the supplier confirms.
 
-function Note({ icon, title, description, bgColor }: NoteProps) {
-return (
-<div
-className="rounded p-4"
-style={{ backgroundColor: bgColor }}
->
-<div className="flex gap-3">
-<div className="flex-shrink-0 mt-0.5">{icon}</div>
-<div>
-<p className="text-sm font-bold text-[var(--flux-black)]">{title}</p>
-<p className="text-sm text-[var(--flux-black)] mt-1">{description}</p>
-</div>
-</div>
-</div>
-);
-}
+Price rule conflict
+Two rules target the B2C channel for the same date range. Resolve one before publishing.
 
-export default function NoteDemo() {
-return (
-<div>
-<Section title="Variants">
-<div className="flex flex-col gap-3">
-<Note
-icon={<InfoIcon />}
-title="Information"
-description="This itinerary includes a layover in Amsterdam. Allow at least 2 hours for the connection."
-bgColor="var(--flux-primary-100)"
-/>
-<Note
-icon={<SuccessIcon />}
-title="Booking Confirmed"
-description="Your reservation for the Northern Lights Tour has been confirmed. Check your email for details."
-bgColor="var(--flux-green-100)"
-/>
-<Note
-icon={<WarningIcon />}
-title="Visa Required"
-description="Travellers to this destination require a valid visa. Processing may take up to 15 business days."
-bgColor="var(--flux-yellow-100)"
-/>
-<Note
-icon={<ErrorIcon />}
-title="Payment Failed"
-description="We were unable to process the payment. Please verify the card details and try again."
-bgColor="var(--flux-orange-100)"
-/>
-</div>
-</Section>
-</div>
-);
-}                  [← Modal](/components/modal) [Progress →](/components/progress)
+`
+## Anatomy
+PartDescriptionContainerTinted surface at 4px radius, no border.TitleOptional. Bold, one line.BodySecondary text. Body copy stays text-primary or text-secondary, never the tone colour.
+## API
+NameKindDescription`flux-note`classBase class. Informational tone by default.`flux-note--success`classA completed or verified outcome.`flux-note--warning`classSomething needs attention but nothing is broken.`flux-note--error`classSomething failed or blocks progress.`flux-note__title`classOptional bold lead line.
+## States
+StateTreatmentStaticNotes do not have interactive states.
+## Accessibility
+
+- Body text stays in a text token rather than the tone colour, which is what keeps every note at 4.5:1 on its tint.
+- A note appearing in response to an action belongs in a live region — role="status" for informational, role="alert" for errors.
+- The tone is reinforced by the wording; a note that only differs by tint is not accessible.
+## Tokens
+The tier-3 and tier-2 tokens this component binds to. Change the token, not the component.
+
+- --flux-note-radius
+- --flux-note-padding
+- --flux-note-gap
+- --flux-surface-info-subtle
+- --flux-surface-success-subtle
+- --flux-surface-warning-subtle
+- --flux-surface-error-subtle
+## Do and don’t
+Do
+
+- Say what to do next, not only what happened.
+- Keep a note beside the thing it describes.Don’t
+
+- Do not colour the body text with the tone colour.
+- Do not stack several notes at the top of a page as a substitute for fixing the flow.[PreviousModal](/components/modal/)[NextTabs](/components/tabs/)

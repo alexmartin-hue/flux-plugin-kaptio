@@ -2,73 +2,44 @@
 
 Source: https://flux.kaptio.com/components
 
-[Flux](/)
-Library
+Components
 
 # Components
+Twelve components, each documented to the same shape: a live specimen, the exact markup behind it, the tokens it binds to, and the accessibility contract it has to keep.
 
-Building blocks for Kaptio applications, styled with Flux design tokens.
-Each component respects light and dark themes automatically.
+- [Button
 
-## Inputs & Forms
-[Button
+Triggers an action. Six variants, three sizes.](/components/button/)
+- [Input
 
-Primary actions, secondary actions, and destructive operations.](/components/button)[Checkbox
+Single-line text entry, with the label, help and error pattern that goes with it.](/components/input/)
+- [Select
 
-Toggle individual options on or off.](/components/checkbox)[Date Picker
+Choice from a known, closed set of options.](/components/select/)
+- [Date picker
 
-Five interactive date selection styles: inline calendar, popover input, range picker, compact chip, and full calendar with prominent navigation.](/components/date-picker)[Input
+Single-date and date-range selection from a keyboard-operable calendar.](/components/date-picker/)
+- [Card
 
-Text fields for single-line data entry, including multi-select.](/components/input)[Radio
+Groups related content into one surface on the layer above.](/components/card/)
+- [Description list
 
-Select one option from a mutually exclusive group.](/components/radio)[Select
+Labelled values in a row or a stack. The summary block at the top of a record.](/components/description-list/)
+- [Badge
 
-Dropdown menus for choosing from a list of options.](/components/select)[Switch
+A short status label. Four status colours, shared with tables.](/components/badge/)
+- [Table
 
-Binary toggle for on/off states.](/components/switch)[Textarea
+Quiet data table. Horizontal dividers only, tabular figures, badge status cells.](/components/table/)
+- [Modal
 
-Multi-line text input with optional character count.](/components/textarea)
-## Data Display
-[Avatar
+A focused, interrupting dialog built on the native dialog element.](/components/modal/)
+- [Note
 
-User or entity representation with image or initials.](/components/avatar)[Badge
+Inline contextual message in one of four semantic tones.](/components/note/)
+- [Tabs
 
-Compact labels for status, categories, and counts.](/components/badge)[Code Block
+Switches between sibling views within one context.](/components/tabs/)
+- [Avatar
 
-Monospace display for code snippets and tokens.](/components/code-block)[Journey
-
-Horizontal step-by-step flow for processes, onboarding, and architecture diagrams.](/components/journey)[Note
-
-Contextual callouts for info, success, warning, and error states.](/components/note)[Table
-
-Structured data in rows and columns.](/components/table)
-## Feedback
-[Progress
-
-Determinate progress bars showing completion.](/components/progress)[Skeleton
-
-Placeholder shapes while content loads.](/components/skeleton)[Spinner
-
-Loading indicators for async operations.](/components/spinner)
-## Layout & Overlay
-[Accordion
-
-Vertically stacked sections that expand and collapse to reveal content.](/components/accordion)[Card
-
-Contained surfaces for grouping related content and actions.](/components/card)[Hero
-
-Full-width banner for page headers with light and dark variants.](/components/hero)[Modal
-
-Overlay dialogs for focused tasks and confirmations.](/components/modal)[Tabs
-
-Horizontal navigation between related content panels.](/components/tabs)[Tooltip
-
-Contextual hints that appear on hover.](/components/tooltip)
-## Outcome Patterns
-[Outcome Header
-
-Persistent bar anchoring the user to the outcome they are achieving, with a clear return action.](/components/outcome-header)[Flow Entry
-
-The arriving state — what users see while their context resolves, with loading, error, and transition states.](/components/flow-entry)[Outcome Complete
-
-Achievement confirmation with auto-return, next-step guidance, and outcome summary.](/components/outcome-complete)
+Represents a person or account, as an image or initials.](/components/avatar/)

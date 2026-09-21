@@ -1,137 +1,62 @@
-# Flux — /components/tabs
+# Flux — /components/tabs/
 
-Source: https://flux.kaptio.com/components/tabs
+Source: https://flux.kaptio.com/components/tabs/
 
-[Flux](/)       [Components](/components) / Layout & Overlay
+Component
 
 # Tabs
-Horizontal navigation between related content panels.
+Switches between sibling views within one context.
+
+Plain-text source, for agents and clipboard use: [/components/source/tabs.txt](/components/source/tabs.txt)
+
+## When to use it
+Use for a handful of peer views of the same object, where the user will move between them and only one is relevant at a time.
+
+Not thisTabs are not navigation between pages, and not a wizard. If the views are steps in a sequence, or if content in a hidden tab needs to be found by search or print, do not use tabs.
+## Examples
 
 ### Default
-OverviewItineraryPricingThis trip covers the highlights of the region with curated experiences, premium accommodations, and guided excursions throughout the journey.
-### With Icons
+
 Overview
-- Itinerary
-- PricingThis trip covers the highlights of the region with curated experiences, premium accommodations, and guided excursions throughout the journey.       Source  TabsDemo.tsx
-The exact code behind the live demo above. Fetch it raw at
-[/components/source/tabs.txt](/components/source/tabs.txt).
+Pricing
+Suppliers
 
-import React, { useState } from "react";
+Twenty-four departures published, three awaiting supplier confirmation.
 
-function Section({ title, children }: { title: string; children: React.ReactNode }) {
-return (
-<div className="mb-8">
-<h3 className="text-sm font-bold text-[var(--flux-heading)] mb-3">{title}</h3>
-<div className="p-6 rounded border border-[var(--flux-grey-100)] bg-[var(--flux-surface)]">
-{children}
-</div>
-</div>
-);
-}
+htmlCopy`
+Overview
+Pricing
+Suppliers
 
-const tabs = [
-{ id: "overview", label: "Overview" },
-{ id: "itinerary", label: "Itinerary" },
-{ id: "pricing", label: "Pricing" },
-];
+Twenty-four departures published, three awaiting supplier confirmation.
+`
+## Anatomy
+PartDescriptionTab listRow of tabs above a hairline divider.TabBold, small. Inactive in text-subtle.Indicator2px underline in border-interactive on the selected tab.PanelThe content region, labelled by its tab.
+## API
+NameKindDescription`flux-tabs`classThe tab list. Needs role="tablist" and an aria-label.`flux-tab`classA tab. Use a button with role="tab".`aria-selected`attributeDrives the active style. Exactly one tab is true.`aria-controls`attributePoints at the panel id.
+## States
+StateTreatmentInactivetab-text, transparent underline.Hovertext-primary.Selectedtab-text-active plus a 2px indicator.FocusGlobal teal focus outline.
+## Keyboard
+KeysAction`Tab`Moves to the tab list, then to the panel. Only the selected tab is a tab stop.`Left, Right`Moves between tabs.`Home, End`Jumps to the first or last tab.
+## Accessibility
 
-const tabContent: Record<string, string> = {
-overview:
-"This trip covers the highlights of the region with curated experiences, premium accommodations, and guided excursions throughout the journey.",
-itinerary:
-"Day 1: Arrival and welcome dinner. Day 2: Guided city tour and museum visit. Day 3: Coastal excursion with lunch. Day 4: Free day for exploration. Day 5: Departure.",
-pricing:
-"Standard package starts at $2,450 per person. Premium upgrade with private transfers and suite accommodation available at $3,200 per person.",
-};
+- Roving tabindex is required: the selected tab is tabindex="0", the rest are tabindex="-1". Without it, keyboard users must tab through every tab to reach the panel.
+- The indicator is a 2px underline plus a colour change, so selection is not signalled by colour alone.
+- Each panel is labelled by its tab through aria-labelledby.
+## Tokens
+The tier-3 and tier-2 tokens this component binds to. Change the token, not the component.
 
-function GlobeIcon() {
-return (
-<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-<circle cx="12" cy="12" r="10" />
-<path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10A15.3 15.3 0 0 1 12 2z" />
-</svg>
-);
-}
+- --flux-tab-height
+- --flux-tab-padding-x
+- --flux-tab-indicator
+- --flux-tab-indicator-width
+- --flux-tab-text
+- --flux-tab-text-active
+## Do and don’t
+Do
 
-function ListIcon() {
-return (
-<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-<line x1="8" y1="6" x2="21" y2="6" />
-<line x1="8" y1="12" x2="21" y2="12" />
-<line x1="8" y1="18" x2="21" y2="18" />
-<line x1="3" y1="6" x2="3.01" y2="6" />
-<line x1="3" y1="12" x2="3.01" y2="12" />
-<line x1="3" y1="18" x2="3.01" y2="18" />
-</svg>
-);
-}
+- Keep tab labels to one or two words.
+- Preserve the selected tab across a page reload where the view is shareable.Don’t
 
-function CurrencyIcon() {
-return (
-<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-<line x1="12" y1="1" x2="12" y2="23" />
-<path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" />
-</svg>
-);
-}
-
-const tabIcons: Record<string, React.ReactNode> = {
-overview: <GlobeIcon />,
-itinerary: <ListIcon />,
-pricing: <CurrencyIcon />,
-};
-
-function TabBar({
-activeTab,
-onSelect,
-withIcons = false,
-}: {
-activeTab: string;
-onSelect: (id: string) => void;
-withIcons?: boolean;
-}) {
-return (
-<div className="flex border-b border-[var(--flux-grey-100)]">
-{tabs.map((tab) => {
-const isActive = tab.id === activeTab;
-return (
-<button
-key={tab.id}
-onClick={() => onSelect(tab.id)}
-className={`px-4 py-2.5 text-sm font-bold transition-colors flex items-center gap-1.5 ${
-isActive
-? "text-[var(--flux-primary-800)] border-b-2 border-[var(--flux-primary-800)]"
-: "text-[var(--flux-grey-300)] hover:text-[var(--flux-black)]"
-}`}
->
-{withIcons && tabIcons[tab.id]}
-{tab.label}
-</button>
-);
-})}
-</div>
-);
-}
-
-export default function TabsDemo() {
-const [activeTab, setActiveTab] = useState("overview");
-const [activeIconTab, setActiveIconTab] = useState("overview");
-
-return (
-<div>
-<Section title="Default">
-<TabBar activeTab={activeTab} onSelect={setActiveTab} />
-<div className="p-4 text-sm text-[var(--flux-black)] leading-relaxed">
-{tabContent[activeTab]}
-</div>
-</Section>
-
-<Section title="With Icons">
-<TabBar activeTab={activeIconTab} onSelect={setActiveIconTab} withIcons />
-<div className="p-4 text-sm text-[var(--flux-black)] leading-relaxed">
-{tabContent[activeIconTab]}
-</div>
-</Section>
-</div>
-);
-}                  [← Table](/components/table) [Textarea →](/components/textarea)
+- Do not use more than about five tabs; beyond that, use navigation.
+- Do not hide required form fields inside an unselected tab.[PreviousNote](/components/note/)[NextAvatar](/components/avatar/)

@@ -1,165 +1,136 @@
-# Flux — /components/select
+# Flux — /components/select/
 
-Source: https://flux.kaptio.com/components/select
+Source: https://flux.kaptio.com/components/select/
 
-[Flux](/)       [Components](/components) / Inputs & Forms
+Component
 
 # Select
-Dropdown menus for choosing from a list of options.
+Choice from a known, closed set of options.
+
+Plain-text source, for agents and clipboard use: [/components/source/select.txt](/components/source/select.txt)
+
+## When to use it
+Use when the value must come from a fixed list the user cannot extend, and the list is long enough that radios would crowd the layout — roughly five options or more.
+
+Not thisWith four or fewer options, radio buttons are faster and show every choice at once. For an open-ended value use Input.
+## Examples
 
 ### Default
-Service typeSelect an option...
-### With preselected value
-Service typeAccommodation
-### Disabled
-Service typeSelect an option...
-### Error state
-Service typeSelect an option...Please select a service type.
 
-Source  SelectDemo.tsx
-The exact code behind the live demo above. Fetch it raw at
-[/components/source/select.txt](/components/source/select.txt).
+Sales channel
 
-import React, { useState, useRef, useEffect } from "react";
+Direct B2C
 
-function Section({ title, children }: { title: string; children: React.ReactNode }) {
-return (
-<div className="mb-8">
-<h3 className="text-sm font-bold text-[var(--flux-heading)] mb-3">{title}</h3>
-<div className="p-6 rounded border border-[var(--flux-grey-100)] bg-[var(--flux-surface)]">
-{children}
-</div>
-</div>
-);
-}
+- Direct B2C
 
-const labelClass = "block text-sm font-medium text-[var(--flux-black)] mb-1";
+- Trade partner
 
-interface CustomSelectProps {
-label: string;
-options: string[];
-placeholder?: string;
-disabled?: boolean;
-error?: string;
-defaultValue?: string;
-}
+- Agent network
 
-function CustomSelect({
-label,
-options,
-placeholder = "Select an option...",
-disabled = false,
-error,
-defaultValue,
-}: CustomSelectProps) {
-const [open, setOpen] = useState(false);
-const [selected, setSelected] = useState(defaultValue || "");
-const ref = useRef<HTMLDivElement>(null);
+- Corporate
 
-useEffect(() => {
-function handleClick(e: MouseEvent) {
-if (ref.current && !ref.current.contains(e.target as Node)) setOpen(false);
-}
-document.addEventListener("mousedown", handleClick);
-return () => document.removeEventListener("mousedown", handleClick);
-}, []);
+htmlCopy`
+Sales channel
 
-const borderColor = error
-? "border-[var(--flux-error)]"
-: open
-? "border-[var(--flux-primary-400)]"
-: "border-[var(--flux-grey-200)]";
+Direct B2C
 
-const ringClass = open
-? error
-? "ring-1 ring-[var(--flux-error)]"
-: "ring-1 ring-[var(--flux-primary-300)]"
-: "";
+Direct B2C
+Trade partner
+Agent network
+Corporate
 
-return (
-<div className="max-w-sm" ref={ref}>
-<label className={labelClass}>{label}</label>
-<div className="relative">
-<button
-type="button"
-disabled={disabled}
-onClick={() => !disabled && setOpen(!open)}
-className={`w-full flex items-center justify-between px-3 py-2 rounded border ${borderColor} ${ringClass} bg-[var(--flux-surface)] text-sm text-left outline-none transition-all ${
-disabled ? "opacity-50 cursor-not-allowed bg-[var(--flux-grey-50)]" : "cursor-pointer hover:border-[var(--flux-grey-300)]"
-}`}
->
-<span className={selected ? "text-[var(--flux-black)]" : "text-[var(--flux-grey-300)]"}>
-{selected || placeholder}
-</span>
-<svg
-className={`w-4 h-4 text-[var(--flux-grey-500)] transition-transform ${open ? "rotate-180" : ""}`}
-fill="none"
-viewBox="0 0 24 24"
-stroke="currentColor"
->
-<path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-</svg>
-</button>
+`
+### With a placeholder option
+Where no value is preselected, the first option states the choice rather than reading as a value.
 
-{open && (
-<ul className="absolute z-50 mt-1 w-full rounded border border-[var(--flux-grey-200)] bg-[var(--flux-surface)] shadow-[var(--flux-shadow-lg)] py-1 max-h-60 overflow-auto">
-{options.map((opt) => (
-<li key={opt}>
-<button
-type="button"
-onClick={() => {
-setSelected(opt);
-setOpen(false);
-}}
-className={`w-full text-left px-3 py-2 text-sm transition-colors cursor-pointer ${
-selected === opt
-? "bg-[var(--flux-primary-50)] text-[var(--flux-primary-800)] font-medium"
-: "text-[var(--flux-black)] hover:bg-[var(--flux-grey-50)]"
-}`}
->
-<span className="flex items-center justify-between">
-{opt}
-{selected === opt && (
-<svg className="w-4 h-4 text-[var(--flux-primary-500)]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-<path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-</svg>
-)}
-</span>
-</button>
-</li>
-))}
-</ul>
-)}
-</div>
-{error && <p className="mt-1 text-xs text-[var(--flux-error)]">{error}</p>}
-</div>
-);
-}
+Region
 
-const serviceTypes = ["Departure", "Accommodation", "Activity", "Transfer"];
+Choose a region
 
-export default function SelectDemo() {
-return (
-<div>
-<Section title="Default">
-<CustomSelect label="Service type" options={serviceTypes} />
-</Section>
+- Iceland
 
-<Section title="With preselected value">
-<CustomSelect label="Service type" options={serviceTypes} defaultValue="Accommodation" />
-</Section>
+- Nordics
 
-<Section title="Disabled">
-<CustomSelect label="Service type" options={serviceTypes} disabled />
-</Section>
+- United Kingdom
 
-<Section title="Error state">
-<CustomSelect
-label="Service type"
-options={serviceTypes}
-error="Please select a service type."
-/>
-</Section>
-</div>
-);
-}                  [← Radio](/components/radio) [Skeleton →](/components/skeleton)
+Determines which price rules apply.
+
+htmlCopy`
+Region
+
+Choose a region
+
+Iceland
+Nordics
+United Kingdom
+
+Determines which price rules apply.
+`
+### Multi-select
+When several values from a closed set may be chosen at once and the list is too long for a visible checkbox group. Checkbox options inside a dropdown panel; the trigger matches Select geometry.
+
+Markets
+
+Choose markets
+
+Iceland
+
+Nordics
+
+United Kingdom
+
+DACH
+
+Price rules apply to every selected market.
+
+htmlCopy`
+Markets
+
+Choose markets
+
+Iceland
+
+Nordics
+
+United Kingdom
+
+DACH
+
+Price rules apply to every selected market.
+`
+## Anatomy
+PartDescriptionLabelAbove the control, matching Input exactly.TriggerA button with the same height, radius and border as Input, so a mixed form stays level.IndicatorA line chevron in icon-subtle at the trailing edge. Stroke only, not a filled triangle.ListboxA Flux surface containing keyboard-focusable options and the selected checkmark.ValueA hidden input carrying the selected value into ordinary form submission.
+## API
+NameKindDescription`flux-select`classPositions the styled trigger and its floating listbox.`data-flux-select`attributeInitialises listbox selection, focus management and form-value syncing.`flux-select__control`classButton trigger. Matches Input geometry exactly.`flux-select__value`classVisible selected option inside the trigger.`flux-select__chevron`classLine chevron indicator. Stroke inherits icon-subtle via currentColor.`flux-select__panel`classFloating Flux surface containing the listbox.`flux-select__option`classFocus-managed option. Set aria-selected on exactly one option.`flux-multiselect`classDropdown multi-select built on details. Checkbox options inside the panel.`flux-multiselect__control`classThe trigger summary. Same field geometry as flux-select.`flux-multiselect__value`classTrigger label. Update to show the selection count or chosen values.`flux-field`classSame wrapper as Input.`aria-invalid`attributeError state on select or multiselect trigger.
+## States
+StateTreatmentDefaultIdentical to Input at rest.Hoverborder-interactive.FocusGlobal teal focus outline.Disabledsurface-disabled fill at 60% opacity.
+## Keyboard
+KeysAction`Space, Enter`Opens the listbox from the trigger or selects the focused option.`Up, Down`Opens the listbox, then moves focus through its options.`Home, End`Moves to the first or last option.`Type-ahead`Moves to the first option matching the typed characters.`Escape`Closes the listbox and returns focus to the trigger.`Space, Enter`Opens or closes the multi-select panel.`Tab`Moves through checkbox options inside an open multi-select panel.
+## Accessibility
+
+- The trigger exposes aria-haspopup="listbox", its expanded state and the panel it controls. Its accessible name includes the visible field label and current value.
+- Every option exposes aria-selected, and selection moves back to the trigger so the new value is announced in context.
+- The hidden input carries the value into form submission. Validate required values in the form logic and bind any error with aria-describedby and aria-invalid.
+- The line chevron and selected checkmarks are decorative and aria-hidden; selected state is also exposed programmatically.
+- Multi-select uses a details panel with labelled checkboxes. Each option is a native checkbox so selection state is announced correctly.
+- Update flux-multiselect__value when selections change so screen-reader users hear the current count, not only the placeholder.
+- Option text must stand alone; "Yes" and "No" mean nothing when read out of context.
+## Tokens
+The tier-3 and tier-2 tokens this component binds to. Change the token, not the component.
+
+- --flux-field-height
+- --flux-field-radius
+- --flux-field-border
+- --flux-icon-subtle
+- --flux-select-chevron-size
+- --flux-select-panel-max-height
+- --flux-multiselect-panel-max-height
+## Do and don’t
+Do
+
+- Order options by expected frequency, or alphabetically when frequency is unknown.
+- Keep the trigger the same height as neighbouring inputs.
+- Use multi-select when the list is long but only some values apply; use a visible checkbox group when the full set should stay in view.Don’t
+
+- Do not use a select for two options — that is a switch or a pair of radios.
+- Do not omit flux-components.js. The styled select requires its focus and form-value behaviour.[PreviousInput](/components/input/)[NextDate picker](/components/date-picker/)

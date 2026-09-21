@@ -1,435 +1,151 @@
-# Flux — /for-ai
-
-Source: https://flux.kaptio.com/for-ai
-
-[Flux](/)
-For AI Tools
-
-# Building with Flux + AI
-
-Copy-paste guidance for any AI coding tool building prototypes, slides, or UI on top of
-Flux. The goal: stop agents from leaking generic Tailwind defaults and keep generated
-output on-brand. These are consumer-facing rules for your repo — not for
-maintaining this site.
-
-Flux tokens Tailwind preset Slide deck kit Cursor & Copilot
-Machine-readable sources
-
-Agent context lives at [/llms.txt](/llms.txt),
-tokens at [/tokens/flux.css](/tokens/flux.css)
-and [/tokens/flux.json](/tokens/flux.json).
-The full do/don't list is on the [Don'ts](/donts) page.
-
-Anti-leak hard rules
-
-The `flux-tailwind.css` preset mechanically remaps every Tailwind color family,
-the radius and type scales, spacing, shadows, font-family, the whole font-weight scale, and
-the default focus ring onto Flux. Two things still bypass any preset and are on you:
-
-- No arbitrary values for color/size/radius — never `bg-[#3b82f6]`,
-`text-[15px]`, or `rounded-[10px]`. They escape the preset and leak raw values.
-- Lexend 300 / 700 only — `font-normal`/`medium`/`semibold`
-are collapsed to 300/700 by the preset, so they render Light or Bold regardless. Don't reach for them.
-- Focus rings are Flux primary teal, never `focus:ring-blue-*`.
-- Import order (Tailwind v4): `@import "tailwindcss"` →
-`flux.css` → `flux-tailwind.css` last, or defaults win.   Self-check before finishing: no raw hex/rgb, no arbitrary-value brackets,
-fonts are Lexend 300/700, focus rings are Flux primary not blue, and component markup is cloned
-from `/components/source/.txt` rather than hand-invented.
-
-Composition discipline — don't impose generic AI patterns
-
-Tokens fix wrong colors, but not generic composition habits. Reproduce Flux's
-restraint — don't apply default landing-page / marketing-site instincts to product UI.
-
-- Eyebrows / kickers: the Flux eyebrow is always `text-xs font-bold tracking-widest uppercase` in `--flux-grey-300`
-(or `--flux-primary-400` for emphasis). Never a coral/red/amber accent eyebrow
-(e.g. an uppercase coral “GO-LIVES”), and use it sparingly — one kicker
-per section/slide, max, never an uppercase eyebrow on every card header.
-- On dark grounds (e.g. `--flux-primary-800` heroes/slides) the
-whole headline is white — never color headline words `--flux-yellow-400`.
-Body/emphasis text is white or `--flux-primary-100`, never yellow. Yellow is a single,
-rare accent — one eyebrow/subtitle or a CTA, not an emphasis color for headline
-words, bullet lead-ins, or running text.
-- No gradient text or gradient-filled buttons (flat Flux fills;
-primary is `--flux-primary-600`).
-- No glow / large colored drop-shadows — only the subtle teal-tinted
-`--flux-shadow-*` tokens (cap cards at `--flux-shadow-md`).
-- No emoji in headings or as icons — use real iconography.
-- No pill-everything / over-rounded corners — use the Flux radius scale
-(`rounded-full` only for badges, avatars, pills).
-- No reflexive centered hero with three identical icon cards, or a
-“trusted by” logo strip; no arbitrary accent colors for section labels.
-When unsure of a pattern, clone real markup from `/components/source/.txt`
-rather than inventing one.
-
-## 1. Import the tokens first
-
-Put this on the first line of your global stylesheet. It defines every
-`--flux-*` custom property.
-
-@import url("https://flux.kaptio.com/tokens/flux.css");               Tailwind v4 projects should also import the enforcement layer
-after `@import "tailwindcss";`. It resets Tailwind's built-in
-color palette and remaps the common names onto Flux, so generic defaults mechanically
-degrade to on-brand: `bg-gray-300` → Flux grey, `bg-blue-500` → Flux
-primary teal, `rounded-lg` → Flux radius, `text-xl` → Flux type scale.
-Non-Tailwind projects don't need it — use `flux.css` alone.
-
-@import "tailwindcss";
-@import url("https://flux.kaptio.com/tokens/flux.css");
-@import url("https://flux.kaptio.com/tokens/flux-tailwind.css"); /* must come last */
-## 2. The rules
-
-- Use only `--flux-*` tokens for color, spacing, radius, shadow, and type. If it isn't a token, it isn't Flux.
-- Never use Tailwind default palette names (`gray-*`, `slate-*`, `blue-*`, `red-*`, …) as design decisions.
-- No one-off hex / rgb values for brand UI. Never invent token names.
-- Font is Lexend, weights 300 and 700 only — the only weights loaded (`wght@300;700`). Body / default text is Light (300); headings are Bold (700). 400 (Regular) and 500 (Medium) are not loaded — never use them (nor 600). Mono is JetBrains Mono.
-- Root font-size is fluid, not a fixed 16px — every rem-based size (e.g. `text-sm` = `0.875rem`) scales from a 16–19px root, so it renders larger on wide screens. Reproduce the clamp or your rem text comes out too small.
-- Text is `--flux-black` (#212121) on light backgrounds. No colored heading text.
-- `--flux-yellow-400` is for CTAs and key highlights only.
-- Don't mix in another design system (Bootstrap, MUI, Spotlight). Flux is not Spotlight.   html {
-font-size: clamp(16px, 0.875rem + 0.4vw, 19px); /* fluid root — rem scales 16→19px */
-font-weight: 300;                                /* Lexend Light is the body default */
-}
-h1, h2, h3, h4, h5, h6 { font-weight: 700; }       /* Lexend Bold */
-## 3. Canonical token names
-
-Reference the names, not the hex values. Full list at
-[Token Reference](/foundations/tokens).
-
-/* Radius  */ --flux-radius-sm  --flux-radius-md  --flux-radius-lg  --flux-radius-xl  --flux-radius-2xl  --flux-radius-full
-/* Shadow  */ --flux-shadow-sm  --flux-shadow-md  --flux-shadow-lg  --flux-shadow-xl
-/* Spacing */ --flux-space-1 … --flux-space-24   (4px grid)
-/* Type    */ --flux-text-xs … --flux-text-5xl
-/* Weight  */ --flux-weight-light (300)  --flux-weight-bold (700)
-/* Font    */ --flux-font-sans (Lexend)  --flux-font-mono (JetBrains Mono)               Text contrast (WCAG AAA). Body/headlines are `--flux-black` on light
-(14:1+) or white on dark (14.5:1) — already AAA. Every other text colour must be ≥4.5:1 on its
-ground, so only these tokens are text-safe:
-
-/* Light grounds — text-safe */
---flux-black  --flux-grey-700/500/300  --flux-primary-800…400  --flux-pink-600
---flux-yellow-800  --flux-error  --flux-success  --flux-warning  --flux-info
---flux-blue-600/400  --flux-green-600  --flux-orange-800/600  --flux-purple-600/400
-
-/* Dark grounds (primary-900/800/700) — text-safe */
---flux-white  --flux-primary-100/200/300  --flux-grey-200  --flux-yellow-400/300
---flux-pink-300/200  --flux-green-300  --flux-orange-300  --flux-blue-300
-
-/* NEVER as text (graphics/fills only) */
---flux-pink-400 (the dot)  --flux-yellow-400/600 on light  --flux-green-400
---flux-orange-400 on light  --flux-grey-200 on light  --flux-primary-400 on dark
---flux-primary-300 on light  --flux-layer-* and --flux-*-accent (product colours)
-## 4. Drop-in Cursor rule
-
-Save this as `.cursor/rules/flux.mdc` in your repo so Cursor applies Flux
-rules automatically.
-
----
-description: Kaptio Flux design system — use for all UI, prototypes, and slides
-alwaysApply: true
----
-
-# Flux by Kaptio
-
-Flux is the single source of truth for all Kaptio UI. Canonical reference:
-https://flux.kaptio.com (full context: https://flux.kaptio.com/llms.txt).
-
-## Setup
-- Import the tokens on line one of the global stylesheet:
-@import url("https://flux.kaptio.com/tokens/flux.css");
-- Raw token JSON: https://flux.kaptio.com/tokens/flux.json
-
-## Rules
-- Use ONLY --flux-* tokens for color, spacing, radius, shadow, and type.
-- NEVER use arbitrary values for color/size/radius — no bg-[#3b82f6], text-[15px], rounded-[10px].
-Arbitrary brackets bypass the Flux preset and leak raw values.
-- Never use Tailwind default palette names (gray-*, slate-*, blue-*, red-*, ...) as design decisions.
-(The Flux preset remaps them to Flux anyway — write --flux-* / flux-* directly.)
-- No one-off hex / rgb values for brand UI. Never invent token names.
-- Font: Lexend, weights 300 and 700 ONLY (no 400/500/600). font-normal/medium/semibold are
-collapsed to 300/700 by the preset, so they render Light or Bold regardless. Mono: JetBrains Mono.
-- Focus rings are Flux primary teal, never blue. Never focus:ring-blue-*.
-- Import order (Tailwind v4): @import "tailwindcss" -> flux.css -> flux-tailwind.css (LAST).
-- Body and heading text is --flux-black (#212121) on light backgrounds. No colored heading text.
-- On dark grounds (e.g. --flux-primary-800 heroes/slides) the WHOLE headline is white — never color
-headline words yellow. Body/emphasis text is white or --flux-primary-100, never yellow.
-- --flux-yellow-400 is a single, rare accent — one eyebrow/subtitle OR a CTA. It is NOT an emphasis
-color for headline words, bullet lead-ins, or body text.
-- Do not mix in another design system (Bootstrap, MUI, Spotlight). Flux is not Spotlight.
-
-## Self-check before finishing
-- No raw hex / rgb anywhere; no arbitrary-value brackets (-[#...], -[16px], -[10px]).
-- Fonts are Lexend, only weights 300 and 700.
-- Focus rings are Flux primary teal, not blue.
-- Every color/radius/spacing/shadow traces to a --flux-* token or a preset-remapped utility.
-- Component markup is cloned from /components/source/<name>.txt, not hand-invented.
-
-## Composition — don't impose generic AI patterns
-- Eyebrows/kickers: the Flux eyebrow is ALWAYS text-xs font-bold tracking-widest uppercase in
---flux-grey-300 (or --flux-primary-400 for emphasis). Never a coral/red/amber accent eyebrow,
-and use it sparingly — one kicker per section/slide, max, never an eyebrow on every card header.
-- No gradient text or gradient-filled buttons; no glow / large colored drop-shadows (use the
-subtle --flux-shadow-* tokens); no emoji as icons (use real iconography).
-- No pill-everything / over-rounded corners; no reflexive centered hero with three identical icon
-cards or a "trusted by" logo strip. Reproduce Flux's restraint, not marketing-site instincts.
-
-## Building slide decks
-- Import the Flux tokens first (see Setup). NEVER free-compose a slide: identify the content
-type, CLONE the matching template, then swap only copy/images/data. Raw template source:
-https://flux.kaptio.com/slide-examples/source/<type>.txt
-- deck opener / title slide              -> cover
-- section break / chapter divider        -> chapter
-- one big idea / thesis / focus          -> statement
-- explainer with supporting visual       -> content
-- photo / hero image with copy (split)   -> split-visual
-- customer / partner introduction        -> customer
-- product status / progress / roadmap    -> status-grid
-- before vs after / two options          -> compare
-- agenda / what we'll cover              -> agenda
-- single big number / KPI                -> stat
-- quote / testimonial                    -> quote
-- closing / thank-you / CTA              -> closing
-- feature section opener (screenshots)   -> recap
-- feature explainer (what/value)         -> feature
-- feature with impact + product fit      -> feature-impact
-- customer intro with location map       -> customer-map
-- two categorized lists / taxonomy       -> lists
-- a few named concepts / layers (icon cards) -> item-rows
-- platform / product positioning panel   -> platform
-- forward roadmap / timeline / horizons  -> roadmap
-- customer logo strip / social proof     -> logos
-- team / leadership                      -> team
-- process / how it works / journey steps -> journey
-- numbered cards on light/dark seam      -> cards-band
-- Q&A before close                       -> qa
-- implementation / onboarding phases     -> implementation
-- security / trust / compliance          -> security
-- competitive feature matrix             -> matrix
-- growth chart / trend line              -> chart
-- global footprint / regions             -> global
-- If no template matches, use the NEAREST template's structure — do not invent a new layout.
-- Screenshot frames (content / feature / feature-impact / recap): the white card is image-only.
-Outer wrapper has border-radius, shadow, overflow:hidden. Inner: one <img> full bleed
-(object-fit:cover). Swap ONLY img src. Never put bullet lists, mock UI, labels, or extra copy
-inside the frame — all text stays in the left column. Compare/Lists patterns do NOT belong in
-screenshot frames. Use split-visual for full-height photos; item-rows for a few named concepts (icon cards);
-cards-band for numbered cards on a seam. Leave frame empty (white) if no screenshot asset yet.
-- Slide self-check: white headline on dark grounds (never yellow/colored headline words);
-yellow at most ONCE per slide as a single small accent (e.g. cover date eyebrow); one
-kicker/eyebrow per slide max; Lexend 300/700 only; only --flux-* tokens; light content
-slides, dark cover/chapter slides; at most one emoji per slide; no gradient text, no glow
-shadows, no coral accents.
-
-## Don't
-- No yellow headline words or yellow emphasis/body text on dark grounds — white headline, white/light
-body, yellow only as a single eyebrow/subtitle or CTA accent.
-- No uppercase eyebrow on every card / multiple kickers per slide — one kicker per section, sparingly.
-- No single-edge colored borders / top accent bars on cards.
-- No solid colored dots beside headings inside cards or panels.
-- No arbitrary radii or spacing outside the Flux scales.
-- No stacking of competing outlines, glows, and heavy shadows — follow the shadow scale.
-## 5. AGENTS.md
-
-For tools that read `AGENTS.md` (Codex, Claude Code, and others), drop an
-`AGENTS.md` at your repo root with the same rules. A ready-made version lives in
-the Flux repo root, and the canonical agent context is always at
-[/llms.txt](/llms.txt).
-
-## 6. Tables
-
-Flux tables are quiet: a standard surface, horizontal row dividers only (no full gridlines),
-and the [Badge](/components/badge)
-component for status. See [Table](/components/table)
-for the live reference. The cell classes:
-
-/* Header cell — left-aligned; numeric columns add text-right */
-text-xs font-bold uppercase tracking-wider
-text-[var(--flux-grey-300)] border-b border-[var(--flux-grey-100)]
-
-/* Body cell — row divider is a bottom border only */
-py-3 border-b border-[var(--flux-grey-100)] text-[var(--flux-black)]
-
-/* Numeric / price / quantity — right-aligned, figures line up */
-text-right [font-variant-numeric:tabular-nums]   /* header right too */
-- Wrap the table in a Flux surface — `bg-[var(--flux-surface)]`, `border-[var(--flux-grey-100)]`, rounded.
-- Last row: drop the bottom divider. Reference/code columns use Lexend Light (300).
-- Status uses Badge semantics: confirmed/completed = green, pending/action required/on request = amber, awaiting supplier = blue, cancelled/rejected/expired = red.
-- Don't add heavy gridlines, per-cell or vertical borders, or invent per-status colors — dividers are horizontal-only via `--flux-grey-100`.
-## 7. Forms & inputs
-
-Inputs are the #1 place agents leak generic Tailwind. The focus state is
-always Flux primary teal, never `focus:ring-blue-*`, and a form
-keeps one field height and one radius throughout. The canonical field — shared by
-[Input](/components/input),
-[Textarea](/components/textarea), and the
-[Select](/components/select) trigger:
-
-/* Text field / select trigger / textarea */
-w-full px-3 py-2 rounded border border-[var(--flux-grey-200)]
-bg-[var(--flux-surface)] text-sm text-[var(--flux-black)]
-focus:border-[var(--flux-primary-400)] focus:ring-1 focus:ring-[var(--flux-primary-300)]
-outline-none transition-colors
-/* Textarea adds */ min-h-[100px] resize-y
-/* Label    */ block text-sm font-medium text-[var(--flux-black)] mb-1
-/* Disabled */ opacity-50 cursor-not-allowed bg-[var(--flux-grey-50)]
-/* Error    */ border-[var(--flux-error)] focus:ring-[var(--flux-error)]   /* helper text: text-xs text-[var(--flux-error)] */
-- Focus is Flux primary — border `--flux-primary-400` + ring `--flux-primary-300`. Placeholder is `--flux-grey-300`; never use it as the only label.
-- [Select](/components/select) /
-[Multi-select](/components/input):
-trigger matches the field; chevron `text-[var(--flux-grey-500)]` rotates open; option list is a `--flux-surface` panel with `--flux-shadow-lg`, selected option `bg-[var(--flux-primary-50)] text-[var(--flux-primary-800)]`, hover `bg-[var(--flux-grey-50)]`.
-- [Checkbox](/components/checkbox),
-[Radio](/components/radio), and
-[Switch](/components/switch):
-checked / active color is always `--flux-primary-400`; unchecked borders are `--flux-grey-200`; label gap `gap-2.5`.
-- Don't use `border-gray-*` / `focus:ring-blue-*` defaults, placeholder-as-label, mixed field heights or radii, or a non-primary checked/focus color.
-## 8. Buttons
-
-Buttons are Lexend Bold, radius `--flux-radius-sm` (4px), and focus with a
-`--flux-primary-300` ring (never a blue ring). Five variants, three sizes.
-See [Button](/components/button).
-
-/* Base — every variant */
-font-bold rounded-[4px] focus:outline-none focus:ring-2 focus:ring-[var(--flux-primary-300)]
-
-/* Primary   */ bg-[var(--flux-primary-600)] hover:bg-[var(--flux-primary-500)] active:bg-[var(--flux-primary-700)] text-white
-/* Secondary */ bg-[var(--flux-grey-100)] hover:bg-[var(--flux-grey-200)] text-[var(--flux-black)]
-/* Outline   */ border border-[var(--flux-primary-600)] text-[var(--flux-primary-600)] bg-transparent hover:bg-[var(--flux-primary-50)]
-/* Ghost     */ bg-transparent text-[var(--flux-primary-600)] hover:bg-[var(--flux-primary-50)]
-/* Danger    */ bg-[var(--flux-error)] text-white hover:opacity-90
-
-/* Sizes */ sm: text-xs px-3 py-1.5   md: text-sm px-4 py-2   lg: text-base px-6 py-2.5
-- Disabled is `opacity-50 cursor-not-allowed`; loading keeps the label and adds an inline spinner (`gap-2`).
-- Compact inline actions inside cards, modals, and toolbars may use the lighter `bg-[var(--flux-primary-400)] text-white hover:opacity-90` fill — still Flux primary, never a raw Tailwind blue/indigo.
-- Don't use `bg-blue-*`/`bg-indigo-*`, arbitrary radii, or font weights other than 700.
-## 9. Badges & status colors
-
-Badges are pills — `rounded-full`, `--flux-text-xs`, bold (700), tight padding
-(`px-2.5 py-0.5`). Solid status badges use the tint tokens (the `-200`/`-300` steps)
-with dark text for AAA contrast. See [Badge](/components/badge).
-
-/* Pill base */ inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-bold
-
-/* Canonical status tints (solid bg + --flux-black text) */
-confirmed / completed          → bg --flux-green-200
-pending / action required / on request → bg --flux-yellow-300
-awaiting supplier              → bg --flux-blue-200
-cancelled / rejected           → bg --flux-orange-300
-
-/* Outline variant */ bg-transparent border + text in the colour token
-/* Neutral / default */ bg-[var(--flux-primary-100)] text-[var(--flux-primary-400)]
-- These are the same semantics tables use for status cells — stay consistent across the app.
-- Don't invent per-status hexes or use Tailwind `bg-green-500`/`bg-red-500`; map every status to a Flux tint token.
-## 10. Cards
-
-A card is a quiet surface: `--flux-surface` background, a single `--flux-grey-100` hairline border,
-rounded, no decorative chrome. See [Card](/components/card).
-
-/* Card surface */ rounded border border-[var(--flux-grey-100)] bg-[var(--flux-surface)] p-5
-/* Header / footer divider */ border-b / border-t border-[var(--flux-grey-100)]
-/* Interactive (hover)  */ hover:border-[var(--flux-primary-300)] hover:shadow-md transition-all
-/* Muted / archived     */ bg-[var(--flux-grey-50)] opacity-60
-- Elevation follows the shadow scale — at most `--flux-shadow-md` on hover. Don't stack borders, glows, and heavy shadows.
-- Don't add a single-edge accent bar (“stroke top”) or a colored dot beside the title.
-## 11. Modals & tooltips
-
-Overlays share the card surface with stronger elevation. See
-[Modal](/components/modal) and
-[Tooltip](/components/tooltip).
-
-/* Modal backdrop */ fixed inset-0 bg-black/50 z-50 flex items-center justify-center
-/* Modal dialog   */ bg-[var(--flux-surface)] rounded shadow-xl max-w-md w-full mx-4
-/* Header / footer */ p-5 border-b / border-t border-[var(--flux-grey-100)]; footer actions justify-end gap-3
-
-/* Tooltip */ bg-[var(--flux-primary-800)] text-white text-xs px-2.5 py-1.5 rounded shadow-lg
-/*          arrow matches the bubble (--flux-primary-800); positions top/right/bottom/left */
-- Modal uses `--flux-shadow-xl`; footer pairs a ghost Cancel with a primary Confirm. The close X is `--flux-grey-300` → `--flux-black` on hover.
-- Don't tint the backdrop with a brand color or give the dialog a colored border.
-## 12. Notes, progress & loading
-
-Feedback components pair a semantic tint background with a matching semantic icon. See
-[Note](/components/note),
-[Progress](/components/progress),
-[Spinner](/components/spinner), and
-[Skeleton](/components/skeleton).
-
-/* Note — rounded p-4, tint bg + semantic icon stroke, --flux-black text */
-info    → bg --flux-primary-100  (icon --flux-info)
-success → bg --flux-green-100     (icon --flux-success)
-warning → bg --flux-yellow-100    (icon --flux-warning)
-error   → bg --flux-orange-100    (icon --flux-error)
-
-/* Progress */ track bg-[var(--flux-grey-100)] rounded-full; fill bg-[var(--flux-primary-400)]
-/* Spinner  */ track --flux-grey-200, arc --flux-primary-400, animate-spin
-/* Skeleton */ shimmer --flux-grey-100 → --flux-grey-50 → --flux-grey-100
-- Use semantic tokens (`--flux-success/warning/error/info`) for status — not Tailwind `green-500`/`amber-500`.
-- Don't color note body text; it stays `--flux-black`. The tint carries the meaning.
-## 13. Tabs & accordions
-
-Disclosure components signal state with Flux primary, never an underline color leak. See
-[Tabs](/components/tabs) and
-[Accordion](/components/accordion).
-
-/* Tab bar  */ flex border-b border-[var(--flux-grey-100)]; tab px-4 py-2.5 text-sm font-bold
-/* Active   */ text-[var(--flux-primary-400)] border-b-2 border-[var(--flux-primary-400)]
-/* Inactive */ text-[var(--flux-grey-300)] hover:text-[var(--flux-black)]
-
-/* Accordion row */ border-b border-[var(--flux-grey-100)] (none on last)
-/*   title bold --flux-heading; chevron --flux-grey-300 rotates 180 when open
-disabled item opacity-40 cursor-not-allowed */
-- Active tab indicator is always `--flux-primary-400`. Dividers are `--flux-grey-100` only.
-## 14. Avatars
-
-Always circular. Initials fall back to a Flux primary tint. See
-[Avatar](/components/avatar).
-
-/* Image    */ rounded-full object-cover
-/* Initials */ rounded-full bg-[var(--flux-primary-100)] text-[var(--flux-primary-400)] font-bold
-/* Sizes    */ sm w-8 h-8 · md w-10 h-10 · lg w-14 h-14
-/* Status dot */ w-2.5 h-2.5 rounded-full bg-[var(--flux-success)] ring-2 ring-white
-/* Group    */ overlap with -ml-2 and ring-2 ring-[var(--flux-surface)]
-- Don't use square avatars or a non-primary tint for initials. The presence dot is `--flux-success`.
-## 15. Date picker
-
-A trigger that opens a calendar popover. The trigger follows the field convention; the calendar uses Flux primary
-for selection. See [Date Picker](/components/date-picker).
-
-/* Trigger */ border --flux-grey-200, radius-md, calendar icon + chevron --flux-grey-300
-/*   open: border --flux-primary-400 + a --flux-primary-100 focus ring; chevron rotates */
-/* Popover */ bg --flux-surface, border --flux-grey-100, --flux-radius-lg, --flux-shadow-lg
-/* Day cells */ selected/range ends bg --flux-primary-400 white (rounded-full)
-/*   in-range bg --flux-primary-100; today text --flux-primary-400 w/ --flux-primary-200 ring */
-## 16. Hero, Journey & Code Block
-
-Display components for marketing and documentation surfaces. See
-[Hero](/components/hero),
-[Journey](/components/journey), and
-[Code Block](/components/code-block).
-
-- Hero: dark variants use a `--flux-primary-800` ground (or a photo with a teal overlay); the whole headline is white (never color headline words yellow), body white at ~85% (or `--flux-primary-100`), never yellow. `--flux-yellow-400` is a single accent — one eyebrow/subtitle or a CTA, not an emphasis color. Light variant is `--flux-background` with `--flux-black` heading. CTA buttons reuse the Button variants.
-- Journey: horizontal steps with rounded icon tiles (`--flux-radius-sm`) filled with a brand/product accent, connected by `--flux-grey-200` arrows; step detail opens in a Modal.
-- Code Block: dark ground `--flux-primary-800`, code text `--flux-primary-100`, JetBrains Mono. Inline code is `--flux-primary-100` bg + `--flux-primary-400` text. This site's wrapper adds a copy button.
-- Don't treat the marketing hero layout as the default app shell for product UI.
-## 17. Outcome patterns
-
-Patterns for embedded outcome flows (e.g. a focused task launched from Salesforce). See
-[Outcome Header](/components/outcome-header),
-[Flow Entry](/components/flow-entry), and
-[Outcome Complete](/components/outcome-complete).
-They share the `--flux-flow-*` tokens.
-
-- Outcome Header: a `--flux-flow-header-height` bar on `--flux-flow-header-bg` with a `--flux-flow-header-border` bottom border. Bold `--flux-heading` outcome label, a `--flux-grey-500` → `--flux-primary-400` return action. An optional 2px top accent bar in a product color is part of this pattern (the only sanctioned single-edge accent).
-- Flow Entry: the arriving state — Skeleton placeholders during load, an `--flux-orange-100`/`--flux-orange-400` error block with a retry, and a `--flux-green-100`/`--flux-green-400` resolved tick that fades in over `--flux-flow-entry-duration`.
-- Outcome Complete: a centered `--flux-green-100` tick, bold achievement line, a primary return button (with optional `--flux-flow-return-countdown` auto-return), and outline next-step buttons.
-## 18. Building slide decks
-
-Import the tokens first (step 1), then never free-compose a slide — free
-composition is how off-brand output happens. For each slide, identify the content type and
-clone the matching template from the
-[deck kit](/slide-examples),
-then swap only copy, images, and data. Raw template source is served at
-`/slide-examples/source/.txt`:
-
-Slide content Template Source     Deck opener / title slide [Cover](/slide-examples/template-cover) [cover.txt](/slide-examples/source/cover.txt)   Section break / chapter divider [Chapter](/slide-examples/template-chapter) [chapter.txt](/slide-examples/source/chapter.txt)   One big idea / thesis / focus [Statement](/slide-examples/template-statement) [statement.txt](/slide-examples/source/statement.txt)   Explainer with supporting visual [Content](/slide-examples/template-content) [content.txt](/slide-examples/source/content.txt)   Photo or hero image with copy (split) [Split visual](/slide-examples/template-split-visual) [split-visual.txt](/slide-examples/source/split-visual.txt)   Customer / partner introduction [Customer intro](/slide-examples/template-customer) [customer.txt](/slide-examples/source/customer.txt)   Product status / progress / roadmap state [Status grid](/slide-examples/template-status-grid) [status-grid.txt](/slide-examples/source/status-grid.txt)   Before vs after / us vs them / two options [Compare](/slide-examples/template-compare) [compare.txt](/slide-examples/source/compare.txt)   Agenda / what we'll cover [Agenda](/slide-examples/template-agenda) [agenda.txt](/slide-examples/source/agenda.txt)   Single big number / KPI [Big stat](/slide-examples/template-stat) [stat.txt](/slide-examples/source/stat.txt)   Quote / testimonial [Quote](/slide-examples/template-quote) [quote.txt](/slide-examples/source/quote.txt)   Closing / thank-you / CTA [Closing](/slide-examples/template-closing) [closing.txt](/slide-examples/source/closing.txt)   Feature section opener (screenshots) [Recap intro](/slide-examples/template-recap) [recap.txt](/slide-examples/source/recap.txt)   Feature explainer (what/value) [Feature detail](/slide-examples/template-feature) [feature.txt](/slide-examples/source/feature.txt)   Feature with impact + product fit [Feature impact](/slide-examples/template-feature-impact) [feature-impact.txt](/slide-examples/source/feature-impact.txt)   Customer intro with location map [Customer map](/slide-examples/template-customer-map) [customer-map.txt](/slide-examples/source/customer-map.txt)   Two categorized lists / taxonomy [Lists](/slide-examples/template-lists) [lists.txt](/slide-examples/source/lists.txt)   A few named concepts / layers (icon cards) [Item cards](/slide-examples/template-item-rows) [item-rows.txt](/slide-examples/source/item-rows.txt)   Platform / product positioning panel [Platform](/slide-examples/template-platform) [platform.txt](/slide-examples/source/platform.txt)   Forward roadmap / timeline / horizons [Roadmap](/slide-examples/template-roadmap) [roadmap.txt](/slide-examples/source/roadmap.txt)   Customer logo strip / social proof [Logo strip](/slide-examples/template-logos) [logos.txt](/slide-examples/source/logos.txt)   Team / leadership [Team](/slide-examples/template-team) [team.txt](/slide-examples/source/team.txt)   Process / how it works / journey steps [Journey](/slide-examples/template-journey) [journey.txt](/slide-examples/source/journey.txt)   Numbered cards on light/dark seam [Cards band](/slide-examples/template-cards-band) [cards-band.txt](/slide-examples/source/cards-band.txt)   Q&A before close [Q&A](/slide-examples/template-qa) [qa.txt](/slide-examples/source/qa.txt)   Implementation / onboarding phases [Implementation](/slide-examples/template-implementation) [implementation.txt](/slide-examples/source/implementation.txt)   Security / trust / compliance [Security](/slide-examples/template-security) [security.txt](/slide-examples/source/security.txt)   Competitive feature matrix [Matrix](/slide-examples/template-matrix) [matrix.txt](/slide-examples/source/matrix.txt)   Growth chart / trend line [Chart](/slide-examples/template-chart) [chart.txt](/slide-examples/source/chart.txt)   Global footprint / regions [Global presence](/slide-examples/template-global) [global.txt](/slide-examples/source/global.txt)
-- Fallback: if no template matches the content, use the nearest template's structure plus the composition rules — do not invent a new layout.
-- Screenshot frames (content, feature detail, feature impact, recap intro): the white card is image-only. Outer wrapper: border-radius, shadow, `overflow: hidden`. Inner: one full-bleed `` with `object-fit: cover`. Swap only `src`. Never put bullet lists, mock UI, labels, or extra copy inside the frame — use Item cards or Cards band for those patterns; use Split visual for full-height photos.
-- Slide self-check: white headline on dark grounds (never yellow/colored headline words); `--flux-yellow-400` at most once per slide as a single small accent (e.g. the cover date eyebrow); one kicker/eyebrow per slide max; Lexend 300/700 only; only `--flux-*` tokens; light content slides, dark cover and chapter slides; at most one emoji per slide; no gradient text, no glow shadows, no coral accents; screenshot frames hold images only, not text or mock UI.
-- Tools working inside the Flux repo should clone `src/pages/slide-examples/template-*.astro` directly.
+# Flux — /for-ai/
+
+Source: https://flux.kaptio.com/for-ai/
+
+For AI
+
+# Flux for AI
+Most Kaptio interface work now passes through an agent before it reaches a person. Flux 2.0 treats that as the primary consumption path rather than an afterthought, so the system is published as a machine contract as well as a website.
+
+## Why this exists
+A design system that only a human can read gets applied by whoever remembers it.
+
+Showcase, Spotlight and the rest of the Kaptio agent surfaces generate interface code continuously. An agent reaching for its defaults produces something that is competent, generic, and not Kaptio: a blue focus ring, a 12px radius, a gradient hero, Inter at 500. Every one of those is a reasonable default somewhere. None of them is Flux.
+
+So the rules are published where an agent will actually read them — one plain-text file, no HTML to parse, with the reason for each rule stated alongside it. Models comply far more reliably with a constraint they understand than with a list they were handed.
+
+## The contract
+One file. Every token, every rule, every component's markup.
+
+textCopy`https://flux.kaptio.com/llms.txt`It is generated from the same sources as this site, so it cannot describe a system the site does not implement. Point an agent at it once and it has the complete system: 345 tokens across three tiers and three themes, the hard rules with their reasoning, the composition habits to avoid, and copyable markup for all twelve components.
+
+NoteIndividual components are also published as plain text at`/components/source/.txt` — useful when you want one component in context rather than the whole system.
+## The hard rules
+Each of these is a defect if violated, not a preference. The premise is part of the rule.
+
+### Tokens
+A raw value is invisible to every theme and to every future change. The token layer is the only mechanism by which a change propagates.
+
+- Never write a raw colour. No hex, rgb(), hsl() or named colour in any component or page.
+- Never write a raw dimension where a token exists. Spacing, radius, font size, line height, duration and easing all come from tokens. The only sanctioned literal is --flux-hairline (1px).
+- Reference Tier 2 semantic tokens for anything with an interface role: text-*, layer-*, surface-*, border-*, icon-*, focus-*.
+- Reference Tier 1 primitives only inside a semantic token definition, or for graphic content with no interface role (chart series, illustration fill, product accent mark).
+- Never use Tailwind arbitrary values: bg-[#056F82], p-[14px], text-[15px]. They bypass the token layer entirely.
+- If no token fits, say so and propose one. Do not invent a value.
+### Typography
+Flux loads two Lexend weights and three JetBrains Mono weights. A request for anything else is synthesised by the browser into a font that is not Lexend.
+
+- Lexend at 300 or 700 only. Never 400, 500 or 600.
+- Lexend Light (300) is the default for all copy, including headings.
+- Lexend Bold (700) for headings that anchor, emphasis, labels and table headers.
+- JetBrains Mono is the second voice, for data rather than language: identifiers, references, metadata, values, structural labels, keyboard hints.
+- Mono at 400 for code and values, 500 for inline metadata, 700 for small uppercase structural labels.
+- Uppercase letter-spaced mono only at --flux-text-xs. Larger reads as a warning label.
+- --flux-text-xs is reserved for badges, help text and short metadata. Never use it for paragraph copy, table cells, controls or primary values.
+- Use at least --flux-text-sm for controls, table cells and compact secondary copy. Use --flux-text-base for sentences intended to be read. Never reduce type to fit more content in a viewport.
+- Never introduce a second sans-serif family.
+- Set sizes from the scale (--flux-text-xs through -6xl). Never a literal rem or px.
+### Colour
+Most of the palette cannot carry text. Treating a mid-tone accent as a text colour is the most common way Flux output goes wrong.
+
+- WCAG 2.2 AA is the contrast floor for the whole system: 4.5:1 for every text pairing, 3:1 for icons, control borders and the focus ring. Body and primary text still target AAA (7:1). Disabled is exempt per 1.4.3. Never invent a colour pairing the contrast audit does not already check.
+- Teal carries the system. Other hues appear only when they carry meaning.
+- Bumble-Me Yellow (--flux-surface-cta) is for one conversion action per view, and never for navigation. A second yellow element on a view is a defect.
+- Yellow never carries white text. Pair --flux-surface-cta with --flux-text-on-cta, which is black.
+- Never use a 400-weight accent as text on a light ground. Use a text-* role.
+- Status colours are the four documented pairings. Map a new status onto the nearest existing one rather than introducing a hue.
+- Map every domain status deliberately before rendering it. When sibling states have materially different consequences, leaving every badge on the neutral base style is a defect.
+- A workflow stage is not automatically a warning. Use the yellow pending status only when waiting, delay or required attention is part of the meaning; otherwise use the neutral badge.
+- Product accents (--flux-product-*) are graphic only: fills, marks, diagram keys. Never text, never a global theme.
+- Never use colour as the only signal for a state.
+### Layout and geometry
+Consistent spacing and near-square geometry are what make output read as Kaptio rather than as generic.
+
+- All spacing comes from the 4px scale. If none of the steps fit, the structure is wrong, not the scale.
+- Interface radius is --flux-radius-sm (4px): buttons, fields, cards, tables, notes. --flux-radius-md for modals only.
+- --flux-radius-full is for pills and avatars, nothing else.
+- Separate sections with --flux-seam-gap.
+- Constrain reading columns to --flux-measure-prose.
+- Text and controls never sit directly against the edge of a bordered or filled surface. Use the component padding token; tables apply inset through their cells, and intentional edge-to-edge media is the exception.
+- Action rows keep the same inline inset as the content above and use a spacing token between actions. Wrap or stack the actions before a control touches the container edge.
+- Do not scale an application with CSS zoom or transform, and do not compress type or spacing to make the whole workflow fit above the fold. Reflow the layout, wrap controls and let the page scroll; wrap wide tables in their horizontal scroll container.
+- Never mix px into a layout built from rem tokens. The root size is fluid, so they diverge as the viewport grows.
+### Elevation
+Flux is a flat system. Depth is reserved for things that genuinely float, so that when it appears it means something.
+
+- Separate nested surfaces with a layer step (--flux-layer-01 → -02 → -03) and a hairline. Never hand-pick a grey.
+- Shadow is for overlays, popovers and modals. --flux-shadow-md is the ceiling for anything in normal flow.
+- Never use a coloured shadow or a glow.
+- Never stack a border, an inner glow and a heavy shadow on the same container.
+- Never nest three layer levels on the deep theme; layer-03 aliases layer-02 there.
+### Motion
+Motion in Flux confirms that something happened. Anything that draws attention to itself is describing the animation rather than the change.
+
+- Default to --flux-duration-fast with --flux-ease-productive.
+- Name the properties being transitioned. Never use transition: all.
+- Animate opacity, transform and colour. Never width, height, top, left, margin or padding.
+- Never scale, lift or grow on hover. Flux buttons change colour and nothing else.
+- Never exceed --flux-duration-slow (300ms) in product UI.
+- Do not write your own prefers-reduced-motion reset. The base layer handles it globally.
+### Accessibility
+Flux guarantees contrast and focus. Everything structural is the implementer’s responsibility, and it is where generated UI code fails most often.
+
+- Do not ship a text or control pairing below WCAG 2.2 AA. Use a semantic text-*, icon-* or border-strong role on a documented ground so the audited pairings apply. A raw colour, or a primitive used as text, is already a defect.
+- Never remove the focus outline. Focus is teal, 2px, offset 2px, in every theme, applied by the base layer.
+- Use native elements before ARIA: button, a, dialog, select, table, input. A div with a click handler is not a button.
+- Open modals with dialog.showModal(), never by toggling a class. Focus trapping, page inertness and Escape come from the platform.
+- Every input needs a visible, programmatically associated label. A placeholder is not a label.
+- Bind error text to its field with aria-describedby, and set aria-invalid.
+- Every icon-only control needs an accessible name.
+- Tabs need roving tabindex: the selected tab is tabindex="0", the rest are tabindex="-1".
+- Table headers need scope. Numeric columns are right-aligned with tabular figures.
+- Choose heading levels for document structure, and size them with tokens.
+### Themes
+A component that references roles works in three themes for free. A component that references colours works in one.
+
+- Never write theme-specific CSS inside a component. If you need to, a semantic token is missing — say which.
+- Test new work in light, dark and deep before considering it done.
+- A scoped theme region must set its own background from --flux-surface-page or a layer-* token.
+- Deep is a brand ground for slides and marketing, not a dark mode for dense UI.
+## Composition discipline
+No linter catches any of these. They are what makes correct output still look wrong.
+
+Every value can come from a token and the result can still be visibly not-Kaptio. These are the specific habits that do it — the moves a model reaches for when it has been asked to make something look designed.
+
+- No gradient fills on interface surfaces. Flat colour, or nothing.
+- No decorative coloured bar along the edge of a card.
+- No coloured dot beside a heading.
+- No emoji as an icon system. Use a consistent icon set.
+- No glow, no neon, no glassmorphism, no heavy blur behind content.
+- No centred body copy. Centre a heading and a lede at most.
+- No three-column feature grid of icon-plus-heading-plus-paragraph as a default layout.
+- No badge on something that is not a status.
+- No hero section with a gradient mesh background.
+- Do not stack decoration: pick one of border, shadow, or fill change to signal a state.
+- Do not add a container just to add a container. If it holds one thing, it is not grouping anything.
+- Do not remove a documented component’s internal padding. A parent inset does not replace the inset inside a card, note, table cell or action row.
+- Do not turn every value into a card. Group related metrics on one surface and let the important exception carry the emphasis.
+- Do not shrink the interface to show everything at once. Preserve readable type and row rhythm, then use scrolling, pagination or progressive disclosure for the remainder.
+- Prefer one strong element over three competing ones. Density is not hierarchy.
+## The self-check
+One question catches most of it.
+
+AskWould this render correctly with `data-flux-theme="dark"` on the root element?If any part would not, that part is referencing a primitive or a raw value, which is the underlying cause of most Flux violations. The theme question finds them without needing to audit line by line.
+
+CheckWhy it failsNo raw hex, rgb() or named colourInvisible to every theme.No raw px, rem or ms where a token existsDiverges from the fluid root as the viewport grows.No Tailwind arbitrary valuesBypasses the token layer entirely.Lexend at 300 or 700 onlyAny other weight is synthesised into a font that is not Lexend.Interface radius is --flux-radius-smA 12px radius is the fastest way to stop looking like Kaptio.At most one yellow CTAA second one halves the value of the first.Focus outline presentRemoving it makes the interface unusable by keyboard.Native elements for controlsA styled div has none of a button’s behaviour.No transition: all, no scale on hoverAnimates properties nobody chose, and performs rather than confirms.
+## Enforcing it
+A rule that cannot fail a build is a suggestion.
+
+The contract tells an agent what to do. The compliance check tells it when it did not, which is the half that actually changes behaviour — an agent that gets a failing exit code with a named rule and a fix will correct itself without being asked.
+
+bashCopy`npx flux-check src/`It scans CSS, markup and component files for the violations that can be detected mechanically: raw colours, arbitrary Tailwind values, synthesised font weights,`transition: all`, removed focus outlines, gradients on interface surfaces, raw dimensions where a token exists, divs with click handlers, and table headers without `scope`.
+
+Rules are scoped to the context they can apply to, so prose that quotes a hex code in order to ban it is not reported. A linter that cries wolf gets switched off in a week. Where a violation is genuinely correct — a caret drawn with gradients so it can inherit`currentColor` — annotate it and say why:
+
+cssCopy`/* Glyph, not a surface: gradients are the only way to inherit currentColor.
+flux-ignore-next-line gradient */
+background-image: linear-gradient(45deg, transparent 50%, currentColor 50%);`In CIThe check exits non-zero on any finding, so it works unchanged as a pipeline gate or a pre-commit hook. Flux runs it against its own source on every build.
+## Machine sources
+URLContents`https://flux.kaptio.com/llms.txt`This contract, complete, as plain text.`https://flux.kaptio.com/tokens/v2/flux.json`Every token as structured data.`https://flux.kaptio.com/tokens/v2/flux.css`The stylesheet to import.`https://flux.kaptio.com/components/source/.txt`Per-component markup, API, accessibility and tokens, as plain text.`https://flux.kaptio.com/components/`The human-readable component reference.`https://flux.kaptio.com/prototypes/brief.txt`A copyable product-prototype prompt that binds an agent to this contract.`https://flux.kaptio.com/decks/llms.txt`The deck contract. A separate surface with rules that deliberately differ. Read it instead of this file when building a presentation, never alongside it.Drop-in rule files for Cursor, Claude Code and Copilot are on [Repository rules](/for-ai/rules/).
+
+[PreviousDecks](/patterns/decks/)[NextRepository rules](/for-ai/rules/)

@@ -1,103 +1,68 @@
-# Flux — /components/modal
+# Flux — /components/modal/
 
-Source: https://flux.kaptio.com/components/modal
+Source: https://flux.kaptio.com/components/modal/
 
-[Flux](/)       [Components](/components) / Layout & Overlay
+Component
 
 # Modal
-Overlay dialogs for focused tasks and confirmations.
+A focused, interrupting dialog built on the native dialog element.
 
-### Default
-Open Modal       Source  ModalDemo.tsx
-The exact code behind the live demo above. Fetch it raw at
-[/components/source/modal.txt](/components/source/modal.txt).
+Plain-text source, for agents and clipboard use: [/components/source/modal.txt](/components/source/modal.txt)
 
-import React, { useState, useCallback } from "react";
+## When to use it
+Use when a decision must be made before anything else can continue — confirming a destructive action, or completing a short, self-contained task.
 
-function Section({ title, children }: { title: string; children: React.ReactNode }) {
-return (
-<div className="mb-8">
-<h3 className="text-sm font-bold text-[var(--flux-heading)] mb-3">{title}</h3>
-<div className="p-6 rounded border border-[var(--flux-grey-100)] bg-[var(--flux-surface)]">
-{children}
-</div>
-</div>
-);
-}
+Not thisDo not use a modal for content the user might want to keep beside the page, for long forms, or for non-urgent information. Stacked modals are always a design failure.
+## Examples
 
-export default function ModalDemo() {
-const [open, setOpen] = useState(false);
+### Confirmation
+Built on <dialog>, so focus trapping, Escape to close, inertness of the page behind and the backdrop all come from the platform.
 
-const handleBackdropClick = useCallback(
-(e: React.MouseEvent<HTMLDivElement>) => {
-if (e.target === e.currentTarget) {
-setOpen(false);
-}
-},
-[],
-);
+## Cancel booking KB-104928?
 
-return (
-<div>
-<Section title="Default">
-<button
-onClick={() => setOpen(true)}
-className="px-4 py-2 text-sm font-bold rounded bg-[var(--flux-primary-400)] text-white hover:opacity-90 transition-opacity"
->
-Open Modal
-</button>
-</Section>
+The supplier will be notified and the deposit refund will follow your cancellation policy. This cannot be undone.
 
-{open && (
-<div
-className="fixed inset-0 bg-black/50 z-50 flex items-center justify-center"
-onClick={handleBackdropClick}
->
-<div className="bg-[var(--flux-surface)] rounded shadow-xl max-w-md w-full mx-4">
-<div className="p-5 border-b border-[var(--flux-grey-100)] flex items-center justify-between">
-<h4 className="text-base font-bold text-[var(--flux-heading)]">
-Confirm Action
-</h4>
-<button
-onClick={() => setOpen(false)}
-className="text-[var(--flux-grey-300)] hover:text-[var(--flux-black)] transition-colors"
->
-<svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-<path
-d="M15 5L5 15M5 5l10 10"
-stroke="currentColor"
-strokeWidth="1.5"
-strokeLinecap="round"
-strokeLinejoin="round"
-/>
-</svg>
-</button>
-</div>
+Keep booking
+Cancel booking
 
-<div className="p-5">
-<p className="text-sm text-[var(--flux-black)] leading-relaxed">
-Are you sure you want to proceed with this action? This operation
-cannot be undone and will apply changes immediately.
-</p>
-</div>
+htmlCopy`
 
-<div className="p-5 border-t border-[var(--flux-grey-100)] flex justify-end gap-3">
-<button
-onClick={() => setOpen(false)}
-className="px-4 py-2 text-sm font-bold rounded text-[var(--flux-black)] hover:bg-[var(--flux-grey-100)] transition-colors"
->
-Cancel
-</button>
-<button
-onClick={() => setOpen(false)}
-className="px-4 py-2 text-sm font-bold rounded bg-[var(--flux-primary-400)] text-white hover:opacity-90 transition-opacity"
->
-Confirm
-</button>
-</div>
-</div>
-</div>
-)}
-</div>
-);
-}                  [← Journey](/components/journey) [Note →](/components/note)
+Cancel booking KB-104928?
+
+The supplier will be notified and the deposit refund will follow your cancellation policy. This cannot be undone.
+
+Keep booking
+Cancel booking
+
+`
+## Anatomy
+PartDescriptionBackdropsurface-backdrop, from the theme.HeaderTitle and a divider.BodySecondary text. Scrolls if it must.FooterRight-aligned. Cancel first, primary action last.
+## API
+NameKindDescription`dialog`elementUse the native element. Open with showModal(), never by toggling a class.`flux-modal`classThe dialog surface, including its ::backdrop.`flux-modal__header`classDivided title row.`flux-modal__body`classContent region.`flux-modal__footer`classRight-aligned action row.
+## States
+StateTreatmentClosedNot rendered and not focusable.OpenPage behind is inert; focus moves into the dialog.
+## Keyboard
+KeysAction`Escape`Closes the dialog. Native behaviour — do not prevent it.`Tab`Cycles within the dialog only.
+## Accessibility
+
+- showModal() gives focus trapping, page inertness and Escape for free. A div-based modal has to reimplement all three and usually reimplements none.
+- Give the dialog an accessible name via aria-labelledby pointing at the title.
+- Return focus to the control that opened the dialog when it closes.
+- The title states the consequence, so a screen-reader user hears what is at stake before the buttons.
+## Tokens
+The tier-3 and tier-2 tokens this component binds to. Change the token, not the component.
+
+- --flux-modal-radius
+- --flux-modal-bg
+- --flux-modal-shadow
+- --flux-modal-backdrop
+- --flux-modal-width-sm | -md | -lg
+## Do and don’t
+Do
+
+- Name the consequence in the title, not "Are you sure?".
+- Label the confirm button with the action itself, so it reads correctly out of context.Don’t
+
+- Do not tint the backdrop with a brand colour.
+- Do not open a modal from a modal.
+- Do not put a form longer than a few fields inside one.[PreviousTable](/components/table/)[NextNote](/components/note/)

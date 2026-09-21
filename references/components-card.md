@@ -1,187 +1,86 @@
-# Flux — /components/card
+# Flux — /components/card/
 
-Source: https://flux.kaptio.com/components/card
+Source: https://flux.kaptio.com/components/card/
 
-[Flux](/)       [Components](/components) / Layout & Overlay
+Component
 
 # Card
-Contained surfaces for grouping related content and actions.
+Groups related content into one surface on the layer above.
+
+Plain-text source, for agents and clipboard use: [/components/source/card.txt](/components/source/card.txt)
+
+## When to use it
+Use to separate one coherent object — a booking, a departure, a summary — from its neighbours. A card sits on the next layer up from its container, which is what makes nesting legible without hand-picked greys.
+
+Not thisDo not wrap a whole page in a card, and do not use one to add decoration to a paragraph. If everything on the screen is a card, nothing is grouped.
+## Examples
 
 ### Default
 
-#### Iceland Explorer
-7-day self-drive tour through the Golden Circle, south coast glaciers, and Reykjavik.
+### September departures
 
-#### Northern Lights Chase
-4-night winter adventure with guided aurora hunting and geothermal bathing.
+Twenty-four departures are published for September, with three awaiting supplier confirmation.
 
-### With header and footer
+htmlCopy`
+September departures
+Twenty-four departures are published for September, with three awaiting supplier confirmation.
+`
+### With actions
 
-#### Departure Summary
-ConfirmedPackageIceland ExplorerDate15 Jun 2026Guests12 / 16Revenue$48,600DetailsManage
-### Interactive (hover)
-Bookings
+### Deposit schedule
 
-1,284
+A 20% deposit is taken at booking, with the balance due 60 days before departure.
 
-+12%
+Edit schedule
+View history
 
-Revenue
+htmlCopy`
+Deposit schedule
+A 20% deposit is taken at booking, with the balance due 60 days before departure.
 
-$2.4M
+Edit schedule
+View history
 
-+8%
+`
+### Interactive
+When the whole card is a link, the border warms on hover and elevation caps at shadow-md.
 
-Departures
+[### Orvis — Iceland 2026
 
-47
+Eight itineraries, two brands, live since March.](#)htmlCopy`
+Orvis — Iceland 2026
+Eight itineraries, two brands, live since March.
+`
+## Anatomy
+PartDescriptionContainerlayer-01 fill, hairline border-subtle, 4px radius, 20px padding.TitleBold, base size. Optional.BodySmall, secondary text.FooterOptional divided row for actions.
+## API
+NameKindDescription`flux-card`classThe container.`flux-card--interactive`classAdds hover affordance. Use on an anchor or button element.`flux-card__title`classOptional heading. Use a real heading level for document order.`flux-card__body`classSecondary body copy.`flux-card__footer`classDivided action row.
+## States
+StateTreatmentDefaultcard-bg on layer-01, hairline border.Hover (interactive only)border-interactive plus shadow-md. Nothing moves.Focus (interactive only)Global teal focus outline on the anchor.
+## Keyboard
+KeysAction`Tab`Reaches an interactive card once, not once per element inside it.`Enter`Follows the card link.
+## Accessibility
 
-+3
+- An interactive card must be a single anchor or button. Nesting several links inside a clickable div creates a keyboard trap and an unreadable accessible name.
+- Use a real heading element for the title so the page outline is navigable; the class only styles it.
+- A card is not a landmark. Do not give it role="region" unless it genuinely needs its own labelled section.
+## Tokens
+The tier-3 and tier-2 tokens this component binds to. Change the token, not the component.
 
-### With image
+- --flux-card-radius
+- --flux-card-padding
+- --flux-card-bg
+- --flux-card-border
+- --flux-card-border-hover
+- --flux-card-shadow-hover
+## Do and don’t
+Do
 
-#### Midnight Sun Cruise
-10-day coastal voyage along the Norwegian fjords under the midnight sun.
+- Let the card take its fill from the layer tokens so it works on every ground.
+- Keep one padding value across a grid of cards.
+- Keep the footer aligned to the card inset and let its actions wrap when they no longer fit.Don’t
 
-From $3,200New
-### Muted / disabled
-
-#### Archived Package
-This package is no longer available for new bookings.
-
-Source  CardDemo.tsx
-The exact code behind the live demo above. Fetch it raw at
-[/components/source/card.txt](/components/source/card.txt).
-
-// Flux card hover — directional Flux-teal edge glow (see .flux-glow-card in global.css).
-const cardHover = 'flux-glow-card';
-
-function Section({ title, children }: { title: string; children: React.ReactNode }) {
-return (
-<div className="mb-8">
-<h3 className="text-sm font-bold text-[var(--flux-heading)] mb-3">{title}</h3>
-<div className="p-6 rounded border border-[var(--flux-grey-100)] bg-[var(--flux-surface)]">
-{children}
-</div>
-</div>
-);
-}
-
-function Badge({ children, color }: { children: React.ReactNode; color: string }) {
-return (
-<span
-className="inline-flex px-2 py-0.5 rounded-full text-xs font-bold"
-style={{ backgroundColor: color + '1a', color }}
->
-{children}
-</span>
-);
-}
-
-export default function CardDemo() {
-return (
-<>
-<Section title="Default">
-<div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-<div className={`rounded border border-[var(--flux-grey-100)] bg-[var(--flux-surface)] p-5 ${cardHover}`}>
-<h4 className="text-sm font-bold text-[var(--flux-heading)] mb-1">Iceland Explorer</h4>
-<p className="text-xs text-[var(--flux-black)] leading-relaxed">
-7-day self-drive tour through the Golden Circle, south coast glaciers, and Reykjavik.
-</p>
-</div>
-<div className={`rounded border border-[var(--flux-grey-100)] bg-[var(--flux-surface)] p-5 ${cardHover}`}>
-<h4 className="text-sm font-bold text-[var(--flux-heading)] mb-1">Northern Lights Chase</h4>
-<p className="text-xs text-[var(--flux-black)] leading-relaxed">
-4-night winter adventure with guided aurora hunting and geothermal bathing.
-</p>
-</div>
-</div>
-</Section>
-
-<Section title="With header and footer">
-<div className={`max-w-sm rounded border border-[var(--flux-grey-100)] bg-[var(--flux-surface)] overflow-hidden ${cardHover}`}>
-<div className="px-5 py-4 border-b border-[var(--flux-grey-100)] flex items-center justify-between">
-<h4 className="text-sm font-bold text-[var(--flux-heading)]">Departure Summary</h4>
-<Badge color="var(--flux-success)">Confirmed</Badge>
-</div>
-<div className="px-5 py-4">
-<div className="space-y-2 text-sm">
-<div className="flex justify-between">
-<span className="text-[var(--flux-grey-300)]">Package</span>
-<span className="text-[var(--flux-black)] font-bold">Iceland Explorer</span>
-</div>
-<div className="flex justify-between">
-<span className="text-[var(--flux-grey-300)]">Date</span>
-<span className="text-[var(--flux-black)]">15 Jun 2026</span>
-</div>
-<div className="flex justify-between">
-<span className="text-[var(--flux-grey-300)]">Guests</span>
-<span className="text-[var(--flux-black)]">12 / 16</span>
-</div>
-<div className="flex justify-between">
-<span className="text-[var(--flux-grey-300)]">Revenue</span>
-<span className="text-[var(--flux-black)] font-bold">$48,600</span>
-</div>
-</div>
-</div>
-<div className="px-5 py-3 border-t border-[var(--flux-grey-100)] flex justify-end gap-2">
-<button className="px-3 py-1.5 text-xs font-bold rounded text-[var(--flux-black)] hover:bg-[var(--flux-grey-50)] transition-colors">
-Details
-</button>
-<button className="px-3 py-1.5 text-xs font-bold rounded bg-[var(--flux-primary-400)] text-white hover:opacity-90 transition-opacity">
-Manage
-</button>
-</div>
-</div>
-</Section>
-
-<Section title="Interactive (hover)">
-<div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-{[
-{ title: 'Bookings', value: '1,284', change: '+12%' },
-{ title: 'Revenue', value: '$2.4M', change: '+8%' },
-{ title: 'Departures', value: '47', change: '+3' },
-].map((stat) => (
-<div
-key={stat.title}
-className={`rounded border border-[var(--flux-grey-100)] bg-[var(--flux-surface)] p-5 cursor-pointer ${cardHover}`}
->
-<p className="text-xs text-[var(--flux-grey-300)] mb-1">{stat.title}</p>
-<p className="text-2xl font-bold text-[var(--flux-heading)]">{stat.value}</p>
-<p className="text-xs font-bold mt-1" style={{ color: 'var(--flux-success)' }}>{stat.change}</p>
-</div>
-))}
-</div>
-</Section>
-
-<Section title="With image">
-<div className={`max-w-sm rounded border border-[var(--flux-grey-100)] bg-[var(--flux-surface)] overflow-hidden ${cardHover}`}>
-<img
-src="/images/card-example.png"
-alt="Card example"
-className="h-40 w-full object-cover"
-/>
-<div className="p-5">
-<h4 className="text-sm font-bold text-[var(--flux-heading)] mb-1">Midnight Sun Cruise</h4>
-<p className="text-xs text-[var(--flux-black)] leading-relaxed mb-3">
-10-day coastal voyage along the Norwegian fjords under the midnight sun.
-</p>
-<div className="flex items-center justify-between">
-<span className="text-sm font-bold text-[var(--flux-heading)]">From $3,200</span>
-<Badge color="var(--flux-primary-400)">New</Badge>
-</div>
-</div>
-</div>
-</Section>
-
-<Section title="Muted / disabled">
-<div className="max-w-sm rounded border border-[var(--flux-grey-100)] bg-[var(--flux-grey-50)] p-5 opacity-60">
-<h4 className="text-sm font-bold text-[var(--flux-grey-300)] mb-1">Archived Package</h4>
-<p className="text-xs text-[var(--flux-grey-300)] leading-relaxed">
-This package is no longer available for new bookings.
-</p>
-</div>
-</Section>
-</>
-);
-}                  [← Button](/components/button) [Checkbox →](/components/checkbox)
+- Do not remove the card padding or position nested notes and actions against its outer edge.
+- Do not add a coloured bar along one edge as decoration.
+- Do not put a coloured dot beside the title.
+- Do not stack a border, an inner glow and a heavy shadow on the same container.[PreviousDate picker](/components/date-picker/)[NextDescription list](/components/description-list/)

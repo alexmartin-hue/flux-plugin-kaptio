@@ -156,6 +156,7 @@ generic even when every value is correct.
 - No centred body copy. Centre a heading and a lede at most.
 - No three-column feature grid of icon-plus-heading-plus-paragraph as a default layout.
 - No badge on something that is not a status.
+- Use eyebrows — the small uppercase label above a heading — and numbering sparingly. An eyebrow must add context the heading does not, so never put one above every heading or section. Number items only when order is the meaning, such as steps or a sequence, and never as section decoration like 01, 02, 03.
 - No hero section with a gradient mesh background.
 - Do not stack decoration: pick one of border, shadow, or fill change to signal a state.
 - Do not add a container just to add a container. If it holds one thing, it is not grouping anything.
@@ -361,6 +362,7 @@ A component that references roles works in three themes for free. A component th
 - No centred body copy. Centre a heading and a lede at most.
 - No three-column feature grid of icon-plus-heading-plus-paragraph as a default layout.
 - No badge on something that is not a status.
+- Use eyebrows — the small uppercase label above a heading — and numbering sparingly. An eyebrow must add context the heading does not, so never put one above every heading or section. Number items only when order is the meaning, such as steps or a sequence, and never as section decoration like 01, 02, 03.
 - No hero section with a gradient mesh background.
 - Do not stack decoration: pick one of border, shadow, or fill change to signal a state.
 - Do not add a container just to add a container. If it holds one thing, it is not grouping anything.

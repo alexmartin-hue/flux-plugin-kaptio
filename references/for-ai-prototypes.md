@@ -51,6 +51,7 @@ Design requirements:
 - Establish one clear primary action and use at most one yellow CTA per view.
 - Map each domain status to the documented Badge semantics before rendering it. Do not leave every status on the neutral base style when the states have different consequences.
 - Use yellow status styling only when waiting, delay or required attention is part of the meaning.
+- Use eyebrows and numbering sparingly: an eyebrow only when it adds context the heading does not, and numbers only when order is the meaning. Never label or number every section.
 - Use native semantic elements, visible labels and documented keyboard behaviour.
 - Support light and dark themes. Do not use deep for dense product UI.
 - Do not invent colours, dimensions, components, statuses or interactions.

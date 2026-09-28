@@ -41,7 +41,7 @@ A deck with no script is still a working deck, which is why the navigation lives
 ## What loosens
 Each product rule, and what replaces it on a slide.
 
-Product ruleOn a slideThe type scale stops at --flux-text-6xl.Decks add --flux-display-sm through --flux-display-xl. These are deck-only: a display size in product UI is a defect, not a bold heading.A view has one ground.Every slide sets its own data-flux-theme. A deep teal statement between two light slides is the cheapest visual event in the system, and contrast is already audited for all three themes.Teal carries the system; other hues appear only when they carry meaning.A slide may take any product accent with data-accent. On a slide the accent is identity rather than status, so it needs no meaning — but it stays graphic.One yellow CTA element per view.Yellow is not a slide ground. The closing ask uses one full-bleed photograph under a deep-teal overlay.No centred body copy.Statement and quote slides centre. There is no body copy on them to centre.No three-column grid of icon, heading and paragraph as a default layout.The grid slide is exactly that, and it is right here — a taxonomy held on screen for twenty seconds is not a landing page.Constrain reading columns to --flux-measure-prose.Slides bleed to the edge. Images fill the canvas, and marks are cropped by it deliberately.Never exceed --flux-duration-slow.Content settles on arrival using a scroll-driven timeline, so it tracks the presenter rather than a clock. Still opacity and transform only.No decorative marks, bars or dots.A slide may carry one oversized typographic mark, or one hairline dot field. One. Two is decoration, and a coloured bar on the edge of anything is still banned.
+Product ruleOn a slideThe type scale stops at --flux-text-6xl.Decks add --flux-display-sm through --flux-display-xl. These are deck-only: a display size in product UI is a defect, not a bold heading.A view has one ground.Every slide sets its own data-flux-theme. A deep teal statement between two light slides is the cheapest visual event in the system, and contrast is already audited for all three themes.Teal carries the system; other hues appear only when they carry meaning.A slide may take any product accent with data-accent. On a slide the accent is identity rather than status, so it needs no meaning — but it stays graphic.One yellow CTA element per view.Yellow is not a slide ground. The closing ask uses a full-bleed photograph or muted background video under a deep-teal overlay.No centred body copy.Statement and quote slides centre. There is no body copy on them to centre.No three-column grid of icon, heading and paragraph as a default layout.The grid slide is exactly that, and it is right here — a taxonomy held on screen for twenty seconds is not a landing page.Constrain reading columns to --flux-measure-prose.Slides bleed to the edge. Images fill the canvas, and marks are cropped by it deliberately.Never exceed --flux-duration-slow.Content settles on arrival using a scroll-driven timeline, so it tracks the presenter rather than a clock. Still opacity and transform only.No decorative marks, bars or dots.A slide may carry one oversized typographic mark, or one hairline dot field. One. Two is decoration, and a coloured bar on the edge of anything is still banned.
 ## What holds
 Unchanged from product UI. A slide is not an exemption.
 
@@ -53,9 +53,10 @@ Unchanged from product UI. A slide is not an exemption.
 - No gradient fills, no glassmorphism, no glow, no neon, no blur behind content, no gradient mesh.
 - No emoji as an icon system.
 - Animate opacity and transform. Never width, height, top, left, margin or padding.
-- The agenda video is decorative and muted. It pauses off-slide, respects reduced motion, and always has the Flux pause control.
+- Deck videos are decorative and muted. They pause off-slide, respect reduced motion, and always have the Flux pause control. Background video with the deep-teal overlay is allowed on the cover and the closing ask; the agenda keeps its own video-backed layout. Nowhere else.
+- The agenda video shows its complete frame: never crop it. Bottom-align it inside a full-height media region that occupies at least two-fifths of the slide, so the visual remains substantial beside the agenda.
 - Real text in real elements. A slide is not an image of a slide.
-- One idea per slide. If it needs two sentences to state, it is two slides.AccentsA product accent colours type and data: the oversized mark on a section slide, the numerals on a list, the bars of a chart, the filled arc of a donut. It never draws decoration — no bar on the edge of a card, no rule beside a label — and it never carries a word, because it has no guaranteed contrast on any ground. Colour behind text comes from a theme. The closing slide uses the deep theme over a full-bleed photograph, with the built-in teal overlay preserving contrast.
+- One idea per slide. If it needs two sentences to state, it is two slides.AccentsA product accent colours type and data: the oversized mark on a section slide, the numerals on a list, the bars of a chart, the filled arc of a donut. It never draws decoration — no bar on the edge of a card, no rule beside a label — and it never carries a word, because it has no guaranteed contrast on any ground. Colour behind text comes from a theme. The closing slide uses the deep theme over a full-bleed photograph or muted background video, with the built-in teal overlay preserving contrast. The cover may use the same treatment.
 
 ## Pacing
 This is what makes a deck interesting. Not more colour.
@@ -70,10 +71,11 @@ A boring deck is almost always a deck where every slide is the same shape. Varie
 - The data layouts — chart, donut, timeline, journey, infographic — and the agenda are outside that count, because their repeated text is labels rather than prose. They get their own budget: one label and at most one line of explanation per item, and nothing else.
 - A labelled diagram earns its words by taking them off the slide. If the lede still explains what the figure already shows, cut the lede, not the labels.
 - An agenda belongs near the front of a deck long enough to have parts, and again before each part with aria-current on the item you are reaching. In a deck of eight slides it is a slide nobody needed.
-- When an agenda is needed, use the agenda-video layout. There is no text-only agenda alternative: the quiet looping visual gives the room a paced opening without competing with the list.
+- When an agenda is needed, use the agenda-video layout. There is no text-only agenda alternative: the quiet looping visual gives the room a paced opening without competing with the list. Keep the whole video frame visible, bottom-aligned, and at least two-fifths of the slide wide.
 - Five items in a list, eight words each. A sixth item is a second slide.
+- Use kickers and numbering sparingly. A kicker earns its place only when it adds context the title does not, so it is not on every slide. Numerals mark real order — the agenda, steps, a timeline, a section mark — and never decorate tiles, columns or content slides.
 - At most one accent per slide. None is fine — a statement carries itself. A second accent on the same slide is a defect.
-- The final ask uses a full-bleed photograph with the deep-theme overlay. Never a flat yellow closing ground.
+- The final ask uses a full-bleed photograph or muted background video with the deep-theme overlay. Never a flat yellow closing ground.
 - Open on a cover and close on the ask. Everything between is yours.
 - A number worth saying out loud is worth a metric slide of its own.
 - Every third slide carries a photograph, screenshot, or portrait. Three consecutive text-only slides is a defect.
@@ -86,8 +88,9 @@ Decks go dull when every slide is type on a flat ground. The image and split-pho
 - Every deck needs at least three photographs: one on the cover or opening beat, one grounding a company or product claim, one showing people or customers in context.
 - Portraits for people. Photography for place and product. If the slide mentions where you are or what you do, show it.
 - Use flux-slide--image when the photograph carries the point on its own. Use flux-slide--split-photo when copy and metrics share the slide with it.
-- The closing ask always uses a meaningful full-bleed photograph beneath the deep-teal overlay. The image supports the action; it is not generic texture.
-- The agenda uses the video-backed agenda archetype. Keep its visual quiet, decorative and dark enough that the list remains the point.
+- The closing ask always uses a meaningful full-bleed photograph or muted background video beneath the deep-teal overlay. The visual supports the action; it is not generic texture.
+- Cover and closing may use a muted looping background video under that same deep-teal overlay. Put it in flux-slide__media with muted loop playsinline data-flux-video, keep the Flux pause control as a sibling, and do not put background video on any other layout.
+- The agenda uses the video-backed agenda archetype. Keep its visual quiet, decorative and dark enough that the list remains the point. Use the complete uncropped frame, align it to the bottom, and retain at least two-fifths of the slide for the media.
 - src may be a URL or a path under /decks/assets/. Alt text is mandatory and must describe what is in the frame, not repeat the slide title.
 - Never leave a slide that mentions a place, product, or team without a visual of that thing.
 ## The layouts
@@ -98,7 +101,7 @@ Each is a live slide at full size, framed to 16:9. If none of them fits what you
 One is already known to be missing: there is no layout for a command or a code snippet. A deck about tooling or adoption wants one, and until it exists, carry the command as a list item or a `flux-slide__note` rather than building a slide for it.
 
 ### Cover
-Use when The deck opens. Once, at the front.
+Use when The deck opens. Once, at the front. A full-bleed photograph or muted background video under the deep-teal overlay is allowed; type-only on deep remains valid.
 
 Not when Never for a section break — that is the section layout, and it looks different on purpose.
 
@@ -108,7 +111,7 @@ Connect ships to every tenant
 Vera Lindqvist · 18 August 2026
 `
 ### Agenda
-Use when Near the front, to tell the room the shape of the next twenty minutes. This video-backed layout is the agenda type for every deck. Repeat it before a part begins, with aria-current on the item you are reaching.
+Use when Near the front, to tell the room the shape of the next twenty minutes. This video-backed layout is the agenda type for every deck. Its complete video frame is bottom-aligned in a media region at least two-fifths of the slide wide. Repeat it before a part begins, with aria-current on the item you are reaching.
 
 Not when For content. An agenda names the parts of the deck; a list of arguments is the list layout. A four-slide deck does not need one.
 
@@ -377,7 +380,7 @@ One record, one shape, every channel.
 
 `
 ### Closing
-Use when The ask. One per deck, at the end. A full-bleed photograph makes the action tangible.
+Use when The ask. One per deck, at the end. A full-bleed photograph or muted background video under the deep-teal overlay makes the action tangible.
 
 Not when Anywhere else. This is a closing action, not a reusable image treatment.
 
@@ -394,7 +397,7 @@ The check to run before a deck is finished.
 - No two consecutive slides share a layout.
 - The ground changes at least every third slide.
 - There is a beat — a section or statement slide — every four to six slides.
-- The last slide is the ask, over a full-bleed image with the deep-teal overlay.
+- The last slide is the ask, over a full-bleed photograph or muted background video with the deep-teal overlay.
 - No slide exceeds twenty-five words, the data layouts aside.
 - One accent per slide, and no accent carries text.
 - Every chart bar carries a --flux-bar percentage, and a donut’s two dash values add up to 100.
@@ -404,6 +407,8 @@ The check to run before a deck is finished.
 - Every image has real alt text, and no slide is a picture of text.
 - At least three slides carry a photograph or screenshot.
 - If the deck needs an agenda, it uses flux-slide--agenda-video with a muted video and its pause control.
+- The agenda video is uncropped, bottom-aligned, and occupies at least two-fifths of the slide.
+- Kickers are not on every slide, and numerals appear only where order is the meaning.
 - No company-facts slide without an accompanying image — use split-photo.
 - The deck reads correctly with the browser at any window size, because the composition scales as one piece and leftover viewport takes the slide’s ground.The full machine contract — premise, layouts, markup and all of the above — is at[/decks/llms.txt](/decks/llms.txt). It is written to be sufficient on its own: an agent should be able to build a correct deck from that file without fetching anything else.
 

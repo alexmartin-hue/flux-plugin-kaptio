@@ -25,12 +25,13 @@ Flux 2.0 is almost entirely additive, and the six places where it is not are the
 - Data layouts. Chart, donut, timeline, journey, infographic and agenda. Charts are built from tokens and inline SVG rather than a library: a chart drawn by a library names its own colours, and cannot follow a per-slide theme.
 - Split with photo. flux-slide--split-photo — copy and metrics beside an editorial photograph. The company-facts shape agents were missing.
 - Image rhythm. Deck contract now requires at least three photographs per deck and forbids company-facts slides without an image.
+- Eyebrows and numbering. Product, prototype and deck contracts now require eyebrows, kickers and numbering to be used sparingly: a label only when it adds context the heading lacks, and a number only when order is the meaning.
 - Colour audit. Pairings checked against WCAG 2.2 AA on every build (body and primary held to AAA), plus a hue check that fails if a status surface drifts far enough from its own hue to stop reading as that status.
 - Compliance check. flux-check — scans a repository for the hard-rule violations that can be detected mechanically, and exits non-zero. Ships with the package, so a consumer can gate its own build on the same rules.
 - Link audit. Every internal link in the documentation resolved on every build.
 - Machine contract. llms.txt, per-component plain-text sources, and drop-in rule files for Cursor, Claude Code and Copilot.
 - Prototype brief. /prototypes/brief.txt — a reusable prompt that binds product prototypes to the Flux contract, documented components, readable density and verification.
-- Sidebar icons. Stroke glyphs on every sidebar item except Get started, inset one spacing step so they sit under the group heading rather than flush with it.
+- Cover and closing video. The deck contract now allows a muted looping background video under the deep-teal overlay on intro (cover) and outro (closing) slides, with the same pause control and reduced-motion behaviour as the agenda.
 - Tailwind v4 preset. Clears Tailwind’s default palette, spacing, radius and font namespaces rather than sitting beside them.
 - Fluid root. clamp(16px, 0.875rem + 0.4vw, 19px), so every rem in the system scales with the viewport.
 ### Fixed
@@ -42,6 +43,7 @@ Flux 2.0 is almost entirely additive, and the six places where it is not are the
 - Prototype surface insets. The prototype brief now requires documented padding inside every bordered or filled surface, keeps action rows aligned to that inset, and wraps actions before they touch the container edge.
 - Prototype badge mapping. The prototype brief now requires an explicit domain-to-badge mapping when sibling states have different consequences. The Badge reference includes Available, Assigned and Occupied inventory states, with a lighter unavailable ground that clears AA at 6.17:1.
 - Status badge contrast. On request now uses yellow-900 text at 9.93:1, Awaiting supplier uses blue-800 text at 6.51:1, and Cancelled shares the lighter orange-200 treatment used by Occupied at 6.17:1. The contrast audit now checks every fixed badge pairing directly.
+- Agenda video framing. Agenda video now uses the complete uncropped frame, aligns it to the bottom of a full-height media region, and retains two-fifths of the slide so it remains visually substantial.
 ### New primitives
 Added because a real surface needed them and no existing token fit. Adding to tier 1 is safe — a name is never removed and a value never changes.
 

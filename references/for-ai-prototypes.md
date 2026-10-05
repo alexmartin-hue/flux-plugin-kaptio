@@ -37,6 +37,7 @@ Prototype context:
 
 Design requirements:
 - Import https://flux.kaptio.com/tokens/v2/flux.css and https://flux.kaptio.com/tokens/v2/flux-components.css.
+- Load https://flux.kaptio.com/tokens/v2/flux-components.js with defer whenever the view has a Select, Date picker or field info bubble.
 - Reference Tier 2 semantic tokens for every interface role.
 - Use documented Flux components instead of recreating them.
 - Use at least --flux-text-sm for controls, table cells and compact secondary copy.
@@ -53,6 +54,8 @@ Design requirements:
 - Use yellow status styling only when waiting, delay or required attention is part of the meaning.
 - Use eyebrows and numbering sparingly: an eyebrow only when it adds context the heading does not, and numbers only when order is the meaning. Never label or number every section.
 - Use native semantic elements, visible labels and documented keyboard behaviour.
+- Never use a native select, datalist or date-type input element; their menus and calendars draw in the operating system style. For single choice copy the Select markup from https://flux.kaptio.com/components/source/select.txt, for several choices its flux-multiselect variant, and for dates https://flux.kaptio.com/components/source/date-picker.txt. With four or fewer options use radio buttons instead.
+- Put explanatory field text in the info bubble beside the label, using the markup in https://flux.kaptio.com/components/source/input.txt. Never place help or explanation text below a field; that space is only for error messages.
 - Support light and dark themes. Do not use deep for dense product UI.
 - Do not invent colours, dimensions, components, statuses or interactions.
 

@@ -125,10 +125,12 @@ Flux guarantees contrast and focus. Everything structural is the implementer’s
 
 - Do not ship a text or control pairing below WCAG 2.2 AA. Use a semantic text-*, icon-* or border-strong role on a documented ground so the audited pairings apply. A raw colour, or a primitive used as text, is already a defect.
 - Never remove the focus outline. Focus is teal, 2px, offset 2px, in every theme, applied by the base layer.
-- Use native elements before ARIA: button, a, dialog, select, table, input. A div with a click handler is not a button.
+- Use native elements before ARIA: button, a, dialog, table, input. A div with a click handler is not a button.
+- Select and Date picker are the exception: never render a native select element or a date-type input, because their menus and calendars draw in the operating system style. Copy the documented Flux markup and load flux-components.js.
 - Open modals with dialog.showModal(), never by toggling a class. Focus trapping, page inertness and Escape come from the platform.
 - Every input needs a visible, programmatically associated label. A placeholder is not a label.
 - Bind error text to its field with aria-describedby, and set aria-invalid.
+- Explanatory field text — what a field means, its format, its constraints — goes in the documented info bubble beside the label, never as text below the field. Only an error message sits below a field. Reference the bubble from the control with aria-describedby.
 - Every icon-only control needs an accessible name.
 - Tabs need roving tabindex: the selected tab is tabindex="0", the rest are tabindex="-1".
 - Table headers need scope. Numeric columns are right-aligned with tabular figures.
@@ -198,8 +200,8 @@ npx flux-check src/
 
 It reports the violations that can be detected mechanically — raw colours,
 arbitrary Tailwind values, synthesised font weights, transition: all, removed
-focus outlines, gradients, raw dimensions, divs with click handlers, table
-headers without scope — each with the rule name and the fix. It exits non-zero,
+focus outlines, gradients, raw dimensions, divs with click handlers, native
+selects and date inputs, help text below fields, table headers without scope — each with the rule name and the fix. It exits non-zero,
 so it also works as a CI gate.
 
 Fix every finding. If one is genuinely correct, annotate the line above it with
@@ -220,7 +222,9 @@ flux-ignore-next-line gradient */
 - At most one yellow CTA element.
 - Text and control pairings meet WCAG 2.2 AA (4.5:1 text, 3:1 non-text). Use semantic roles, not a colour that looks dark enough.
 - Focus outline present and not overridden.
-- Native elements used for buttons, links, dialogs, selects and tables.
+- Native elements used for buttons, links, dialogs and tables.
+- No native select or date input. Select and Date picker use the documented Flux markup with flux-components.js loaded.
+- No explanatory text below fields. Explanation is in the info bubble beside the label; only errors sit below.
 - No transition: all, and no scale or lift on hover.
 - Would this render correctly with data-flux-theme="dark" on the root? If any
 part would not, that part is referencing a primitive or a raw value.`
@@ -334,10 +338,12 @@ Flux guarantees contrast and focus. Everything structural is the implementer’s
 
 - Do not ship a text or control pairing below WCAG 2.2 AA. Use a semantic text-*, icon-* or border-strong role on a documented ground so the audited pairings apply. A raw colour, or a primitive used as text, is already a defect.
 - Never remove the focus outline. Focus is teal, 2px, offset 2px, in every theme, applied by the base layer.
-- Use native elements before ARIA: button, a, dialog, select, table, input. A div with a click handler is not a button.
+- Use native elements before ARIA: button, a, dialog, table, input. A div with a click handler is not a button.
+- Select and Date picker are the exception: never render a native select element or a date-type input, because their menus and calendars draw in the operating system style. Copy the documented Flux markup and load flux-components.js.
 - Open modals with dialog.showModal(), never by toggling a class. Focus trapping, page inertness and Escape come from the platform.
 - Every input needs a visible, programmatically associated label. A placeholder is not a label.
 - Bind error text to its field with aria-describedby, and set aria-invalid.
+- Explanatory field text — what a field means, its format, its constraints — goes in the documented info bubble beside the label, never as text below the field. Only an error message sits below a field. Reference the bubble from the control with aria-describedby.
 - Every icon-only control needs an accessible name.
 - Tabs need roving tabindex: the selected tab is tabindex="0", the rest are tabindex="-1".
 - Table headers need scope. Numeric columns are right-aligned with tabular figures.
@@ -392,8 +398,8 @@ npx flux-check src/
 
 It reports the violations that can be detected mechanically — raw colours,
 arbitrary Tailwind values, synthesised font weights, transition: all, removed
-focus outlines, gradients, raw dimensions, divs with click handlers, table
-headers without scope — each with the rule name and the fix. It exits non-zero,
+focus outlines, gradients, raw dimensions, divs with click handlers, native
+selects and date inputs, help text below fields, table headers without scope — each with the rule name and the fix. It exits non-zero,
 so it also works as a CI gate.
 
 Fix every finding. If one is genuinely correct, annotate the line above it with

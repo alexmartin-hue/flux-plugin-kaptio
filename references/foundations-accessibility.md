@@ -48,7 +48,7 @@ Colour and focus are the easy half. The rest is structure, and it is on you.
 Do
 
 - Treat WCAG 2.2 AA as the floor. Use semantic text roles rather than picking a colour that looks dark enough.
-- Use native elements — button, dialog, select, table — before reaching for ARIA.
+- Use native elements — button, dialog, table — before reaching for ARIA. Select and Date picker use the documented Flux markup, never a native select or date input.
 - Give every icon-only control an accessible name.
 - Bind error text to its field with aria-describedby.
 - Run npm run check before shipping a token change.Don’t

@@ -8,7 +8,7 @@ Patterns
 A form is the densest thing most Kaptio users interact with, and the place where small inconsistencies compound fastest. Everything here follows from one idea: a field, its label and its message are a single unit.
 
 ## Field anatomy
-Label above, control, message below. Always in that order, always all three considered.
+Label above with its info button, control, error below. Always in that order.
 
 Departure name *
 
@@ -54,7 +54,7 @@ Save departure
 
 `Labels sit above the control rather than beside it. Top-aligned labels are faster to scan down, survive translation into longer languages, and do not force a second column decision on every form in the product.
 
-Help text appears before the mistake, not only after it. If a field has a format constraint, say so while it is still cheap to comply with.
+Explanation lives in the info bubble beside the label, never as text below the field. If a field has a format constraint, put it there so it is one hover, focus or tap away while it is still cheap to comply with. The space below the field is reserved for errors, so a message there always means something needs fixing.
 
 ## Form layout
 One column, unless two fields genuinely belong on one line.
@@ -123,12 +123,14 @@ Delete departure
 Do
 
 - Keep the label, control and message together as one unit.
+- Put explanatory text in the info bubble beside the label.
 - Use one column unless two fields are halves of one value.
 - Validate on blur and clear on input.
 - Write errors that say what to do.
 - Put the primary action last, and label it with the verb.Don’t
 
 - Do not use a placeholder as a label.
+- Do not put explanatory text below a field. Only errors go there.
 - Do not disable submit until the form is valid.
 - Do not show a red border without a message.
 - Do not validate on every keystroke.

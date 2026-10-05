@@ -17,7 +17,7 @@ So the rules are published where an agent will actually read them — one plain-
 ## The contract
 One file. Every token, every rule, every component's markup.
 
-textCopy`https://flux.kaptio.com/llms.txt`It is generated from the same sources as this site, so it cannot describe a system the site does not implement. Point an agent at it once and it has the complete system: 345 tokens across three tiers and three themes, the hard rules with their reasoning, the composition habits to avoid, and copyable markup for all twelve components.
+textCopy`https://flux.kaptio.com/llms.txt`It is generated from the same sources as this site, so it cannot describe a system the site does not implement. Point an agent at it once and it has the complete system: 356 tokens across three tiers and three themes, the hard rules with their reasoning, the composition habits to avoid, and copyable markup for all twelve components.
 
 NoteIndividual components are also published as plain text at`/components/source/.txt` — useful when you want one component in context rather than the whole system.
 ## The hard rules
@@ -92,10 +92,12 @@ Flux guarantees contrast and focus. Everything structural is the implementer’s
 
 - Do not ship a text or control pairing below WCAG 2.2 AA. Use a semantic text-*, icon-* or border-strong role on a documented ground so the audited pairings apply. A raw colour, or a primitive used as text, is already a defect.
 - Never remove the focus outline. Focus is teal, 2px, offset 2px, in every theme, applied by the base layer.
-- Use native elements before ARIA: button, a, dialog, select, table, input. A div with a click handler is not a button.
+- Use native elements before ARIA: button, a, dialog, table, input. A div with a click handler is not a button.
+- Select and Date picker are the exception: never render a native select element or a date-type input, because their menus and calendars draw in the operating system style. Copy the documented Flux markup and load flux-components.js.
 - Open modals with dialog.showModal(), never by toggling a class. Focus trapping, page inertness and Escape come from the platform.
 - Every input needs a visible, programmatically associated label. A placeholder is not a label.
 - Bind error text to its field with aria-describedby, and set aria-invalid.
+- Explanatory field text — what a field means, its format, its constraints — goes in the documented info bubble beside the label, never as text below the field. Only an error message sits below a field. Reference the bubble from the control with aria-describedby.
 - Every icon-only control needs an accessible name.
 - Tabs need roving tabindex: the selected tab is tabindex="0", the rest are tabindex="-1".
 - Table headers need scope. Numeric columns are right-aligned with tabular figures.
@@ -139,7 +141,7 @@ A rule that cannot fail a build is a suggestion.
 
 The contract tells an agent what to do. The compliance check tells it when it did not, which is the half that actually changes behaviour — an agent that gets a failing exit code with a named rule and a fix will correct itself without being asked.
 
-bashCopy`npx flux-check src/`It scans CSS, markup and component files for the violations that can be detected mechanically: raw colours, arbitrary Tailwind values, synthesised font weights,`transition: all`, removed focus outlines, gradients on interface surfaces, raw dimensions where a token exists, divs with click handlers, and table headers without `scope`.
+bashCopy`npx flux-check src/`It scans CSS, markup and component files for the violations that can be detected mechanically: raw colours, arbitrary Tailwind values, synthesised font weights,`transition: all`, removed focus outlines, gradients on interface surfaces, raw dimensions where a token exists, divs with click handlers, native selects and date inputs, help text below fields, and table headers without `scope`.
 
 Rules are scoped to the context they can apply to, so prose that quotes a hex code in order to ban it is not reported. A linter that cries wolf gets switched off in a week. Where a violation is genuinely correct — a caret drawn with gradients so it can inherit`currentColor` — annotate it and say why:
 

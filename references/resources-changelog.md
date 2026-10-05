@@ -25,6 +25,8 @@ Flux 2.0 is almost entirely additive, and the six places where it is not are the
 - Data layouts. Chart, donut, timeline, journey, infographic and agenda. Charts are built from tokens and inline SVG rather than a library: a chart drawn by a library names its own colours, and cannot follow a per-slide theme.
 - Split with photo. flux-slide--split-photo — copy and metrics beside an editorial photograph. The company-facts shape agents were missing.
 - Image rhythm. Deck contract now requires at least three photographs per deck and forbids company-facts slides without an image.
+- Field info bubble. Explanatory field text now opens from an info button beside the label, on hover, focus or tap, instead of sitting below the field. The space below a field is reserved for errors. flux-check reports field-help-below.
+- No native dropdowns. The product contract and prototype brief now forbid native select, datalist and date inputs, and require flux-components.js wherever Select or Date picker appears. flux-check reports native-select and native-date.
 - Eyebrows and numbering. Product, prototype and deck contracts now require eyebrows, kickers and numbering to be used sparingly: a label only when it adds context the heading lacks, and a number only when order is the meaning.
 - Colour audit. Pairings checked against WCAG 2.2 AA on every build (body and primary held to AAA), plus a hue check that fails if a status surface drifts far enough from its own hue to stop reading as that status.
 - Compliance check. flux-check — scans a repository for the hard-rule violations that can be detected mechanically, and exits non-zero. Ships with the package, so a consumer can gate its own build on the same rules.

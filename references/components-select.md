@@ -45,6 +45,8 @@ Where no value is preselected, the first option states the choice rather than re
 
 Region
 
+Determines which price rules apply.
+
 Choose a region
 
 - Iceland
@@ -53,10 +55,11 @@ Choose a region
 
 - United Kingdom
 
-Determines which price rules apply.
-
 htmlCopy`
+
 Region
+
+Determines which price rules apply.
 
 Choose a region
 
@@ -64,13 +67,14 @@ Iceland
 Nordics
 United Kingdom
 
-Determines which price rules apply.
 `
 ### Multi-select
 When several values from a closed set may be chosen at once and the list is too long for a visible checkbox group. Checkbox options inside a dropdown panel; the trigger matches Select geometry.
 
 Markets
 
+Price rules apply to every selected market.
+
 Choose markets
 
 Iceland
@@ -80,11 +84,12 @@ Nordics
 United Kingdom
 
 DACH
-
-Price rules apply to every selected market.
 
 htmlCopy`
+
 Markets
+
+Price rules apply to every selected market.
 
 Choose markets
 
@@ -96,7 +101,6 @@ United Kingdom
 
 DACH
 
-Price rules apply to every selected market.
 `
 ## Anatomy
 PartDescriptionLabelAbove the control, matching Input exactly.TriggerA button with the same height, radius and border as Input, so a mixed form stays level.IndicatorA line chevron in icon-subtle at the trailing edge. Stroke only, not a filled triangle.ListboxA Flux surface containing keyboard-focusable options and the selected checkmark.ValueA hidden input carrying the selected value into ordinary form submission.

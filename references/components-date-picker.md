@@ -106,4 +106,4 @@ Do
 
 - Do not use colour alone to identify today, selection or errors.
 - Do not close a range picker after the first date; announce that the end date is now required.
-- Do not omit flux-components.js or replace the visible label with the placeholder.[PreviousSelect](/components/select/)[NextCard](/components/card/)
+- Do not omit flux-components.js or replace the visible label with the placeholder.[PreviousSelect](/components/select/)[NextCheckbox and radio](/components/checkbox/)

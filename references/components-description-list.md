@@ -126,4 +126,4 @@ Do
 
 - Do not put a person’s or place’s name in mono. Mono is for data, not language.
 - Do not add vertical rules between pairs. The gap is the separator.
-- Do not use it for more than one object.[PreviousCard](/components/card/)[NextBadge](/components/badge/)
+- Do not use it for more than one object.[PreviousCard](/components/card/)[NextMetric](/components/metric/)

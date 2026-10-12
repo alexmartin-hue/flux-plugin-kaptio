@@ -52,6 +52,7 @@ Reserved. See [the yellow rule](#yellow) below.
 ### Poison Green
 
 - --flux-green-900#16301A
+- --flux-green-850#0C3403
 - --flux-green-800#0E5600
 - --flux-green-600#197C04
 - --flux-green-400#2BA711
@@ -124,6 +125,16 @@ Switch the theme in the top bar and watch this table change without the page rel
 - --flux-border-subtleDividers and hairlines
 - --flux-border-strongControl outlines
 - --flux-focus-ringFocus, in every theme
+## Chart series
+Four series and a comparison, each at 3:1 or better against every layer of its theme.
+
+Use them in order, and `chart-muted` for the comparison, such as last year. They are graphic only and never carry text. See the [Chart](/components/chart/)component.
+
+- --flux-chart-1First series, teal
+- --flux-chart-2Second series
+- --flux-chart-3Third series
+- --flux-chart-4Fourth series
+- --flux-chart-mutedComparison series
 ## Which colours may carry text
 Most of the palette cannot. Treating a mid-tone as a text colour is the most common way Flux output goes wrong.
 

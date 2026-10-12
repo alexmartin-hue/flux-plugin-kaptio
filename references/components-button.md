@@ -43,10 +43,24 @@ Keep the button in the DOM and disabled rather than removing it, so the layout d
 Save changes
 CancelhtmlCopy`Save changes
 Cancel`
+### Opens a menu
+A button that opens a menu or panel ends in a chevron, so it reads as a dropdown rather than an action. The chevron flips while aria-expanded is true. Requires flux-components.js for menu placement and keys.
+
+Export
+
+CSV
+Excel
+PDF manifest
+htmlCopy`Export
+
+CSV
+Excel
+PDF manifest
+`
 ## Anatomy
 PartDescriptionContainerFixed height from the size token, 4px radius, no shadow.LabelLexend Bold. Sentence case. A verb, and specific — "Save changes", not "Submit".Icon (optional)Leading or trailing, 16px, inheriting text colour via currentColor.
 ## API
-NameKindDescription`flux-button`classBase class. Primary teal fill by default.`flux-button--secondary`classNeutral fill on layer-03. For the lesser of two actions.`flux-button--outline`classTeal border and text, transparent fill.`flux-button--ghost`classTeal text only. For tertiary actions in dense chrome.`flux-button--danger`classDestructive actions. Pair with a confirmation.`flux-button--cta`classBumble-Me Yellow. One per view, conversion only.`flux-button--sm | --lg`classSize modifiers. Medium is the default and needs no class.`disabled`attributeNative disabled. Do not simulate it with pointer-events.
+NameKindDescription`flux-button`classBase class. Primary teal fill by default.`flux-button--secondary`classNeutral fill on layer-03. For the lesser of two actions.`flux-button--outline`classTeal border and text, transparent fill.`flux-button--ghost`classTeal text only. For tertiary actions in dense chrome.`flux-button--danger`classDestructive actions. Pair with a confirmation.`flux-button--cta`classBumble-Me Yellow. One per view, conversion only.`flux-button--sm | --lg`classSize modifiers. Medium is the default and needs no class.`flux-button__chevron`classTrailing line chevron on a button that opens a menu or panel. Pair the button with aria-haspopup and aria-expanded; the chevron flips while expanded. Never on a button that acts immediately.`disabled`attributeNative disabled. Do not simulate it with pointer-events.
 ## States
 StateTreatmentDefaultsurface-brand fill, text-on-color label.Hoversurface-brand-hover. No lift, no shadow, no scale.Activesurface-brand-active.Focus2px focus-ring outline at 2px offset. Teal in every theme.Disabled50% opacity, not-allowed cursor. Colour is unchanged.
 ## Keyboard

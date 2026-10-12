@@ -1,103 +1,147 @@
-# Flux — /components/progress
+# Flux — /components/progress/
 
-Source: https://flux.kaptio.com/components/progress
+Source: https://flux.kaptio.com/components/progress/
 
-[Flux](/)       [Components](/components) / Feedback
+Component
 
-# Progress
-Determinate progress bars showing completion.
+# Progress and meter
+Segmented bars for how far a task has got, and where a measurement sits in its range.
 
-### Default
-Progress60%
-### Sizes
-smmdlg
-### Animated
-Progress0%Advance to 25%       Source  ProgressDemo.tsx
-The exact code behind the live demo above. Fetch it raw at
-[/components/source/progress.txt](/components/source/progress.txt).
+Plain-text source, for agents and clipboard use: [/components/source/progress.txt](/components/source/progress.txt)
 
-import React, { useState } from "react";
+## When to use it
+Progress shows a task that is under way and will finish, such as an import or a batch of confirmations, in brand teal. Meter shows a measurement within a known range, such as seats sold against what a departure needs to run, and takes a status colour from where the value sits. Both draw the value as a row of segments, and both are real progress and meter elements underneath, so the value is announced as a value.
 
-function Section({ title, children }: { title: string; children: React.ReactNode }) {
-return (
-<div className="mb-8">
-<h3 className="text-sm font-bold text-[var(--flux-heading)] mb-3">{title}</h3>
-<div className="p-6 rounded border border-[var(--flux-grey-100)] bg-[var(--flux-surface)]">
-{children}
-</div>
-</div>
-);
-}
+Not thisNot when the amount of work is unknown; use a Spinner. Not for a value without a range, such as a booking total; write the number. Not as a chart of several values side by side; use a chart.
+## Examples
 
-function ProgressBar({
-value,
-height = "h-2",
-showLabel = false,
-}: {
-value: number;
-height?: string;
-showLabel?: boolean;
-}) {
-return (
-<div className="w-full">
-{showLabel && (
-<div className="flex justify-between mb-1.5">
-<span className="text-xs font-bold text-[var(--flux-black)]">Progress</span>
-<span className="text-xs font-bold text-[var(--flux-black)]">{value}%</span>
-</div>
-)}
-<div className={`w-full ${height} rounded-full bg-[var(--flux-grey-100)]`}>
-<div
-className={`${height} rounded-full bg-[var(--flux-primary-400)] transition-all duration-500`}
-style={{ width: `${value}%` }}
-/>
-</div>
-</div>
-);
-}
+### Progress
+A percentage, written by the script from the progress element when the value span has data-flux-percent.
 
-export default function ProgressDemo() {
-const steps = [0, 25, 50, 75, 100];
-const [stepIndex, setStepIndex] = useState(0);
+Importing rates
+81%
 
-const cycle = () => {
-setStepIndex((prev) => (prev + 1) % steps.length);
-};
+81%
 
-return (
-<div>
-<Section title="Default">
-<ProgressBar value={60} showLabel />
-</Section>
+htmlCopy`
 
-<Section title="Sizes">
-<div className="space-y-4">
-<div>
-<span className="text-xs text-[var(--flux-grey-300)] mb-1 block">sm</span>
-<ProgressBar value={45} height="h-1" />
-</div>
-<div>
-<span className="text-xs text-[var(--flux-grey-300)] mb-1 block">md</span>
-<ProgressBar value={45} height="h-2" />
-</div>
-<div>
-<span className="text-xs text-[var(--flux-grey-300)] mb-1 block">lg</span>
-<ProgressBar value={45} height="h-3" />
-</div>
-</div>
-</Section>
+Importing rates
+81%
 
-<Section title="Animated">
-<div className="space-y-4">
-<ProgressBar value={steps[stepIndex]} showLabel />
-<button
-onClick={cycle}
-className="px-4 py-2 text-sm font-bold rounded bg-[var(--flux-primary-400)] text-white hover:opacity-90 transition-opacity"
->
-Advance to {steps[(stepIndex + 1) % steps.length]}%
-</button>
-</div>
-</Section>
-</div>
-);
-}                  [← Note](/components/note) [Radio →](/components/radio)
+81%
+
+`
+### Progress with a count
+When the units mean something, say them. Set the value text yourself; the script still draws the segments.
+
+Sending confirmations
+120 of 480
+
+120 of 480
+
+htmlCopy`
+
+Sending confirmations
+120 of 480
+
+120 of 480
+
+`
+### Meter, higher is better
+Seats sold on a departure that runs at 20 and is safe above 40. Above high is teal; between low and high is pending; below low is an error.
+
+KB-2026-09-14 seats sold
+44 of 49, guaranteed
+
+44 of 49, guaranteed
+
+KB-2026-09-21 seats sold
+30 of 49, 10 more to guarantee
+
+30 of 49, 10 more to guarantee
+
+KB-2026-09-28 seats sold
+12 of 49, below the minimum of 20
+
+12 of 49, below the minimum of 20
+
+htmlCopy`
+
+KB-2026-09-14 seats sold
+44 of 49, guaranteed
+
+44 of 49, guaranteed
+
+KB-2026-09-21 seats sold
+30 of 49, 10 more to guarantee
+
+30 of 49, 10 more to guarantee
+
+KB-2026-09-28 seats sold
+12 of 49, below the minimum of 20
+
+12 of 49, below the minimum of 20
+
+`
+### Meter, lower is better
+Set optimum below low to reverse the scale: an agent’s credit used turns pending at 60% and an error past 90%.
+
+Credit used, Nordic Trails
+ISK 4,050,000 of 5,000,000
+
+ISK 4,050,000 of 5,000,000
+
+htmlCopy`
+
+Credit used, Nordic Trails
+ISK 4,050,000 of 5,000,000
+
+ISK 4,050,000 of 5,000,000
+
+`
+### Small
+flux-progress--sm halves the segment height, for a table cell or a dense list.
+
+Content import
+35%
+
+35%
+
+htmlCopy`
+
+Content import
+35%
+
+35%
+
+`
+## Anatomy
+PartDescriptionHeaderThe label, a label element bound to the progress or meter, and the value as text.ValueThe number in words or a percentage, in mono. It says what the colour says, so colour is never the only signal.ElementA visually hidden progress or meter. It holds the value; change it there and the segments follow.Segmentsflux-segments, aria-hidden. Twenty by default, or the count in data-segments; a segment fills once its whole share is reached.
+## API
+NameKindDescription`flux-progress`classA task under way. Holds a progress element and a flux-segments row.`flux-meter`classA measurement in a range. Holds a meter element with min, max, low, high and optimum.`flux-progress--sm`classThe small segment height, on either wrapper.`flux-segments`classThe segment row, aria-hidden. data-segments sets the count; twenty by default.`data-flux-percent`attributeOn the value span: the script writes the percentage into it.`data-tone`attributeOn flux-meter, set by the script from the meter’s region: warning when suboptimal, error when worse. Absent at optimum.
+## States
+StateTreatmentEmptyNo segment is filled until the value is above the minimum.PartialAny value above the minimum fills at least one segment, so started never reads as not started.CompleteEvery segment is filled only at the maximum.Meter regionsOptimum in brand teal, suboptimal in the pending colour, even less good in the error colour.
+## Keyboard
+KeysAction`—`Not interactive.
+## Accessibility
+
+- The progress or meter element is in the accessibility tree with its label, so assistive technology reads the value and the range.
+- The value text says what the colour says. A meter in the error colour also says, in words, what is wrong.
+- Progress changes are not announced as they happen. When a task finishes, say so in a status message or a Toast.
+- Filled segments meet 3:1 against the ground and the empty segments in every theme.
+## Tokens
+The tier-3 and tier-2 tokens this component binds to. Change the token, not the component.
+
+- --flux-progress-segment-height | -height-sm | -gap | -radius | -empty
+- --flux-progress-fill | -fill-warning | -fill-error
+- --flux-progress-header-gap | -label | -value
+## Do and don’t
+Do
+
+- Change the value on the progress or meter element, not on the segments.
+- Pick low, high and optimum from what the value means to the business, and write that meaning in the value text.
+- Use the count of the real units as data-segments when it is small, such as one segment per room.Don’t
+
+- Do not colour a progress bar by status. Progress is not a warning; if a task fails, stop it and say why.
+- Do not animate the segments filling in turn, or add a glow to the leading segment.
+- Do not use a meter for completion over time, or a progress bar for a level.[PreviousSpinner](/components/spinner/)[NextSkeleton](/components/skeleton/)

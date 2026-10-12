@@ -33,7 +33,7 @@ That is deliberate. Leaving Tailwind's palette in place means every generated co
 
 NeverArbitrary-value syntax — `bg-[#056F82]`, `p-[14px]`,`text-[15px]`. It bypasses the token layer entirely, and it is invisible to every theme.
 ## The component layer
-Optional. Working CSS for the twelve documented components, built from tier-3 tokens.
+Optional. Working CSS for the 47 documented components, built from tier-3 tokens.
 
 cssCopy`@import "@kaptio/flux-tokens/flux.css";
 @import "@kaptio/flux-tokens/flux-components.css";`htmlCopy``Import it and `.flux-button`, `.flux-card` and the rest work immediately, in all three themes. Or read it as the reference implementation and reproduce the same token bindings in React, Lightning Web Components or whatever the project uses — the bindings are the contract, not the class names.
@@ -41,7 +41,7 @@ cssCopy`@import "@kaptio/flux-tokens/flux.css";
 Include `flux-components.js` when using Select or Date picker. It provides listbox and calendar keyboard handling, visible-value updates and ordinary form submission through hidden inputs. The other components remain CSS-only.
 
 ## What each artifact contains
-FileSizeContents`flux.css`26.3 kBFont imports, 356 tokens across three tiers and three themes, base rules.`flux-tokens.css`24.5 kBThe same tokens, without font imports or base rules.`flux.json`70.7 kBEvery token as structured data, grouped by tier and theme.`flux-tailwind.css`16.9 kBTailwind v4 theme block. Clears defaults, remaps names.`flux-components.css`27.2 kBThe twelve components, as framework-agnostic CSS.`flux-components.js`16.6 kBBehaviour for Select and Date picker.
+FileSizeContents`flux.css`50.5 kBFont imports, 789 tokens across three tiers and three themes, base rules.`flux-tokens.css`48.7 kBThe same tokens, without font imports or base rules.`flux.json`137.2 kBEvery token as structured data, grouped by tier and theme.`flux-tailwind.css`17.6 kBTailwind v4 theme block. Clears defaults, remaps names.`flux-components.css`148.7 kBThe 47 components, as framework-agnostic CSS.`flux-components.js`90.3 kBBehaviour for Select and Date picker.
 ## Verify the install
 Three checks that catch the usual failures.
 

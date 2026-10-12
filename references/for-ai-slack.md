@@ -39,7 +39,11 @@ NON-NEGOTIABLE — these hold on every slide
 
 - Every value comes from a token. No raw hex, no raw dimension, no Tailwind arbitrary value.
 - Lexend at 300 or 700. JetBrains Mono at 400, 500 or 700. Never a third family.
-- Grounds are Flux themes. Contrast is WCAG 2.2 AA at minimum (4.5:1 text, 3:1 non-text) and stays audited. Never a hand-picked colour.
+- Never load flux-prototype.css in a deck. Google Sans Flex and Manrope belong to product prototypes; a deck always sets in Lexend and JetBrains Mono.
+- Load flux.css and flux-deck.css from the Flux CDN, exactly as in the setup. Never copy token values into the deck, never redefine --flux-* variables, and never write var(--flux-…, #fallback): a deck that still renders without flux.css is a private copy of Flux that no theme or update reaches.
+- Do not load fonts yourself. flux.css loads Lexend at 300 and 700 and JetBrains Mono; a font link that adds Lexend 400, 500 or 600 is a defect.
+- Grounds are light, dark and deep, plus forest (data-ground="forest" on a deep slide). Contrast is WCAG 2.2 AA at minimum (4.5:1 text, 3:1 non-text) and stays audited. Never a hand-picked colour, never a ground set with style or a data-*-bg hex.
+- A story, a chapter or a persona never gets its own hue. Tell people apart with the avatar, the name and the role, and chapters apart with the title and the ground rotation. Status colours — green, yellow, blue, orange — mean status, not identity.
 - Product accents colour type and data: the oversized mark, the list numerals, chart bars, a donut arc. Never decoration — no bar on the edge of a card, no rule beside a label — and never a word you are meant to read.
 - Interface radius stays --flux-radius-sm. A slide is not a reason for a soft corner.
 - No gradient fills, no glassmorphism, no glow, no neon, no blur behind content, no gradient mesh.
@@ -47,12 +51,14 @@ NON-NEGOTIABLE — these hold on every slide
 - Animate opacity and transform. Never width, height, top, left, margin or padding.
 - Deck videos are decorative and muted. They pause off-slide, respect reduced motion, and always have the Flux pause control. Background video with the deep-teal overlay is allowed on the cover and the closing ask; the agenda keeps its own video-backed layout. Nowhere else.
 - The agenda video shows its complete frame: never crop it. Bottom-align it inside a full-height media region that occupies at least two-fifths of the slide, so the visual remains substantial beside the agenda.
+- The blooming-flower video, flower-blooming-dark.mp4, belongs to the agenda slide and nowhere else. Never use it on the cover, the closing ask or any other slide; give those their own footage or a photograph.
 - Real text in real elements. A slide is not an image of a slide.
 - One idea per slide. If it needs two sentences to state, it is two slides.
 
 GROUND — this is where variety comes from, and it is contrast-safe
 
 Set data-flux-theme="light" | "dark" | "deep" on each slide, not just the root.
+For a forest beat, add data-ground="forest" to a deep slide. No other grounds exist.
 Rotate them. The closing slide is always deep, with a full-bleed photograph
 or muted background video beneath its built-in teal overlay. The cover may
 use the same treatment.
@@ -65,7 +71,7 @@ PACING
 
 - Pick the layout from the sentence, not the sentence from the layout. Write the line first, then choose the slide that fits it.
 - Never two consecutive slides of the same layout. If two facts want the same shape, one of them is the wrong shape.
-- Change ground at least every third slide. Light, dark and deep in rotation is the rhythm.
+- Change ground at least every third slide. Light, dark and deep in rotation is the rhythm. Forest is a beat, not a rotation: use it for a section or statement slide, at most once every few slides.
 - Give the audience a beat every four to six slides: a section divider, or a statement with nothing else on it.
 - Twenty-five words per slide, counting every visible word — kickers, labels and numerals included. Twelve on a statement slide.
 - The data layouts — chart, donut, timeline, journey, infographic — and the agenda are outside that count, because their repeated text is labels rather than prose. They get their own budget: one label and at most one line of explanation per item, and nothing else.
@@ -154,16 +160,20 @@ BEFORE YOU SEND IT BACK
 - Every chart bar carries a --flux-bar percentage, and a donut’s two dash values add up to 100.
 - A chart, a donut or a timeline has a caption saying what it shows. A figure without a claim is decoration.
 - No raw hex, no raw dimension, no font weight outside 300 and 700.
+- The deck links flux.css and flux-deck.css, loads no fonts of its own, and has no var(--flux-…) with a fallback value.
+- Every slide ground is a theme or forest. No story, chapter or persona has its own colour.
+- npx flux-check passes on the deck file.
 - Every readable pairing uses a theme ground, so contrast stays at WCAG 2.2 AA.
 - Every image has real alt text, and no slide is a picture of text.
 - At least three slides carry a photograph or screenshot.
 - If the deck needs an agenda, it uses flux-slide--agenda-video with a muted video and its pause control.
 - The agenda video is uncropped, bottom-aligned, and occupies at least two-fifths of the slide.
+- The blooming-flower video appears only on the agenda slide.
 - Kickers are not on every slide, and numerals appear only where order is the meaning.
 - No company-facts slide without an accompanying image — use split-photo.
 - The deck reads correctly with the browser at any window size, because the composition scales as one piece and leftover viewport takes the slide’s ground.
 
-Copy the markup for each layout from the full contract rather than inventing it.`Fetching beats pastingIf the teammate can read a URL at request time, point it at`/decks/llms.txt` instead. That is the complete contract, including copyable markup for all 18 layouts, and it cannot go stale in a text box someone filled in once.
+Copy the markup for each layout from the full contract rather than inventing it.`Fetching beats pastingIf the teammate can read a URL at request time, point it at`/decks/llms.txt` instead. That is the complete contract, including copyable markup for all eighteen layouts, and it cannot go stale in a text box someone filled in once.
 ## Asking for a deck
 The brief handles the design. What it cannot guess is the argument.
 
@@ -201,6 +211,6 @@ bashCopy`npx flux-check deck.html`That catches raw colours, raw dimensions, synt
 ## When it comes out wrong
 Three failures account for most of it, and each has a specific cause.
 
-SymptomCauseFixEvery slide is a title and bulletsThe request was a topic rather than an argument, so there was nothing for the other layouts to hold.Give it the numbers, the counter-argument and the ask.The deck is all one colourGround was set once on the root instead of per slide.Ask it to rotate the ground. The brief says to; long decks are where it slips.It invented CSSA layout it wanted did not exist, and it built one rather than saying so.Ask which layout was missing, then tell us — that is a real gap in the set.The 18 layouts, with live specimens and the markup for each, are on [Decks](/patterns/decks/).
+SymptomCauseFixEvery slide is a title and bulletsThe request was a topic rather than an argument, so there was nothing for the other layouts to hold.Give it the numbers, the counter-argument and the ask.The deck is all one colourGround was set once on the root instead of per slide.Ask it to rotate the ground. The brief says to; long decks are where it slips.It invented CSSA layout it wanted did not exist, and it built one rather than saying so.Ask which layout was missing, then tell us — that is a real gap in the set.The eighteen layouts, with live specimens and the markup for each, are on [Decks](/patterns/decks/).
 
 [PreviousPrototype prompt](/for-ai/prototypes/)[NextDownloads](/resources/downloads/)

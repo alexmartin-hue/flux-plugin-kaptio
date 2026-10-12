@@ -49,6 +49,46 @@ htmlCopy`
 
 700 Bold — structural labels, small and letter-spaced
 `WeightTokenUse400 Regular`--flux-weight-mono-regular`Code blocks, raw values, identifiers in body copy.500 Medium`--flux-weight-mono-medium`Inline metadata, version numbers, keyboard hints, table figures.700 Bold`--flux-weight-mono-bold`Eyebrows, column headers, section labels. Always small, uppercase and letter-spaced.CarefulThe mono voice is for data, not for volume. Uppercase mono at`text-lg` or larger reads as a warning label. Keep the bold, letter-spaced form at`text-xs`.
+## Prototypes
+Product prototypes set in Google Sans Flex and Manrope. Decks and this site stay on Lexend and JetBrains Mono.
+
+htmlCopy`
+
+`
+
+## Sold-out departures
+
+Review sold-out departures before they need a stop-sell.
+
+Berths sold against capacity
+
+79.7%
+
++3.2 pts vs last week
+
+Search
+
+Ask Runa for a brief
+
+htmlCopy`
+Sold-out departures
+Review sold-out departures before they need a stop-sell.
+
+Berths sold against capacity
+79.7%
++3.2 pts vs last week
+
+Search
+
+Ask Runa for a brief
+
+`RoleFontSizeWeightApply withHeadingsGoogle Sans FlexFrom the scale, as in LexendMedium`h1–h6`Card headingGoogle Sans Flex`text-base · 16px`Medium`.flux-card__title`KPI valueGoogle Sans Flex`text-4xl · 36px`Bold, text-brand`.flux-metric__value, .flux-kpi`Body and descriptionManrope`text-base · 16px`Regular`body, .flux-description`TablesManrope`text-sm · 14px`Regular`.flux-table`Input and dropdownManrope`text-sm · 14px`Regular`.flux-input, .flux-select`LabelsManrope`text-sm · 14px`Medium`.flux-field__label`ButtonsManrope`text-sm · 14px`Semi Bold`.flux-button`KPI changeManrope`text-sm · 14px`Semi Bold`.flux-metric__change, .flux-kpi-change`Small and metaManrope`text-xs · 12px`Regular`.flux-meta``flux-prototype.css` remaps the font and weight roles every component reads, so buttons, fields, tables and badges retype without new markup. Prototypes have no mono voice: identifiers, badges and column headers set in Manrope. Sizes do not change: a prototype uses the same scale and component sizes as the Lexend product. The px values are the equivalents at the 16px root; the root stays fluid.
+
+Set weights with `--flux-prototype-weight-regular`, `-medium`,`-semibold` and `-bold`, never a literal number. A KPI change carries a sign or arrow as well as its status colour, so the direction does not rely on colour alone.
+
+This site shows prototype regions inside Lexend pages: its root sets`data-flux-type="lexend"`, and each component specimen sets`data-flux-type="prototype"`. A prototype needs neither attribute.
+
+CarefulNever load `flux-prototype.css` in a deck. Decks keep Lexend and JetBrains Mono.
 ## The scale
 TokenSizeTypical use`--flux-text-xs``0.75rem`Short metadata, badges, help text`--flux-text-sm``0.875rem`Dense UI, table cells, secondary copy`--flux-text-base``1rem`Body`--flux-text-lg``1.125rem`Lede, card titles`--flux-text-xl``1.25rem`Subsection headings`--flux-text-2xl``1.5rem`Section headings`--flux-text-3xl``1.875rem`Page headings, dense layouts`--flux-text-4xl``2.25rem`Page headings`--flux-text-5xl``3rem`Marketing display`--flux-text-6xl``3.75rem`Slide displaySizes are in `rem`, and the root is fluid — see below. A`text-base` paragraph is 16px on a laptop and 19px on a large display, without a media query.
 
@@ -71,11 +111,12 @@ Do
 - Reach for the mono voice when the content is data rather than language.
 - Keep body copy inside measure-prose at leading-relaxed.
 - Use at least text-sm for controls and table cells, and text-base for readable sentences.
-- Use tracking-tight on headings at text-3xl and above.Don’t
+- Use tracking-tight on headings at text-3xl and above.
+- Use tracking-tighter only on metric figures, through --flux-metric-value-tracking. It is too tight for words.Don’t
 
 - Do not request a Lexend weight other than 300 or 700.
 - Do not set mono uppercase above text-xs.
 - Do not use text-xs for paragraphs, table cells, controls or primary values.
 - Do not shrink type to fit more content above the fold.
 - Do not mix px into a layout built from rem tokens.
-- Do not use a second sans-serif family. There is one.[PreviousColour](/foundations/color/)[NextLayout & spacing](/foundations/layout/)
+- Do not use another sans-serif family. Lexend everywhere, except prototypes, which load exactly two through flux-prototype.css.[PreviousColour](/foundations/color/)[NextLayout & spacing](/foundations/layout/)

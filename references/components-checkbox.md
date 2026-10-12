@@ -1,103 +1,97 @@
-# Flux — /components/checkbox
+# Flux — /components/checkbox/
 
-Source: https://flux.kaptio.com/components/checkbox
+Source: https://flux.kaptio.com/components/checkbox/
 
-[Flux](/)       [Components](/components) / Inputs & Forms
+Component
 
-# Checkbox
-Toggle individual options on or off.
+# Checkbox and radio
+On-or-off choices and one-of-many choices, each with its label beside it.
 
-### Default
-AccommodationActivitiesTransfers
-### Disabled
-Unchecked disabledChecked disabled       Source  CheckboxDemo.tsx
-The exact code behind the live demo above. Fetch it raw at
-[/components/source/checkbox.txt](/components/source/checkbox.txt).
+Plain-text source, for agents and clipboard use: [/components/source/checkbox.txt](/components/source/checkbox.txt)
 
-import { useState } from "react";
+## When to use it
+A checkbox turns one thing on or off, or picks any number from a short list. A radio picks exactly one from a short list where every option should be visible at once. Both are drawn by Flux from tokens, so they follow every theme, and both sit inside a label so the whole line is the target.
 
-function Section({ title, children }: { title: string; children: React.ReactNode }) {
-return (
-<div className="mb-8">
-<h3 className="text-sm font-bold text-[var(--flux-heading)] mb-3">{title}</h3>
-<div className="p-6 rounded border border-[var(--flux-grey-100)] bg-[var(--flux-surface)]">
-{children}
-</div>
-</div>
-);
-}
+Not thisNot for a setting that takes effect immediately; that is a switch. Not for more than about seven options, or options that need searching; use Select. Not for a choice between two actions; use two buttons.
+## Examples
 
-const checkmarkSvg = (
-<svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path d="M2.5 6L5 8.5L9.5 3.5" stroke="white" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
-</svg>
-);
+### Checkbox
 
-function Checkbox({
-label,
-checked,
-onChange,
-disabled = false,
-}: {
-label: string;
-checked: boolean;
-onChange: (checked: boolean) => void;
-disabled?: boolean;
-}) {
-return (
-<label
-className={`flex items-center gap-2.5 select-none ${disabled ? "opacity-50 cursor-not-allowed" : "cursor-pointer"}`}
->
-<button
-type="button"
-role="checkbox"
-aria-checked={checked}
-disabled={disabled}
-onClick={() => onChange(!checked)}
-className={`
-flex items-center justify-center w-[18px] h-[18px] rounded shrink-0
-transition-colors duration-150
-${
-checked
-? "bg-[var(--flux-primary-400)] border border-[var(--flux-primary-400)]"
-: "bg-[var(--flux-surface)] border border-[var(--flux-grey-200)]"
-}
-${disabled ? "pointer-events-none" : ""}
-`}
->
-{checked && checkmarkSvg}
-</button>
-<span className="text-sm text-[var(--flux-black)]">{label}</span>
-</label>
-);
-}
+Send the manifest to the guide
+htmlCopy`
 
-export default function CheckboxDemo() {
-const [values, setValues] = useState<Record<string, boolean>>({
-accommodation: false,
-activities: false,
-transfers: false,
-});
+Send the manifest to the guide
+`
+### Checkbox group
+Any number of the options. One is disabled because the departure has no driver assigned yet.
 
-const toggle = (key: string) =>
-setValues((prev) => ({ ...prev, [key]: !prev[key] }));
+Send confirmation to
+Lead passenger
+Booking agent
+Guide
+Driver
+htmlCopy`
+Send confirmation to
+Lead passenger
+Booking agent
+Guide
+Driver
+`
+### Radio group
 
-return (
-<div>
-<Section title="Default">
-<div className="flex flex-col gap-3">
-<Checkbox label="Accommodation" checked={values.accommodation} onChange={() => toggle("accommodation")} />
-<Checkbox label="Activities" checked={values.activities} onChange={() => toggle("activities")} />
-<Checkbox label="Transfers" checked={values.transfers} onChange={() => toggle("transfers")} />
-</div>
-</Section>
+Room type
+Double
+Twin
+Single
+htmlCopy`
+Room type
+Double
+Twin
+Single
+`
+### Inline, with an error
+Short options can sit on one line and wrap when space runs out. The error is bound to the fieldset, and each radio carries aria-invalid.
 
-<Section title="Disabled">
-<div className="flex flex-col gap-3">
-<Checkbox label="Unchecked disabled" checked={false} onChange={() => {}} disabled />
-<Checkbox label="Checked disabled" checked={true} onChange={() => {}} disabled />
-</div>
-</Section>
-</div>
-);
-}                  [← Card](/components/card) [Code Block →](/components/code-block)
+Payment terms *
+30% deposit
+Full payment
+Invoice, 30 days
+Choose how the agent pays.
+
+htmlCopy`
+Payment terms *
+30% deposit
+Full payment
+Invoice, 30 days
+Choose how the agent pays.
+`
+## Anatomy
+PartDescriptionChoiceA label wrapping the control and its text, so a click anywhere on the line toggles it.Controlflux-checkbox, square with a check, or flux-radio, round with a dot. Filled in surface-brand when on.GroupA fieldset with a legend, holding related choices. The legend is the question; each label is an answer.ErrorOne message below the group, bound to it with aria-describedby.
+## API
+NameKindDescription`flux-choice`classThe label wrapping a control and its text.`flux-checkbox`classOn an input type="checkbox". Supports checked, indeterminate (set in script), disabled and aria-invalid.`flux-radio`classOn an input type="radio". Give every radio in a group the same name.`flux-choice-group`classOn a fieldset. Its legend is the group label, set like a field label.`flux-choice-group--inline`classOptions in a row that wraps. For short labels only.
+## States
+StateTreatmentUncheckedborder-strong outline on field-bg, so the boundary clears 3:1.CheckedFilled in surface-brand with a check or a dot in icon-on-color.IndeterminateCheckbox only: a bar instead of a check, for a select-all that covers some of its rows.Disabledsurface-disabled fill and border-disabled outline; the label turns text-disabled.Invalidborder-error outline, with the message below the group.
+## Keyboard
+KeysAction`Space`Toggles a checkbox, or checks the focused radio.`Tab`Moves to each checkbox, and into a radio group once, landing on the checked radio.`↑ ↓ ← →`Within a radio group, moves to and checks the previous or next radio.
+## Accessibility
+
+- Wrap the control in its label, so the label names it and enlarges the target.
+- Group related choices in a fieldset with a legend. The legend is announced with the first option, so "Room type, Double, radio button, 1 of 3".
+- A required radio group puts required on each radio. The error goes on the fieldset with aria-describedby, and each radio takes aria-invalid.
+- Set indeterminate from script; there is no attribute for it.
+## Tokens
+The tier-3 and tier-2 tokens this component binds to. Change the token, not the component.
+
+- --flux-control-size | -label-gap | -radio-dot
+- --flux-control-checked-bg | -unchecked-border | -check
+- --flux-choice-group-gap | -group-inline-gap
+## Do and don’t
+Do
+
+- Write the label as the thing that becomes true when it is checked: "Send the manifest to the guide".
+- Pre-select the safest or most common radio option, so a group never starts with nothing chosen unless the choice must be deliberate.
+- Order options by how often they are chosen, or by their natural order, such as smallest to largest.Don’t
+
+- Do not use a single checkbox for a choice between two named options. Use two radios.
+- Do not put a radio group inside a table cell. A row holds one value; edit it in a form or an editable cell.
+- Do not explain an option in text below it. Put explanation in the info bubble beside the legend.[PreviousDate picker](/components/date-picker/)[NextSwitch](/components/switch/)

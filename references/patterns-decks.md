@@ -41,13 +41,17 @@ A deck with no script is still a working deck, which is why the navigation lives
 ## What loosens
 Each product rule, and what replaces it on a slide.
 
-Product ruleOn a slideThe type scale stops at --flux-text-6xl.Decks add --flux-display-sm through --flux-display-xl. These are deck-only: a display size in product UI is a defect, not a bold heading.A view has one ground.Every slide sets its own data-flux-theme. A deep teal statement between two light slides is the cheapest visual event in the system, and contrast is already audited for all three themes.Teal carries the system; other hues appear only when they carry meaning.A slide may take any product accent with data-accent. On a slide the accent is identity rather than status, so it needs no meaning — but it stays graphic.One yellow CTA element per view.Yellow is not a slide ground. The closing ask uses a full-bleed photograph or muted background video under a deep-teal overlay.No centred body copy.Statement and quote slides centre. There is no body copy on them to centre.No three-column grid of icon, heading and paragraph as a default layout.The grid slide is exactly that, and it is right here — a taxonomy held on screen for twenty seconds is not a landing page.Constrain reading columns to --flux-measure-prose.Slides bleed to the edge. Images fill the canvas, and marks are cropped by it deliberately.Never exceed --flux-duration-slow.Content settles on arrival using a scroll-driven timeline, so it tracks the presenter rather than a clock. Still opacity and transform only.No decorative marks, bars or dots.A slide may carry one oversized typographic mark, or one hairline dot field. One. Two is decoration, and a coloured bar on the edge of anything is still banned.
+Product ruleOn a slideThe type scale stops at --flux-text-6xl.Decks add --flux-display-sm through --flux-display-xl. These are deck-only: a display size in product UI is a defect, not a bold heading.A view has one ground.Every slide sets its own data-flux-theme. A deep teal statement between two light slides is the cheapest visual event in the system, and contrast is already audited for all three themes. One extra ground exists for decks only: forest, set with data-ground="forest" on a deep slide.Teal carries the system; other hues appear only when they carry meaning.A slide may take any product accent with data-accent. On a slide the accent is identity rather than status, so it needs no meaning — but it stays graphic.One yellow CTA element per view.Yellow is not a slide ground. The closing ask uses a full-bleed photograph or muted background video under a deep-teal overlay.No centred body copy.Statement and quote slides centre. There is no body copy on them to centre.No three-column grid of icon, heading and paragraph as a default layout.The grid slide is exactly that, and it is right here — a taxonomy held on screen for twenty seconds is not a landing page.Constrain reading columns to --flux-measure-prose.Slides bleed to the edge. Images fill the canvas, and marks are cropped by it deliberately.Never exceed --flux-duration-slow.Content settles on arrival using a scroll-driven timeline, so it tracks the presenter rather than a clock. Still opacity and transform only.No decorative marks, bars or dots.A slide may carry one oversized typographic mark, or one hairline dot field. One. Two is decoration, and a coloured bar on the edge of anything is still banned.
 ## What holds
 Unchanged from product UI. A slide is not an exemption.
 
 - Every value comes from a token. No raw hex, no raw dimension, no Tailwind arbitrary value.
 - Lexend at 300 or 700. JetBrains Mono at 400, 500 or 700. Never a third family.
-- Grounds are Flux themes. Contrast is WCAG 2.2 AA at minimum (4.5:1 text, 3:1 non-text) and stays audited. Never a hand-picked colour.
+- Never load flux-prototype.css in a deck. Google Sans Flex and Manrope belong to product prototypes; a deck always sets in Lexend and JetBrains Mono.
+- Load flux.css and flux-deck.css from the Flux CDN, exactly as in the setup. Never copy token values into the deck, never redefine --flux-* variables, and never write var(--flux-…, #fallback): a deck that still renders without flux.css is a private copy of Flux that no theme or update reaches.
+- Do not load fonts yourself. flux.css loads Lexend at 300 and 700 and JetBrains Mono; a font link that adds Lexend 400, 500 or 600 is a defect.
+- Grounds are light, dark and deep, plus forest (data-ground="forest" on a deep slide). Contrast is WCAG 2.2 AA at minimum (4.5:1 text, 3:1 non-text) and stays audited. Never a hand-picked colour, never a ground set with style or a data-*-bg hex.
+- A story, a chapter or a persona never gets its own hue. Tell people apart with the avatar, the name and the role, and chapters apart with the title and the ground rotation. Status colours — green, yellow, blue, orange — mean status, not identity.
 - Product accents colour type and data: the oversized mark, the list numerals, chart bars, a donut arc. Never decoration — no bar on the edge of a card, no rule beside a label — and never a word you are meant to read.
 - Interface radius stays --flux-radius-sm. A slide is not a reason for a soft corner.
 - No gradient fills, no glassmorphism, no glow, no neon, no blur behind content, no gradient mesh.
@@ -55,6 +59,7 @@ Unchanged from product UI. A slide is not an exemption.
 - Animate opacity and transform. Never width, height, top, left, margin or padding.
 - Deck videos are decorative and muted. They pause off-slide, respect reduced motion, and always have the Flux pause control. Background video with the deep-teal overlay is allowed on the cover and the closing ask; the agenda keeps its own video-backed layout. Nowhere else.
 - The agenda video shows its complete frame: never crop it. Bottom-align it inside a full-height media region that occupies at least two-fifths of the slide, so the visual remains substantial beside the agenda.
+- The blooming-flower video, flower-blooming-dark.mp4, belongs to the agenda slide and nowhere else. Never use it on the cover, the closing ask or any other slide; give those their own footage or a photograph.
 - Real text in real elements. A slide is not an image of a slide.
 - One idea per slide. If it needs two sentences to state, it is two slides.AccentsA product accent colours type and data: the oversized mark on a section slide, the numerals on a list, the bars of a chart, the filled arc of a donut. It never draws decoration — no bar on the edge of a card, no rule beside a label — and it never carries a word, because it has no guaranteed contrast on any ground. Colour behind text comes from a theme. The closing slide uses the deep theme over a full-bleed photograph or muted background video, with the built-in teal overlay preserving contrast. The cover may use the same treatment.
 
@@ -65,7 +70,7 @@ A boring deck is almost always a deck where every slide is the same shape. Varie
 
 - Pick the layout from the sentence, not the sentence from the layout. Write the line first, then choose the slide that fits it.
 - Never two consecutive slides of the same layout. If two facts want the same shape, one of them is the wrong shape.
-- Change ground at least every third slide. Light, dark and deep in rotation is the rhythm.
+- Change ground at least every third slide. Light, dark and deep in rotation is the rhythm. Forest is a beat, not a rotation: use it for a section or statement slide, at most once every few slides.
 - Give the audience a beat every four to six slides: a section divider, or a statement with nothing else on it.
 - Twenty-five words per slide, counting every visible word — kickers, labels and numerals included. Twelve on a statement slide.
 - The data layouts — chart, donut, timeline, journey, infographic — and the agenda are outside that count, because their repeated text is labels rather than prose. They get their own budget: one label and at most one line of explanation per item, and nothing else.
@@ -403,15 +408,19 @@ The check to run before a deck is finished.
 - Every chart bar carries a --flux-bar percentage, and a donut’s two dash values add up to 100.
 - A chart, a donut or a timeline has a caption saying what it shows. A figure without a claim is decoration.
 - No raw hex, no raw dimension, no font weight outside 300 and 700.
+- The deck links flux.css and flux-deck.css, loads no fonts of its own, and has no var(--flux-…) with a fallback value.
+- Every slide ground is a theme or forest. No story, chapter or persona has its own colour.
+- npx flux-check passes on the deck file.
 - Every readable pairing uses a theme ground, so contrast stays at WCAG 2.2 AA.
 - Every image has real alt text, and no slide is a picture of text.
 - At least three slides carry a photograph or screenshot.
 - If the deck needs an agenda, it uses flux-slide--agenda-video with a muted video and its pause control.
 - The agenda video is uncropped, bottom-aligned, and occupies at least two-fifths of the slide.
+- The blooming-flower video appears only on the agenda slide.
 - Kickers are not on every slide, and numerals appear only where order is the meaning.
 - No company-facts slide without an accompanying image — use split-photo.
 - The deck reads correctly with the browser at any window size, because the composition scales as one piece and leftover viewport takes the slide’s ground.The full machine contract — premise, layouts, markup and all of the above — is at[/decks/llms.txt](/decks/llms.txt). It is written to be sufficient on its own: an agent should be able to build a correct deck from that file without fetching anything else.
 
 For a Slack teammate whose configuration is a single text box and cannot fetch a URL,[/decks/brief.txt](/decks/brief.txt) is the same contract condensed to fit a system prompt. It is generated from the same source, so it is a shorter statement of these rules and never a different one.
 
-[PreviousForms](/patterns/forms/)[NextOverview](/for-ai/)
+[PreviousDashboards](/patterns/dashboards/)[NextOverview](/for-ai/)

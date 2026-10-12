@@ -76,4 +76,4 @@ Do
 - Keep a note beside the thing it describes.Don’t
 
 - Do not colour the body text with the tone colour.
-- Do not stack several notes at the top of a page as a substitute for fixing the flow.[PreviousModal](/components/modal/)[NextTabs](/components/tabs/)
+- Do not stack several notes at the top of a page as a substitute for fixing the flow.[PreviousDrawer](/components/drawer/)[NextTabs](/components/tabs/)

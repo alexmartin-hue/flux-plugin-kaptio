@@ -81,6 +81,7 @@ Do
 - Keep the footer aligned to the card inset and let its actions wrap when they no longer fit.Don’t
 
 - Do not remove the card padding or position nested notes and actions against its outer edge.
+- Do not put bordered boxes inside a card to group its content. Use a heading, spacing or a hairline divider; the card is the only box.
 - Do not add a coloured bar along one edge as decoration.
 - Do not put a coloured dot beside the title.
-- Do not stack a border, an inner glow and a heavy shadow on the same container.[PreviousDate picker](/components/date-picker/)[NextDescription list](/components/description-list/)
+- Do not stack a border, an inner glow and a heavy shadow on the same container.[PreviousSearch](/components/search/)[NextDescription list](/components/description-list/)

@@ -65,4 +65,4 @@ Do
 
 - Do not tint the backdrop with a brand colour.
 - Do not open a modal from a modal.
-- Do not put a form longer than a few fields inside one.[PreviousTable](/components/table/)[NextNote](/components/note/)
+- Do not put a form longer than a few fields inside one.[PreviousCommand palette](/components/command-palette/)[NextDrawer](/components/drawer/)

@@ -134,4 +134,4 @@ Do
 - Do not disable submit until the form is valid.
 - Do not show a red border without a message.
 - Do not validate on every keystroke.
-- Do not label a destructive confirmation “Yes”.[PreviousComposition discipline](/patterns/composition/)[NextDecks](/patterns/decks/)
+- Do not label a destructive confirmation “Yes”.[PreviousComposition discipline](/patterns/composition/)[NextDashboards](/patterns/dashboards/)

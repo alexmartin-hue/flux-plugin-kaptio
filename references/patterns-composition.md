@@ -29,8 +29,10 @@ Each of these is a defect in Kaptio output.
 - No hero section with a gradient mesh background.
 - Do not stack decoration: pick one of border, shadow, or fill change to signal a state.
 - Do not add a container just to add a container. If it holds one thing, it is not grouping anything.
+- Build every prototype view from documented Flux components. Prototype CSS places them — grid, flex, gap, spacing and size — and never draws a background, box border, radius or shadow, sets a font family, or restyles a .flux-* class. A class named like a component (booking-card, status-pill) is a hand-built copy of one. Run npx flux-check --prototype . before handoff.
+- Do not nest boxes. A region has one bordered or filled surface, and everything inside it is grouped by spacing, a heading or a hairline divider — never by another bordered box. A Metric row inside a card drops its own surface automatically; do not rebuild one with borders. Count the outlines between the page edge and a value: more than one inside the page content means remove the inner ones.
 - Do not remove a documented component’s internal padding. A parent inset does not replace the inset inside a card, note, table cell or action row.
-- Do not turn every value into a card. Group related metrics on one surface and let the important exception carry the emphasis.
+- Do not turn every value into a card. Group related metrics on one surface with the Metric component and let the important exception carry the emphasis.
 - Do not shrink the interface to show everything at once. Preserve readable type and row rhythm, then use scrolling, pagination or progressive disclosure for the remainder.
 - Prefer one strong element over three competing ones. Density is not hierarchy.
 ## Stacked decoration

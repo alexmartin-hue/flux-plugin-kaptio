@@ -63,4 +63,4 @@ Do
 - Do not invent a per-status hex. Map every new status onto one of the four.
 - Do not leave every status neutral when the states have materially different consequences.
 - Do not make a badge clickable.
-- Do not use a badge where a full sentence would be clearer.[PreviousDescription list](/components/description-list/)[NextTable](/components/table/)
+- Do not use a badge where a full sentence would be clearer.[PreviousRich text editor](/components/rich-text-editor/)[NextTable](/components/table/)

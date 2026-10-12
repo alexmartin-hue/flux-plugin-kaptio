@@ -17,7 +17,7 @@ So the rules are published where an agent will actually read them — one plain-
 ## The contract
 One file. Every token, every rule, every component's markup.
 
-textCopy`https://flux.kaptio.com/llms.txt`It is generated from the same sources as this site, so it cannot describe a system the site does not implement. Point an agent at it once and it has the complete system: 356 tokens across three tiers and three themes, the hard rules with their reasoning, the composition habits to avoid, and copyable markup for all twelve components.
+textCopy`https://flux.kaptio.com/llms.txt`It is generated from the same sources as this site, so it cannot describe a system the site does not implement. Point an agent at it once and it has the complete system: 789 tokens across three tiers and three themes, the hard rules with their reasoning, the composition habits to avoid, and copyable markup for all 47 components.
 
 NoteIndividual components are also published as plain text at`/components/source/.txt` — useful when you want one component in context rather than the whole system.
 ## The hard rules
@@ -29,13 +29,17 @@ A raw value is invisible to every theme and to every future change. The token la
 - Never write a raw colour. No hex, rgb(), hsl() or named colour in any component or page.
 - Never write a raw dimension where a token exists. Spacing, radius, font size, line height, duration and easing all come from tokens. The only sanctioned literal is --flux-hairline (1px).
 - Reference Tier 2 semantic tokens for anything with an interface role: text-*, layer-*, surface-*, border-*, icon-*, focus-*.
-- Reference Tier 1 primitives only inside a semantic token definition, or for graphic content with no interface role (chart series, illustration fill, product accent mark).
+- Reference Tier 1 primitives only inside a semantic token definition, or for graphic content with no interface role (illustration fill, product accent mark).
 - Never use Tailwind arbitrary values: bg-[#056F82], p-[14px], text-[15px]. They bypass the token layer entirely.
 - If no token fits, say so and propose one. Do not invent a value.
 ### Typography
 Flux loads two Lexend weights and three JetBrains Mono weights. A request for anything else is synthesised by the browser into a font that is not Lexend.
 
-- Lexend at 300 or 700 only. Never 400, 500 or 600.
+- Product prototypes are the one exception to the Lexend rules below. A prototype loads flux-prototype.css after flux.css and flux-components.css, and that layer sets its type. Never load it in a deck.
+- In a prototype: Google Sans Flex Medium for headings and card titles; Google Sans Flex Bold for KPI values (.flux-kpi, and the Metric component’s value), in text-brand. Manrope Regular for body, tables, inputs, descriptions (.flux-description) and meta (.flux-meta); Manrope Medium for labels; Manrope Semi Bold for buttons and KPI change (.flux-kpi-change). Prototypes have no mono voice.
+- flux-prototype.css changes typefaces and weights, never sizes. Size a prototype exactly as you would the Lexend product: the same scale tokens for headings, and the sizes each component already sets.
+- Set prototype weights through --flux-prototype-weight-regular, -medium, -semibold and -bold, never as literal numbers.
+- Outside prototypes, Lexend at 300 or 700 only. Never 400, 500 or 600.
 - Lexend Light (300) is the default for all copy, including headings.
 - Lexend Bold (700) for headings that anchor, emphasis, labels and table headers.
 - JetBrains Mono is the second voice, for data rather than language: identifiers, references, metadata, values, structural labels, keyboard hints.
@@ -43,7 +47,7 @@ Flux loads two Lexend weights and three JetBrains Mono weights. A request for an
 - Uppercase letter-spaced mono only at --flux-text-xs. Larger reads as a warning label.
 - --flux-text-xs is reserved for badges, help text and short metadata. Never use it for paragraph copy, table cells, controls or primary values.
 - Use at least --flux-text-sm for controls, table cells and compact secondary copy. Use --flux-text-base for sentences intended to be read. Never reduce type to fit more content in a viewport.
-- Never introduce a second sans-serif family.
+- Never introduce a family Flux does not load. Prototypes use exactly the two that flux-prototype.css loads; everything else uses Lexend.
 - Set sizes from the scale (--flux-text-xs through -6xl). Never a literal rem or px.
 ### Colour
 Most of the palette cannot carry text. Treating a mid-tone accent as a text colour is the most common way Flux output goes wrong.
@@ -57,13 +61,14 @@ Most of the palette cannot carry text. Treating a mid-tone accent as a text colo
 - Map every domain status deliberately before rendering it. When sibling states have materially different consequences, leaving every badge on the neutral base style is a defect.
 - A workflow stage is not automatically a warning. Use the yellow pending status only when waiting, delay or required attention is part of the meaning; otherwise use the neutral badge.
 - Product accents (--flux-product-*) are graphic only: fills, marks, diagram keys. Never text, never a global theme.
+- Chart series take --flux-chart-1 to -4 in order, and --flux-chart-muted for a comparison such as last year. Never a chart library’s palette, a product accent or a status colour.
 - Never use colour as the only signal for a state.
 ### Layout and geometry
 Consistent spacing and near-square geometry are what make output read as Kaptio rather than as generic.
 
 - All spacing comes from the 4px scale. If none of the steps fit, the structure is wrong, not the scale.
 - Interface radius is --flux-radius-sm (4px): buttons, fields, cards, tables, notes. --flux-radius-md for modals only.
-- --flux-radius-full is for pills and avatars, nothing else.
+- --flux-radius-full is for pills, avatars, radio buttons, switches and the spinner ring, nothing else.
 - Separate sections with --flux-seam-gap.
 - Constrain reading columns to --flux-measure-prose.
 - Text and controls never sit directly against the edge of a bordered or filled surface. Use the component padding token; tables apply inset through their cells, and intentional edge-to-edge media is the exception.
@@ -73,7 +78,7 @@ Consistent spacing and near-square geometry are what make output read as Kaptio 
 ### Elevation
 Flux is a flat system. Depth is reserved for things that genuinely float, so that when it appears it means something.
 
-- Separate nested surfaces with a layer step (--flux-layer-01 → -02 → -03) and a hairline. Never hand-pick a grey.
+- Separate nested surfaces with a layer step (--flux-layer-01 → -02 → -03) and a hairline. Never hand-pick a grey. Nest a surface only when it is a different kind of thing, such as a note or a table inside a card, never to group content that spacing could group.
 - Shadow is for overlays, popovers and modals. --flux-shadow-md is the ceiling for anything in normal flow.
 - Never use a coloured shadow or a glow.
 - Never stack a border, an inner glow and a heavy shadow on the same container.
@@ -85,7 +90,7 @@ Motion in Flux confirms that something happened. Anything that draws attention t
 - Name the properties being transitioned. Never use transition: all.
 - Animate opacity, transform and colour. Never width, height, top, left, margin or padding.
 - Never scale, lift or grow on hover. Flux buttons change colour and nothing else.
-- Never exceed --flux-duration-slow (300ms) in product UI.
+- Never exceed --flux-duration-slow (300ms) in product UI. The Spinner and the Skeleton pulse are the exceptions: they are loops, not transitions, and run at --flux-spinner-duration and --flux-skeleton-duration.
 - Do not write your own prefers-reduced-motion reset. The base layer handles it globally.
 ### Accessibility
 Flux guarantees contrast and focus. Everything structural is the implementer’s responsibility, and it is where generated UI code fails most often.
@@ -126,8 +131,10 @@ Every value can come from a token and the result can still be visibly not-Kaptio
 - No hero section with a gradient mesh background.
 - Do not stack decoration: pick one of border, shadow, or fill change to signal a state.
 - Do not add a container just to add a container. If it holds one thing, it is not grouping anything.
+- Build every prototype view from documented Flux components. Prototype CSS places them — grid, flex, gap, spacing and size — and never draws a background, box border, radius or shadow, sets a font family, or restyles a .flux-* class. A class named like a component (booking-card, status-pill) is a hand-built copy of one. Run npx flux-check --prototype . before handoff.
+- Do not nest boxes. A region has one bordered or filled surface, and everything inside it is grouped by spacing, a heading or a hairline divider — never by another bordered box. A Metric row inside a card drops its own surface automatically; do not rebuild one with borders. Count the outlines between the page edge and a value: more than one inside the page content means remove the inner ones.
 - Do not remove a documented component’s internal padding. A parent inset does not replace the inset inside a card, note, table cell or action row.
-- Do not turn every value into a card. Group related metrics on one surface and let the important exception carry the emphasis.
+- Do not turn every value into a card. Group related metrics on one surface with the Metric component and let the important exception carry the emphasis.
 - Do not shrink the interface to show everything at once. Preserve readable type and row rhythm, then use scrolling, pagination or progressive disclosure for the remainder.
 - Prefer one strong element over three competing ones. Density is not hierarchy.
 ## The self-check

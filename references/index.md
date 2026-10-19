@@ -37,6 +37,7 @@ Scraped from https://flux.kaptio.com. Regenerate: `python scripts/scrape_flux.py
 - [/components/empty-state/](components-empty-state.md)
 - [/components/file-upload/](components-file-upload.md)
 - [/components/flow/](components-flow.md)
+- [/components/heatmap/](components-heatmap.md)
 - [/components/input](components-input.md)
 - [/components/input/](components-input.md)
 - [/components/itinerary/](components-itinerary.md)

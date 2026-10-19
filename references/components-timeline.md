@@ -154,4 +154,4 @@ Do
 - Do not number the events. The time already orders them.
 - Do not colour markers by status. The badge carries status; the marker carries done, current and upcoming.
 - Do not put each event in its own card. The rail is the grouping.
-- Do not use the timeline as a stepper for a form.[PreviousChart](/components/chart/)[NextItinerary](/components/itinerary/)
+- Do not use the timeline as a stepper for a form.[PreviousHeatmap](/components/heatmap/)[NextItinerary](/components/itinerary/)

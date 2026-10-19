@@ -10,12 +10,18 @@ One attribute changes every colour in the system. No component knows which theme
 ## Switching
 htmlCopy``Light is the default and needs no attribute. Setting it explicitly is still useful when you are scoping a light region inside a dark page.
 
-jsCopy`// Persisted, and applied before first paint so there is no flash.
-const dark = matchMedia('(prefers-color-scheme: dark)').matches;
-const stored = localStorage.getItem('flux-theme');
-const theme = stored ?? (dark ? 'dark' : 'light');
+htmlCopy`, inline, before any stylesheet or module script.
+In a Vite or React app this is index.html, not a component. -->
 
-document.documentElement.setAttribute('data-flux-theme', theme);`NotePut that script inline in ``, before the first paint. A theme applied after the stylesheet loads produces a visible flash of the wrong theme, which is worse than not offering the choice.
+const stored = localStorage.getItem('flux-theme');
+// Products that follow the OS preference replace 'light' with:
+// matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'
+document.documentElement.setAttribute('data-flux-theme', stored ?? 'light');
+`jsCopy`// The theme control. Persist the choice so the script above restores it.
+function setTheme(theme) {
+localStorage.setItem('flux-theme', theme);
+document.documentElement.setAttribute('data-flux-theme', theme);
+}`NoteThe script must run before the first paint. A theme applied after the stylesheet loads, or from a component’s effect, produces a visible flash of the wrong theme, which is worse than not offering the choice. Set the attribute on `` directly rather than rendering it, because a framework does not own the root element.
 ## The three themes
 ThemeGroundFor`light`canvas — the Kaptio off-whiteThe default. Carries the Flux 1.x values, so an existing page renders as it did.`dark`neutral-950Dense product UI. Neutral rather than teal, so brand accents and status colours still read as signals.`deep`primary-800 — Kaptio tealSlides, marketing and brand surfaces. This is the ground Kaptio decks already use; 2.0 gives it a name and a full token set.CarefulDeep is a brand ground, not a dark mode. Its tonal range is narrow, which is why`layer-03` aliases `layer-02` and`text-placeholder` aliases `text-subtle`. For information-dense interfaces, use dark.
 ## All three at once

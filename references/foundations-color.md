@@ -134,7 +134,13 @@ Use them in order, and `chart-muted` for the comparison, such as last year. They
 - --flux-chart-2Second series
 - --flux-chart-3Third series
 - --flux-chart-4Fourth series
-- --flux-chart-mutedComparison series
+- --flux-chart-mutedComparison seriesA [Heatmap](/components/heatmap/) uses one sequential teal ramp, low to high. In dark and deep it runs dark to light, so a high value always stands out most from the page. Each step has its own text role, `chart-sequential-text-1` to `-5`, for the value printed on it, audited at 4.5:1 in every theme.
+
+- --flux-chart-sequential-1Lowest step
+- --flux-chart-sequential-2Step 2
+- --flux-chart-sequential-3Step 3
+- --flux-chart-sequential-4Step 4
+- --flux-chart-sequential-5Highest step
 ## Which colours may carry text
 Most of the palette cannot. Treating a mid-tone as a text colour is the most common way Flux output goes wrong.
 

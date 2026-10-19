@@ -86,7 +86,7 @@ Most of the palette cannot carry text. Treating a mid-tone accent as a text colo
 - Map every domain status deliberately before rendering it. When sibling states have materially different consequences, leaving every badge on the neutral base style is a defect.
 - A workflow stage is not automatically a warning. Use the yellow pending status only when waiting, delay or required attention is part of the meaning; otherwise use the neutral badge.
 - Product accents (--flux-product-*) are graphic only: fills, marks, diagram keys. Never text, never a global theme.
-- Chart series take --flux-chart-1 to -4 in order, and --flux-chart-muted for a comparison such as last year. Never a chart library’s palette, a product accent or a status colour.
+- Chart series take --flux-chart-1 to -4 in order, and --flux-chart-muted for a comparison such as last year. A heatmap takes the --flux-chart-sequential-1 to -5 ramp. Never a chart library’s palette, a product accent or a status colour.
 - Never use colour as the only signal for a state.
 
 ### Layout and geometry
@@ -176,13 +176,13 @@ generic even when every value is correct.
 
 ## Components
 
-47 components are documented with live specimens, markup, states, keyboard
+48 components are documented with live specimens, markup, states, keyboard
 behaviour and token bindings. Read the plain-text source before building one
 from scratch:
 
 https://flux.kaptio.com/components/source/.txt
 
-Available: button, input, select, date-picker, checkbox, switch, slider, search, card, description-list, metric, chart, timeline, itinerary, calendar, map, flow, app-shell, spinner, progress, skeleton, accordion, toast, reorder, board, editable-cell, tooltip, empty-state, breadcrumbs, pagination, segmented-control, stepper, walkthrough, split-view, file-upload, assistant-panel, rich-text-editor, badge, table, menu, kbd, command-palette, modal, drawer, note, tabs, avatar.
+Available: button, input, select, date-picker, checkbox, switch, slider, search, card, description-list, metric, chart, heatmap, timeline, itinerary, calendar, map, flow, app-shell, spinner, progress, skeleton, accordion, toast, reorder, board, editable-cell, tooltip, empty-state, breadcrumbs, pagination, segmented-control, stepper, walkthrough, split-view, file-upload, assistant-panel, rich-text-editor, badge, table, menu, kbd, command-palette, modal, drawer, note, tabs, avatar.
 
 If the repository already has a component for the job, extend it. Do not create
 a second implementation of a documented component.
@@ -316,7 +316,7 @@ Most of the palette cannot carry text. Treating a mid-tone accent as a text colo
 - Map every domain status deliberately before rendering it. When sibling states have materially different consequences, leaving every badge on the neutral base style is a defect.
 - A workflow stage is not automatically a warning. Use the yellow pending status only when waiting, delay or required attention is part of the meaning; otherwise use the neutral badge.
 - Product accents (--flux-product-*) are graphic only: fills, marks, diagram keys. Never text, never a global theme.
-- Chart series take --flux-chart-1 to -4 in order, and --flux-chart-muted for a comparison such as last year. Never a chart library’s palette, a product accent or a status colour.
+- Chart series take --flux-chart-1 to -4 in order, and --flux-chart-muted for a comparison such as last year. A heatmap takes the --flux-chart-sequential-1 to -5 ramp. Never a chart library’s palette, a product accent or a status colour.
 - Never use colour as the only signal for a state.
 
 ## Layout and geometry

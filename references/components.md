@@ -5,7 +5,7 @@ Source: https://flux.kaptio.com/components
 Components
 
 # Components
-47 components, each documented to the same shape: a live specimen, the exact markup behind it, the tokens it binds to, and the accessibility contract it has to keep.
+48 components, each documented to the same shape: a live specimen, the exact markup behind it, the tokens it binds to, and the accessibility contract it has to keep.
 
 - [Button
 
@@ -42,7 +42,10 @@ Labelled values in a row or a stack. The summary block at the top of a record.](
 Headline figures with a label and a change, aligned on one surface. The top of a dashboard.](/components/metric/)
 - [Chart
 
-Columns, lines, ranked bars and a donut, drawn from theme roles with a title, a takeaway and a legend.](/components/chart/)
+Columns, stacked columns, lines, areas, two scales, ranked bars and a donut, drawn from theme roles, with a readout on hover or focus.](/components/chart/)
+- [Heatmap
+
+A matrix of values on one sequential scale, where every cell can be focused and opened for its detail.](/components/heatmap/)
 - [Timeline
 
 Events in time order on a hairline rail. A booking history, a day’s schedule, a workflow’s progress.](/components/timeline/)

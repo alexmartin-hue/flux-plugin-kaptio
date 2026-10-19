@@ -7,6 +7,40 @@ Resources
 # Changelog
 Flux 2.0 is almost entirely additive, and the six places where it is not are the reason it publishes at its own URL rather than over the top of 1.x.
 
+## 2.2.1
+
+### Fixed
+
+- Tailwind preset text contrast. Stock steps 700 and darker now land on a Flux step that passes 4.5:1 on white, so amber-700 and yellow-700 no longer resolve to yellow-600 at 2.65:1. Families with a complete Flux ramp map step for step, so gray-500 is neutral-500 rather than neutral-400. The build fails if a family has no readable step. Contributed by Jon Gudnason.
+## 2.2.0
+
+### Added
+
+- Components in frameworks. flux-components.js enhances markup whenever it enters the document — a lazily loaded route, or a component React or another framework mounts later — and again when parts it needs arrive late, such as a Select’s options. The listeners a component attaches to the page are released when it leaves and restored if it returns. Enhancing is idempotent, so a StrictMode double mount is safe. Flux.enhance(root) and Flux.dispose(root) are exported for an explicit lifecycle. Contributed by Jon Gudnason.
+- Controlled components. Data table sorting dispatches a cancelable flux-sort, and Select a cancelable flux-select-change, so a framework that owns the rows or the value renders them itself. flux-reorder and flux-board-move are now cancelable too: the item goes back where it started and the framework renders the move. Visible values update text in place, and hidden inputs fire the input events a framework listens for.
+- Framework setup. The install page documents font links for bundlers that inline flux.css, importing flux-components.js from the package, and controlled components. The themes page shows where the pre-paint theme script goes in a bundled app and how a theme control persists the choice.
+### Fixed
+
+- Tailwind preset. Orange, yellow, green, purple, pink and neutral now resolve to their Flux ramps, and every stock step lands on the nearest step a ramp has, so violet-900 and fuchsia-950 no longer disappear. Font weight utilities resolve through theme variables instead of fixed utility rules, and flux-prototype.css maps them to the prototype weights.
+- flux-check --prototype scoped to a folder. A run scoped to component folders no longer reports missing-flux when Flux is loaded by the project’s index.html, stylesheet or entry module. Side-effect imports of a Flux file now count as loading it.
+## 2.1.0
+
+### Added
+
+- Chart types, chart inspection and Heatmap. Stacked columns for parts of a total, columns and a line on two scales, and area or cumulative lines. Any plotted chart can take inspection targets: one tab stop, the arrow keys or hover, and a readout of the category’s values. A Heatmap component: a table of values on a new five-step sequential teal ramp, audited in every theme, with keyboard-focusable cells that open their detail in a Drawer.
+- Slider. A slider on native range inputs for a duration, count or amount: one value, or a minimum and maximum on one track whose handles never cross. The value is shown with its unit beside the label and announced through aria-valuetext.
+- Empty state, Breadcrumbs, Pagination and Segmented control. An empty state that says what is missing and offers one action, in a card, a filtered result or a table cell. Breadcrumbs as a labelled ordered list. Pagination with range text, page links and disabled ends, or previous and next only for cursor results. A segmented control built on native radios.
+- Stepper and wizard, List and detail. A numbered stepper with complete and error states, and a wizard recipe that validates each step, moves focus to each new step and ends on a review. A list and detail split view that swaps panes when its container is narrow.
+- Shortcuts, Command palette, Calendar, Board, Walkthrough, Map and Flow diagram. Keyboard shortcut hints that name the platform’s keys, and a shortcut list. A command palette on the native dialog with a combobox, grouped options and an opt-in ⌘K. A month calendar of departures with an attention state. A board whose cards move between stages by drag or keyboard. Numbered walkthroughs beside real components, and storyboards. Map routes and markers, and flow diagrams with edges and a minimap, styled from tokens so a map or diagram library themes with the page.
+- Switch, Action menu, Drawer and Chart. A switch on a native checkbox with role="switch", for settings that apply at once. The menu gets its own page, with separators, a destructive item and unavailable items. A drawer on the native dialog with a pinned action row, opened through invoker commands. Charts — columns, lines, ranked bars and a donut — built from lists and SVG, on new Tier 2 chart roles audited at 3:1 in every theme.
+- File upload, Assistant panel and Rich text editor. A dropzone over a native file input, with a file list that shows progress, success and the reason for a failure. A panel for Runa with cited sources, suggestions and a working status. A rich text editor with a roving toolbar, and flux-prose for the saved text.
+- Progress and meter. Segmented bars over native progress and meter elements. Progress is teal; a meter takes the pending or error colour from its low, high and optimum, and says the same thing in words.
+- Skeleton. Flat placeholder shapes for a card, list or table whose layout is known. Text lines take the exact line box of the text they stand in for, so nothing moves when content arrives. A slow pulse, no shimmer.
+- Prototype composition check. flux-check --prototype fails a prototype that does not load Flux from the published URL or package, ships a copy of a Flux file, draws its own surfaces, sets a font family, restyles a Flux component or token, or names a class after a documented component. The prototype brief now states the composition contract, lists every component by job and requires the check before handoff.
+### Fixed
+
+- flux-components.js in the package. @kaptio/flux-tokens now ships flux-components.js and exports it as @kaptio/flux-tokens/flux-components.js. Earlier builds of the package left it out, so applications installing the package had to load the script from the hosted URL.
+- Registry endpoint. The install instructions now use the project-level GitLab registry endpoint. The instance-level endpoint only resolves packages whose scope matches the root group, which @kaptio does not.
 ## 2.0.0
 
 ### Added
@@ -15,7 +49,7 @@ Flux 2.0 is almost entirely additive, and the six places where it is not are the
 - Three themes. light, dark and deep, switched with data-flux-theme on any element. Light is byte-identical to Flux 1.x.
 - Layer model. layer-00 through layer-03 plus hover states, so nested surfaces stay legible without hand-picked greys in any theme.
 - JetBrains Mono as a second voice. Promoted from a code font to a documented voice at 400, 500 and 700, for data rather than language.
-- Component tokens. Tier 3 dimensions and role bindings for all 47 documented components.
+- Component tokens. Tier 3 dimensions and role bindings for all 48 documented components.
 - Component layer. flux-components.css — framework-agnostic CSS built entirely from tier-3 tokens.
 - Date picker. Single-date and date-range calendars with ISO form values, hover range preview and the WAI-ARIA keyboard pattern.
 - Deck layer. flux-deck.css — the presentation surface. A 16:9 canvas that scales as one piece, eighteen slide layouts, and per-slide theming so a deck varies its ground without leaving the contrast audit. Loosens scale, ground, asymmetry and bleed; holds tokens, type and contrast.
@@ -29,15 +63,6 @@ Flux 2.0 is almost entirely additive, and the six places where it is not are the
 - Forest deck ground and deck loading checks. green-850 (#0C3403) joins the palette as the forest ground: data-ground="forest" on a deep slide, with every deep role contrast-audited against it. The deck contract now requires flux.css and flux-deck.css, forbids per-story and per-persona hues, and flux-check reports token fallbacks, raw slide grounds and Lexend loaded at extra weights.
 - Prototype sizes match Lexend. flux-prototype.css now changes typefaces and weights only. Prototypes use the same type scale and component sizes as the Lexend product, instead of their own larger heading, KPI and label sizes.
 - Timeline and Itinerary. A Timeline component for events in order — a booking history, or a day as a schedule with the time in its own column — and an Itinerary component that lays a trip out day by day, with each service’s supplier and status and the overnight.
-- Empty state, Breadcrumbs, Pagination and Segmented control. An empty state that says what is missing and offers one action, in a card, a filtered result or a table cell. Breadcrumbs as a labelled ordered list. Pagination with range text, page links and disabled ends, or previous and next only for cursor results. A segmented control built on native radios.
-- Stepper and wizard, List and detail. A numbered stepper with complete and error states, and a wizard recipe that validates each step, moves focus to each new step and ends on a review. A list and detail split view that swaps panes when its container is narrow.
-- Slider. A slider on native range inputs for a duration, count or amount: one value, or a minimum and maximum on one track whose handles never cross. The value is shown with its unit beside the label and announced through aria-valuetext.
-- Prototype composition check. flux-check --prototype fails a prototype that does not load Flux from the published URL or package, ships a copy of a Flux file, draws its own surfaces, sets a font family, restyles a Flux component or token, or names a class after a documented component. The prototype brief now states the composition contract, lists every component by job and requires the check before handoff.
-- Shortcuts, Command palette, Calendar, Board, Walkthrough, Map and Flow diagram. Keyboard shortcut hints that name the platform’s keys, and a shortcut list. A command palette on the native dialog with a combobox, grouped options and an opt-in ⌘K. A month calendar of departures with an attention state. A board whose cards move between stages by drag or keyboard. Numbered walkthroughs beside real components, and storyboards. Map routes and markers, and flow diagrams with edges and a minimap, styled from tokens so a map or diagram library themes with the page.
-- Switch, Action menu, Drawer and Chart. A switch on a native checkbox with role="switch", for settings that apply at once. The menu gets its own page, with separators, a destructive item and unavailable items. A drawer on the native dialog with a pinned action row, opened through invoker commands. Charts — columns, lines, ranked bars and a donut — built from lists and SVG, on new Tier 2 chart roles audited at 3:1 in every theme.
-- File upload, Assistant panel and Rich text editor. A dropzone over a native file input, with a file list that shows progress, success and the reason for a failure. A panel for Runa with cited sources, suggestions and a working status. A rich text editor with a roving toolbar, and flux-prose for the saved text.
-- Progress and meter. Segmented bars over native progress and meter elements. Progress is teal; a meter takes the pending or error colour from its low, high and optimum, and says the same thing in words.
-- Skeleton. Flat placeholder shapes for a card, list or table whose layout is known. Text lines take the exact line box of the text they stand in for, so nothing moves when content arrives. A slow pulse, no shimmer.
 - Checkbox and radio. The checkbox gets its own page, joined by a round radio, labelled choices and fieldset groups, stacked or inline, with a group error.
 - Search. A Search component: magnifier, clear button, Escape to clear and a result count announced as it changes. The data table toolbar now uses it.
 - Accordion. Collapsible page sections built on details and summary: hairline-separated, a chevron that turns, optional mono metadata, and no animated height.

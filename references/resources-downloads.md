@@ -8,7 +8,7 @@ Resources
 Everything the system publishes, at a URL that will not move. Generated on every release from one source, so no two artifacts can disagree.
 
 ## Token artifacts
-FileSizeContents`/tokens/v2/flux.css`50.5 kBFonts, all three tiers, all three themes, base rules. The usual import.`/tokens/v2/flux-tokens.css`48.7 kBThe same tokens without font imports or base rules.`/tokens/v2/flux.json`137.2 kBEvery token as structured data, grouped by tier and theme.`/tokens/v2/flux-tailwind.css`17.6 kBTailwind v4 theme block. Clears the defaults, remaps the names.`/tokens/v2/flux-components.css`148.7 kBThe 47 documented components, as framework-agnostic CSS.`/tokens/v2/flux-components.js`90.3 kBComponent behaviour for Select and Date picker, including keyboard handling and form-value syncing.`/tokens/v2/flux-prototype.css`4.1 kBPrototype typography: Google Sans Flex and Manrope. Product prototypes only — never decks.`/tokens/v2/flux-deck.css`41.4 kBThe presentation layer. Slide canvas and layouts. Decks only — it overrides the fluid root.`/tokens/v2/flux-deck.js`7.0 kBDeck navigation: previous and next arrows, click to advance, and the keys. Optional — snapping is CSS.Direct links: [flux.css](/tokens/v2/flux.css) ·[flux-tokens.css](/tokens/v2/flux-tokens.css) ·[flux.json](/tokens/v2/flux.json) ·[flux-tailwind.css](/tokens/v2/flux-tailwind.css) ·[flux-components.css](/tokens/v2/flux-components.css) ·[flux-components.js](/tokens/v2/flux-components.js) ·[flux-prototype.css](/tokens/v2/flux-prototype.css) ·[flux-deck.css](/tokens/v2/flux-deck.css) ·[flux-deck.js](/tokens/v2/flux-deck.js)
+FileSizeContents`/tokens/v2/flux.css`53.1 kBFonts, all three tiers, all three themes, base rules. The usual import.`/tokens/v2/flux-tokens.css`51.4 kBThe same tokens without font imports or base rules.`/tokens/v2/flux.json`144.7 kBEvery token as structured data, grouped by tier and theme.`/tokens/v2/flux-tailwind.css`21.9 kBTailwind v4 theme block. Clears the defaults, remaps the names.`/tokens/v2/flux-components.css`156.7 kBThe 48 documented components, as framework-agnostic CSS.`/tokens/v2/flux-components.js`103.2 kBComponent behaviour for Select and Date picker, including keyboard handling and form-value syncing.`/tokens/v2/flux-prototype.css`4.8 kBPrototype typography: Google Sans Flex and Manrope. Product prototypes only — never decks.`/tokens/v2/flux-deck.css`41.4 kBThe presentation layer. Slide canvas and layouts. Decks only — it overrides the fluid root.`/tokens/v2/flux-deck.js`7.0 kBDeck navigation: previous and next arrows, click to advance, and the keys. Optional — snapping is CSS.Direct links: [flux.css](/tokens/v2/flux.css) ·[flux-tokens.css](/tokens/v2/flux-tokens.css) ·[flux.json](/tokens/v2/flux.json) ·[flux-tailwind.css](/tokens/v2/flux-tailwind.css) ·[flux-components.css](/tokens/v2/flux-components.css) ·[flux-components.js](/tokens/v2/flux-components.js) ·[flux-prototype.css](/tokens/v2/flux-prototype.css) ·[flux-deck.css](/tokens/v2/flux-deck.css) ·[flux-deck.js](/tokens/v2/flux-deck.js)
 
 Not this path`/tokens/flux.css`, without the version, is Flux 1.x and stays that way. It is a live runtime dependency of applications that cannot redeploy to follow a change. Six tokens differ between the two — see [Upgrading](/get-started/upgrading/).
 ## Machine contract
@@ -52,7 +52,10 @@ Labelled values in a row or a stack. The summary block at the top of a record.](
 Headline figures with a label and a change, aligned on one surface. The top of a dashboard.](/components/source/metric.txt)
 - [chart.txt
 
-Columns, lines, ranked bars and a donut, drawn from theme roles with a title, a takeaway and a legend.](/components/source/chart.txt)
+Columns, stacked columns, lines, areas, two scales, ranked bars and a donut, drawn from theme roles, with a readout on hover or focus.](/components/source/chart.txt)
+- [heatmap.txt
+
+A matrix of values on one sequential scale, where every cell can be focused and opened for its detail.](/components/source/heatmap.txt)
 - [timeline.txt
 
 Events in time order on a hairline rail. A booking history, a day’s schedule, a workflow’s progress.](/components/source/timeline.txt)

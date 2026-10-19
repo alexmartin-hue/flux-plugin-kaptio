@@ -61,7 +61,7 @@ Flux is designed to be consumed by language models as much as by people. The who
 Individual components are at `/components/source/.txt`. Repository rules for Cursor, Claude Code and Copilot are at [For AI → Repository rules](/for-ai/rules/).
 
 ## Components
-47, documented to one shape. Each one shows a live specimen above the exact markup that produced it.
+48, documented to one shape. Each one shows a live specimen above the exact markup that produced it.
 
 - [Button
 
@@ -98,7 +98,10 @@ Labelled values in a row or a stack. The summary block at the top of a record.](
 Headline figures with a label and a change, aligned on one surface. The top of a dashboard.](/components/metric/)
 - [Chart
 
-Columns, lines, ranked bars and a donut, drawn from theme roles with a title, a takeaway and a legend.](/components/chart/)
+Columns, stacked columns, lines, areas, two scales, ranked bars and a donut, drawn from theme roles, with a readout on hover or focus.](/components/chart/)
+- [Heatmap
+
+A matrix of values on one sequential scale, where every cell can be focused and opened for its detail.](/components/heatmap/)
 - [Timeline
 
 Events in time order on a hairline rail. A booking history, a day’s schedule, a workflow’s progress.](/components/timeline/)

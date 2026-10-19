@@ -17,7 +17,7 @@ So the rules are published where an agent will actually read them — one plain-
 ## The contract
 One file. Every token, every rule, every component's markup.
 
-textCopy`https://flux.kaptio.com/llms.txt`It is generated from the same sources as this site, so it cannot describe a system the site does not implement. Point an agent at it once and it has the complete system: 789 tokens across three tiers and three themes, the hard rules with their reasoning, the composition habits to avoid, and copyable markup for all 47 components.
+textCopy`https://flux.kaptio.com/llms.txt`It is generated from the same sources as this site, so it cannot describe a system the site does not implement. Point an agent at it once and it has the complete system: 817 tokens across three tiers and three themes, the hard rules with their reasoning, the composition habits to avoid, and copyable markup for all 48 components.
 
 NoteIndividual components are also published as plain text at`/components/source/.txt` — useful when you want one component in context rather than the whole system.
 ## The hard rules
@@ -61,7 +61,7 @@ Most of the palette cannot carry text. Treating a mid-tone accent as a text colo
 - Map every domain status deliberately before rendering it. When sibling states have materially different consequences, leaving every badge on the neutral base style is a defect.
 - A workflow stage is not automatically a warning. Use the yellow pending status only when waiting, delay or required attention is part of the meaning; otherwise use the neutral badge.
 - Product accents (--flux-product-*) are graphic only: fills, marks, diagram keys. Never text, never a global theme.
-- Chart series take --flux-chart-1 to -4 in order, and --flux-chart-muted for a comparison such as last year. Never a chart library’s palette, a product accent or a status colour.
+- Chart series take --flux-chart-1 to -4 in order, and --flux-chart-muted for a comparison such as last year. A heatmap takes the --flux-chart-sequential-1 to -5 ramp. Never a chart library’s palette, a product accent or a status colour.
 - Never use colour as the only signal for a state.
 ### Layout and geometry
 Consistent spacing and near-square geometry are what make output read as Kaptio rather than as generic.

@@ -46,7 +46,8 @@ Components — choose from this list before writing any markup:
 - Card (card): Groups related content into one surface on the layer above.
 - Description list (description-list): Labelled values in a row or a stack. The summary block at the top of a record.
 - Metric (metric): Headline figures with a label and a change, aligned on one surface. The top of a dashboard.
-- Chart (chart): Columns, lines, ranked bars and a donut, drawn from theme roles with a title, a takeaway and a legend.
+- Chart (chart): Columns, stacked columns, lines, areas, two scales, ranked bars and a donut, drawn from theme roles, with a readout on hover or focus.
+- Heatmap (heatmap): A matrix of values on one sequential scale, where every cell can be focused and opened for its detail.
 - Timeline (timeline): Events in time order on a hairline rail. A booking history, a day’s schedule, a workflow’s progress.
 - Itinerary (itinerary): A trip, day by day: where each day goes, what runs when, and where everyone sleeps.
 - Calendar view (calendar): A month of departures, bookings or deadlines laid out on the days they fall.
@@ -93,7 +94,7 @@ Prototype context:
 Design requirements:
 - Import https://flux.kaptio.com/tokens/v2/flux.css, https://flux.kaptio.com/tokens/v2/flux-components.css and then https://flux.kaptio.com/tokens/v2/flux-prototype.css, from that URL or the @kaptio/flux-tokens package. Never copy a Flux file into the repository; a copy stops receiving fixes and new components.
 - Typography comes from flux-prototype.css: Google Sans Flex Medium for headings and card titles, Bold in text-brand for KPI values (.flux-kpi); Manrope for everything else — body, tables and inputs, .flux-description for descriptions, labels in Medium, buttons and .flux-kpi-change in Semi Bold, .flux-meta for small metadata. The layer changes typefaces and weights only: size headings from the scale exactly as in the Lexend product, and keep the sizes components set. No Lexend and no mono in a prototype. Never write a literal font-weight; use --flux-prototype-weight-regular, -medium or -semibold.
-- Load https://flux.kaptio.com/tokens/v2/flux-components.js with defer on every page. Select, Date picker, info bubbles, menus, drawers, toasts, tables, the app shell, the command palette, boards, maps and flow diagrams all depend on it, and it does nothing where none of them appear.
+- Load https://flux.kaptio.com/tokens/v2/flux-components.js with defer on every page. Select, Date picker, info bubbles, menus, drawers, toasts, tables, the app shell, the command palette, boards, maps and flow diagrams all depend on it, and it does nothing where none of them appear. Markup a framework renders after the page loads is wired when it is inserted.
 - Reference Tier 2 semantic tokens for every interface role.
 - Use at least --flux-text-sm for controls, table cells and compact secondary copy.
 - Use --flux-text-base for sentences intended to be read.

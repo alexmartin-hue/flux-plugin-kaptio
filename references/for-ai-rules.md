@@ -137,6 +137,7 @@ Flux guarantees contrast and focus. Everything structural is the implementer’s
 - Bind error text to its field with aria-describedby, and set aria-invalid.
 - Explanatory field text — what a field means, its format, its constraints — goes in the documented info bubble beside the label, never as text below the field. Only an error message sits below a field. Reference the bubble from the control with aria-describedby.
 - Every icon-only control needs an accessible name.
+- On a coarse pointer every control is at least --flux-touch-target (44px) tall. Flux components do this themselves; a custom control sizes from the component tokens or sets min-block-size: var(--flux-touch-target) under @media (pointer: coarse).
 - Tabs need roving tabindex: the selected tab is tabindex="0", the rest are tabindex="-1".
 - Table headers need scope. Numeric columns are right-aligned with tabular figures.
 - Choose heading levels for document structure, and size them with tokens.
@@ -367,6 +368,7 @@ Flux guarantees contrast and focus. Everything structural is the implementer’s
 - Bind error text to its field with aria-describedby, and set aria-invalid.
 - Explanatory field text — what a field means, its format, its constraints — goes in the documented info bubble beside the label, never as text below the field. Only an error message sits below a field. Reference the bubble from the control with aria-describedby.
 - Every icon-only control needs an accessible name.
+- On a coarse pointer every control is at least --flux-touch-target (44px) tall. Flux components do this themselves; a custom control sizes from the component tokens or sets min-block-size: var(--flux-touch-target) under @media (pointer: coarse).
 - Tabs need roving tabindex: the selected tab is tabindex="0", the rest are tabindex="-1".
 - Table headers need scope. Numeric columns are right-aligned with tabular figures.
 - Choose heading levels for document structure, and size them with tokens.

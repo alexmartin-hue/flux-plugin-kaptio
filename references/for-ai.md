@@ -17,7 +17,7 @@ So the rules are published where an agent will actually read them — one plain-
 ## The contract
 One file. Every token, every rule, every component's markup.
 
-textCopy`https://flux.kaptio.com/llms.txt`It is generated from the same sources as this site, so it cannot describe a system the site does not implement. Point an agent at it once and it has the complete system: 817 tokens across three tiers and three themes, the hard rules with their reasoning, the composition habits to avoid, and copyable markup for all 48 components.
+textCopy`https://flux.kaptio.com/llms.txt`It is generated from the same sources as this site, so it cannot describe a system the site does not implement. Point an agent at it once and it has the complete system: 818 tokens across three tiers and three themes, the hard rules with their reasoning, the composition habits to avoid, and copyable markup for all 48 components.
 
 NoteIndividual components are also published as plain text at`/components/source/.txt` — useful when you want one component in context rather than the whole system.
 ## The hard rules
@@ -104,6 +104,7 @@ Flux guarantees contrast and focus. Everything structural is the implementer’s
 - Bind error text to its field with aria-describedby, and set aria-invalid.
 - Explanatory field text — what a field means, its format, its constraints — goes in the documented info bubble beside the label, never as text below the field. Only an error message sits below a field. Reference the bubble from the control with aria-describedby.
 - Every icon-only control needs an accessible name.
+- On a coarse pointer every control is at least --flux-touch-target (44px) tall. Flux components do this themselves; a custom control sizes from the component tokens or sets min-block-size: var(--flux-touch-target) under @media (pointer: coarse).
 - Tabs need roving tabindex: the selected tab is tabindex="0", the rest are tabindex="-1".
 - Table headers need scope. Numeric columns are right-aligned with tabular figures.
 - Choose heading levels for document structure, and size them with tokens.

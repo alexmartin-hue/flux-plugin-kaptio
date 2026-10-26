@@ -7,6 +7,14 @@ Resources
 # Changelog
 Flux 2.0 is almost entirely additive, and the six places where it is not are the reason it publishes at its own URL rather than over the top of 1.x.
 
+## 2.3.0
+
+### Added
+
+- Touch targets. On a coarse pointer, small and medium buttons, fields, selects, date pickers and tabs grow to the new --flux-touch-target, 44px at the smallest root size, and so does everything sized from them: pagination, segmented controls, chips and table icon buttons. Checkbox, radio and switch labels pad to the same height. Mouse layouts are unchanged. Reported from the Edge Portal phone testing.
+### Fixed
+
+- Box sizing without a page reset. flux-components.css sizes its components border-box itself, so an input no longer overflows its container on a page without its own reset. The rule has no specificity, so a page’s own styles still win.
 ## 2.2.1
 
 ### Fixed

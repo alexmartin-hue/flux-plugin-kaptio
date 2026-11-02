@@ -46,7 +46,7 @@ NON-NEGOTIABLE — these hold on every slide
 - A story, a chapter or a persona never gets its own hue. Tell people apart with the avatar, the name and the role, and chapters apart with the title and the ground rotation. Status colours — green, yellow, blue, orange — mean status, not identity.
 - Product accents colour type and data: the oversized mark, the list numerals, chart bars, a donut arc. Never decoration — no bar on the edge of a card, no rule beside a label — and never a word you are meant to read.
 - Interface radius stays --flux-radius-sm. A slide is not a reason for a soft corner.
-- No gradient fills, no glassmorphism, no glow, no neon, no blur behind content, no gradient mesh.
+- No gradient fills, no glassmorphism, no glow, no neon, no blur behind content, no gradient mesh. The one exception is flux-slide__caption on an image slide: its built-in scrim, clear to black, keeps type legible on a photograph. Never write a gradient of your own.
 - No emoji as an icon system.
 - Animate opacity and transform. Never width, height, top, left, margin or padding.
 - Deck videos are decorative and muted. They pause off-slide, respect reduced motion, and always have the Flux pause control. Background video with the deep-teal overlay is allowed on the cover and the closing ask; the agenda keeps its own video-backed layout. Nowhere else.
@@ -96,11 +96,13 @@ IMAGES
 - Cover and closing may use a muted looping background video under that same deep-teal overlay. Put it in flux-slide__media with muted loop playsinline data-flux-video, keep the Flux pause control as a sibling, and do not put background video on any other layout.
 - The agenda uses the video-backed agenda archetype. Keep its visual quiet, decorative and dark enough that the list remains the point. Use the complete uncropped frame, align it to the bottom, and retain at least two-fifths of the slide for the media.
 - src may be a URL or a path under /decks/assets/. Alt text is mandatory and must describe what is in the frame, not repeat the slide title.
+- When a slide needs a background video or a photograph that has not been supplied, search Pexels first: https://www.pexels.com/search/videos// for footage, https://www.pexels.com/search// for photographs. Choose a frame that shows the subject of the slide, not generic texture. Save the file under /decks/assets/ rather than linking to Pexels, and note its Pexels page URL in a comment beside the element.
 - Never leave a slide that mentions a place, product, or team without a visual of that thing.
 
 LAYOUTS
 
 flux-slide--cover      The deck opens. Once, at the front. A full-bleed photograph or muted background video under the deep-teal overlay is allowed; type-only on deep remains valid.
+flux-slide--cover      The deck opens on footage of the subject itself — a ship, a destination, a guest experience. The cover class with a muted, looping background video under the deep-teal overlay, and a visible pause control.
 flux-slide--agenda     Near the front, to tell the room the shape of the next twenty minutes. This video-backed layout is the agenda type for every deck. Its complete video frame is bottom-aligned in a media region at least two-fifths of the slide wide. Repeat it before a part begins, with aria-current on the item you are reaching.
 flux-slide--section    A divider between parts of the argument. It exists to give the room a beat.
 flux-slide--statement  One sentence that deserves the whole room. The most underused slide in any deck.
@@ -110,7 +112,7 @@ flux-slide--donut      One proportion, stated next to what it means. The ring is
 flux-slide--infographic One figure that carries the claim, with two or three that support it. The hierarchy is the point.
 flux-slide--split      An argument on one side and its evidence on the other. Use --split-wide when the text outweighs the figure.
 flux-slide--split-photo Copy on one side and an editorial photograph on the other. The company-facts shape: founding story, scale metrics, or product context beside a place, landscape, or operators in the field.
-flux-slide--list       Genuinely sequential or enumerable points. Five at most.
+flux-slide--list       Three to five parallel points under a title that says what they add up to, one per row. A flux-slide__note at the end of a row carries one fact about it. Use an ol only when order is the meaning; it numbers the points instead.
 flux-slide--compare    Two positions held against each other. The seam is the point.
 flux-slide--timeline   When. Three to five dated milestones on one axis. Mark the one you are standing on with aria-current.
 flux-slide--journey    Who, in order. Stages of a process and the hand-off between them. The seams are where the work changes hands.
@@ -128,13 +130,16 @@ flux-slide__note         Mono metadata line.
 flux-slide__mark         Oversized background numeral. Section slides.
 flux-display             One sentence at display scale. Statement slides.
 flux-metric__figure      The number. With __label and __note beneath.
-flux-slide__list          with mono numerals.
+flux-slide__list         : hairline rows, each with an optional __note. : mono numerals, for real order.
 flux-slide__agenda        of deck parts. aria-current="step" marks where you are.
 flux-slide__agenda-item  One agenda heading and one line of context.
 flux-slide__agenda-video Decorative muted video for the agenda archetype.
 flux-slide__quote        With flux-slide__attribution.
-flux-slide__tiles        With flux-slide__tile children.
-flux-slide__media        Full-bleed image or muted video. Cover and closing sit it under the teal overlay; image slides sit type on a plate.
+flux-slide__quote-figure  around the quote, with a  attribution. Adds the oversized opening mark.
+flux-slide__cells         of four to six items: an h3 and one line each, on hairlines.
+flux-slide__tiles        With flux-slide__tile children. Boxed; prefer __cells.
+flux-slide__media        Full-bleed image or muted video. Cover and closing sit it under the teal overlay; image slides sit type on a caption or a plate.
+flux-slide__caption      Title and lede centred at the foot of an image slide, over the built-in scrim.
 flux-slide__photo        Editorial photograph in split-photo. object-fit: cover.
 flux-figure__frame       SVG diagram: outlined box. __panel is the filled one you mean.
 flux-figure__label       SVG diagram: mono uppercase name. __note and __value beside it.
@@ -173,7 +178,7 @@ BEFORE YOU SEND IT BACK
 - No company-facts slide without an accompanying image — use split-photo.
 - The deck reads correctly with the browser at any window size, because the composition scales as one piece and leftover viewport takes the slide’s ground.
 
-Copy the markup for each layout from the full contract rather than inventing it.`Fetching beats pastingIf the teammate can read a URL at request time, point it at`/decks/llms.txt` instead. That is the complete contract, including copyable markup for all eighteen layouts, and it cannot go stale in a text box someone filled in once.
+Copy the markup for each layout from the full contract rather than inventing it.`Fetching beats pastingIf the teammate can read a URL at request time, point it at`/decks/llms.txt` instead. That is the complete contract, including copyable markup for all nineteen layouts, and it cannot go stale in a text box someone filled in once.
 ## Asking for a deck
 The brief handles the design. What it cannot guess is the argument.
 
@@ -211,6 +216,6 @@ bashCopy`npx flux-check deck.html`That catches raw colours, raw dimensions, synt
 ## When it comes out wrong
 Three failures account for most of it, and each has a specific cause.
 
-SymptomCauseFixEvery slide is a title and bulletsThe request was a topic rather than an argument, so there was nothing for the other layouts to hold.Give it the numbers, the counter-argument and the ask.The deck is all one colourGround was set once on the root instead of per slide.Ask it to rotate the ground. The brief says to; long decks are where it slips.It invented CSSA layout it wanted did not exist, and it built one rather than saying so.Ask which layout was missing, then tell us — that is a real gap in the set.The eighteen layouts, with live specimens and the markup for each, are on [Decks](/patterns/decks/).
+SymptomCauseFixEvery slide is a title and bulletsThe request was a topic rather than an argument, so there was nothing for the other layouts to hold.Give it the numbers, the counter-argument and the ask.The deck is all one colourGround was set once on the root instead of per slide.Ask it to rotate the ground. The brief says to; long decks are where it slips.It invented CSSA layout it wanted did not exist, and it built one rather than saying so.Ask which layout was missing, then tell us — that is a real gap in the set.The nineteen layouts, with live specimens and the markup for each, are on [Decks](/patterns/decks/).
 
 [PreviousPrototype prompt](/for-ai/prototypes/)[NextDownloads](/resources/downloads/)

@@ -7,6 +7,25 @@ Resources
 # Changelog
 Flux 2.0 is almost entirely additive, and the six places where it is not are the reason it publishes at its own URL rather than over the top of 1.x.
 
+## 2.6.0
+
+### Added
+
+- Cover with video template. A cover that opens on footage of the subject, a muted looping video under the deep-teal overlay with a visible pause control. It uses the existing cover class, so covers already in decks render as before.
+- Pexels for missing footage. When a slide needs a background video or photograph that was not supplied, the deck contract now says to search Pexels, choose a frame that shows the subject, save the file under /decks/assets/ and note its Pexels page beside the element.
+## 2.5.0
+
+### Added
+
+- Quote slide template. A quote in flux-slide__quote-figure sits at reading size behind an oversized opening mark, with the speaker as a bold uppercase figcaption. It takes the theme’s text colour at mark opacity, so it works on every ground.
+- Image slide caption. flux-slide__caption centres the title and lede at the foot of the photograph over a scrim from clear to black, coloured by the new --flux-slide-scrim. The deck contract allows this scrim as its one gradient.
+- Grid slide template. flux-slide__cells sets four to six items as a name and one line under a hairline, three across, or two by two for four. The template now shows a real taxonomy rather than a sequence.
+- Existing decks unchanged. All three are opt-in through new elements. Slides built on flux-slide__plate, flux-slide__tiles and a bare quote render exactly as before.
+## 2.4.0
+
+### Added
+
+- List slide template. The List layout now leads with a title that says what the points add up to, and sets each point in its own hairline row, with an optional flux-slide__note at the end of a row. A ul gives the rows; an ol keeps the numbered list for points whose order is the meaning, unchanged, so existing decks render as before.
 ## 2.3.0
 
 ### Added
@@ -60,7 +79,7 @@ Flux 2.0 is almost entirely additive, and the six places where it is not are the
 - Component tokens. Tier 3 dimensions and role bindings for all 48 documented components.
 - Component layer. flux-components.css — framework-agnostic CSS built entirely from tier-3 tokens.
 - Date picker. Single-date and date-range calendars with ISO form values, hover range preview and the WAI-ARIA keyboard pattern.
-- Deck layer. flux-deck.css — the presentation surface. A 16:9 canvas that scales as one piece, eighteen slide layouts, and per-slide theming so a deck varies its ground without leaving the contrast audit. Loosens scale, ground, asymmetry and bleed; holds tokens, type and contrast.
+- Deck layer. flux-deck.css — the presentation surface. A 16:9 canvas that scales as one piece, nineteen slide layouts, and per-slide theming so a deck varies its ground without leaving the contrast audit. Loosens scale, ground, asymmetry and bleed; holds tokens, type and contrast.
 - Deck contract. A second agent contract at /decks/llms.txt. Separate from llms.txt on purpose: slide rules and product rules disagree, and an agent given both averages them.
 - Deck navigation. flux-deck.js — previous and next arrows, click to advance, click the left quarter to go back, plus the arrow keys, space, Page Up and Down, and Home and End. Snapping stays in CSS, so a deck that never loads the script is still a working deck.
 - Diagram vocabulary. flux-figure__frame, -panel, -link, -label, -note and -value, so an inline SVG carries roles instead of colours and re-themes with its slide. Wrap parts in flux-stage to reveal them in the order you explain them — six stages at most, and every stage shows if the script never loads.

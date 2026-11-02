@@ -54,7 +54,7 @@ Unchanged from product UI. A slide is not an exemption.
 - A story, a chapter or a persona never gets its own hue. Tell people apart with the avatar, the name and the role, and chapters apart with the title and the ground rotation. Status colours — green, yellow, blue, orange — mean status, not identity.
 - Product accents colour type and data: the oversized mark, the list numerals, chart bars, a donut arc. Never decoration — no bar on the edge of a card, no rule beside a label — and never a word you are meant to read.
 - Interface radius stays --flux-radius-sm. A slide is not a reason for a soft corner.
-- No gradient fills, no glassmorphism, no glow, no neon, no blur behind content, no gradient mesh.
+- No gradient fills, no glassmorphism, no glow, no neon, no blur behind content, no gradient mesh. The one exception is flux-slide__caption on an image slide: its built-in scrim, clear to black, keeps type legible on a photograph. Never write a gradient of your own.
 - No emoji as an icon system.
 - Animate opacity and transform. Never width, height, top, left, margin or padding.
 - Deck videos are decorative and muted. They pause off-slide, respect reduced motion, and always have the Flux pause control. Background video with the deep-teal overlay is allowed on the cover and the closing ask; the agenda keeps its own video-backed layout. Nowhere else.
@@ -97,9 +97,10 @@ Decks go dull when every slide is type on a flat ground. The image and split-pho
 - Cover and closing may use a muted looping background video under that same deep-teal overlay. Put it in flux-slide__media with muted loop playsinline data-flux-video, keep the Flux pause control as a sibling, and do not put background video on any other layout.
 - The agenda uses the video-backed agenda archetype. Keep its visual quiet, decorative and dark enough that the list remains the point. Use the complete uncropped frame, align it to the bottom, and retain at least two-fifths of the slide for the media.
 - src may be a URL or a path under /decks/assets/. Alt text is mandatory and must describe what is in the frame, not repeat the slide title.
+- When a slide needs a background video or a photograph that has not been supplied, search Pexels first: https://www.pexels.com/search/videos/<terms>/ for footage, https://www.pexels.com/search/<terms>/ for photographs. Choose a frame that shows the subject of the slide, not generic texture. Save the file under /decks/assets/ rather than linking to Pexels, and note its Pexels page URL in a comment beside the element.
 - Never leave a slide that mentions a place, product, or team without a visual of that thing.
 ## The layouts
-18 shapes. Pick the one that fits the sentence you have already written.
+19 shapes. Pick the one that fits the sentence you have already written.
 
 Each is a live slide at full size, framed to 16:9. If none of them fits what you are trying to say, say so and propose one — inventing a layout in a deck is the same defect as inventing a component in product UI.
 
@@ -114,6 +115,18 @@ htmlCopy`
 Platform review · Q3
 Connect ships to every tenant
 Vera Lindqvist · 18 August 2026
+`
+### Cover with video
+Use when The deck opens on footage of the subject itself — a ship, a destination, a guest experience. The cover class with a muted, looping background video under the deep-teal overlay, and a visible pause control.
+
+Not when When the footage is generic texture rather than the subject, or when the deck already uses a background video near the front. Use the type-only cover instead.
+
+htmlCopy`
+
+Fleet launch · 2027 season
+Every sailing, sold from one itinerary
+Vera Lindqvist · 18 August 2026
+Pause video
 `
 ### Agenda
 Use when Near the front, to tell the room the shape of the next twenty minutes. This video-backed layout is the agenda type for every deck. Its complete video frame is bottom-aligned in a media region at least two-fifths of the slide wide. Repeat it before a part begins, with aria-current on the item you are reaching.
@@ -269,16 +282,16 @@ Travel brands
 
 `
 ### List
-Use when Genuinely sequential or enumerable points. Five at most.
+Use when Three to five parallel points under a title that says what they add up to, one per row. A flux-slide__note at the end of a row carries one fact about it. Use an ol only when order is the meaning; it numbers the points instead.
 
 Not when As the default slide. If every slide is a list, the deck is a document read aloud.
 
 htmlCopy`
-What changed
+What changed in the reservation flow
 
-One reservation record, owned by Connect.
-Every price resolved at write time.
-Failures surface in the channel, not the log.
+One reservation record, owned by Connect. Live since June
+Every price resolved at write time. Live since August
+Failures surface in the channel, not the log. Ships in November
 
 `
 ### Compare
@@ -352,8 +365,10 @@ Use when Somebody else’s words, where whose words they are matters.
 Not when To dress up your own point. A quote from nobody is a statement slide with extra punctuation.
 
 htmlCopy`
+
 We stopped reconciling bookings by hand in week three, and nobody has asked to go back.
 Operations lead, Tauck
+
 `
 ### Image
 Use when A photograph or screenshot that carries the point on its own.
@@ -372,16 +387,14 @@ Use when A taxonomy: four to six things of the same kind, held on screen togethe
 Not when For a sequence. Order in a grid is ambiguous — use the list.
 
 htmlCopy`
-The shape of it
+What a reservation holds
 
-Ingest
-Supplier feeds land once, and are versioned on arrival.
-
-Resolve
-Price and availability settle before anything is written.
-
-Publish
-One record, one shape, every channel.
+PassengersNames, documents and needs, once.
+ServicesEvery component booked, from any supplier.
+PricesResolved per passenger at write time.
+PaymentsDeposits, balances and refunds.
+DocumentsTickets, vouchers and invoices.
+ChangesWho changed what, and when.
 
 `
 ### Closing

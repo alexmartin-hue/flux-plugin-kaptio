@@ -17,7 +17,7 @@ So the rules are published where an agent will actually read them — one plain-
 ## The contract
 One file. Every token, every rule, every component's markup.
 
-textCopy`https://flux.kaptio.com/llms.txt`It is generated from the same sources as this site, so it cannot describe a system the site does not implement. Point an agent at it once and it has the complete system: 818 tokens across three tiers and three themes, the hard rules with their reasoning, the composition habits to avoid, and copyable markup for all 48 components.
+textCopy`https://flux.kaptio.com/llms.txt`It is generated from the same sources as this site, so it cannot describe a system the site does not implement. Point an agent at it once and it has the complete system: 819 tokens across three tiers and three themes, the hard rules with their reasoning, the composition habits to avoid, and copyable markup for all 48 components.
 
 NoteIndividual components are also published as plain text at`/components/source/.txt` — useful when you want one component in context rather than the whole system.
 ## The hard rules

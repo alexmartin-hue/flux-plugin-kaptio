@@ -12,7 +12,7 @@ Plain-text source, for agents and clipboard use: [/components/source/editable-ce
 ## When to use it
 Lets someone correct many values without leaving the table: a rate matrix, allocations by date, prices by room type. The value is a button until it is activated, then an input; Enter saves, Escape cancels, and the cell shows that it is saving and, if the save fails, why, with the value still there to fix.
 
-Not thisNot for values that depend on each other and must be saved together; use a form with one Save. Not for long text. Not for the only copy of a value that needs review before it changes; open a Modal with the field and its consequences.
+Not thisNot for values that depend on each other and must be saved together; use a form with one Save. Not for long text. Not for a value whose change is consequential or needs review; edit it in a Drawer or form with explicit Save and Cancel, and confirm an irreversible change in a Modal that states its consequence.
 ## Examples
 
 ### Rate matrix

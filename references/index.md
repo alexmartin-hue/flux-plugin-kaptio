@@ -96,5 +96,6 @@ Scraped from https://flux.kaptio.com. Regenerate: `python scripts/scrape_flux.py
 - [/patterns/dashboards/](patterns-dashboards.md)
 - [/patterns/decks/](patterns-decks.md)
 - [/patterns/forms/](patterns-forms.md)
+- [/patterns/interaction/](patterns-interaction.md)
 - [/resources/changelog/](resources-changelog.md)
 - [/resources/downloads/](resources-downloads.md)

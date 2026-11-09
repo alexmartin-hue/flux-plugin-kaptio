@@ -32,7 +32,7 @@ Deck title
 
 `The deck layer derives the root font size from the viewport, so the 80 × 45rem composition always fits and every rem token — spacing, type, radius — scales with it as one piece. Leftover viewport becomes the current slide’s ground, not a frame of the page behind it. That is the one place Flux overrides the fluid root, and it is safe only because a deck is a whole document. Never load `flux-deck.css` into product UI.
 
-Slides advance to the right. Snapping is CSS, so a swipe, a trackpad and a presenter remote move one slide with no script at all; `flux-deck.js` adds the two things CSS cannot — previous and next arrows, clicking to advance, and the keys. Click anywhere to go forward, click the left quarter to go back, use the arrows at the edges, or the arrow keys, space, Page Up and Down, or Home and End.
+Slides advance to the right. Snapping is CSS, so a swipe, a trackpad and a presenter remote move one slide with no script at all; `flux-deck.js` adds the two things CSS cannot — previous and next arrows, clicking to advance, and the keys. Click anywhere to go forward, click the left quarter to go back, use the arrows at the edges, or the arrow keys, space, Page Up and Down, or Home and End. Press G for the overview: every slide as a thumbnail, so you can jump to the one a question is about. Arrow keys move, Enter opens, G or Escape closes.
 
 Diagrams are inline SVG inside `flux-slide__figure`. Appearance comes from the`flux-figure__*` classes so the drawing re-themes with its slide; geometry stays in the markup as SVG attributes, because a `viewBox` is in user units and a rem token resolves to the wrong size inside one. Wrap the parts in`flux-stage` to reveal them in the order you explain them.
 
@@ -74,6 +74,7 @@ A boring deck is almost always a deck where every slide is the same shape. Varie
 - Give the audience a beat every four to six slides: a section divider, or a statement with nothing else on it.
 - Twenty-five words per slide, counting every visible word — kickers, labels and numerals included. Twelve on a statement slide.
 - The data layouts — chart, donut, timeline, journey, infographic — and the agenda are outside that count, because their repeated text is labels rather than prose. They get their own budget: one label and at most one line of explanation per item, and nothing else.
+- The status report is read at a desk, not from the back of a room, so it is outside the count too. Its budget is five highlights of at most two lines, two tables of at most five rows, and one ask. It belongs only in a deck that is sent rather than presented; content beyond that budget goes in the document behind the deck.
 - A labelled diagram earns its words by taking them off the slide. If the lede still explains what the figure already shows, cut the lede, not the labels.
 - An agenda belongs near the front of a deck long enough to have parts, and again before each part with aria-current on the item you are reaching. In a deck of eight slides it is a slide nobody needed.
 - When an agenda is needed, use the agenda-video layout. There is no text-only agenda alternative: the quiet looping visual gives the room a paced opening without competing with the list. Keep the whole video frame visible, bottom-aligned, and at least two-fifths of the slide wide.
@@ -100,7 +101,7 @@ Decks go dull when every slide is type on a flat ground. The image and split-pho
 - When a slide needs a background video or a photograph that has not been supplied, search Pexels first: https://www.pexels.com/search/videos/<terms>/ for footage, https://www.pexels.com/search/<terms>/ for photographs. Choose a frame that shows the subject of the slide, not generic texture. Save the file under /decks/assets/ rather than linking to Pexels, and note its Pexels page URL in a comment beside the element.
 - Never leave a slide that mentions a place, product, or team without a visual of that thing.
 ## The layouts
-19 shapes. Pick the one that fits the sentence you have already written.
+20 shapes. Pick the one that fits the sentence you have already written.
 
 Each is a live slide at full size, framed to 16:9. If none of them fits what you are trying to say, say so and propose one — inventing a layout in a deck is the same defect as inventing a component in product UI.
 
@@ -397,6 +398,48 @@ DocumentsTickets, vouchers and invoices.
 ChangesWho changed what, and when.
 
 `
+### Status report
+Use when A read-ahead deck that is sent rather than presented, such as a monthly programme update with one slide per workstream. The title carries the overall status; up to five highlights sit beside at most two tables of up to five rows; one ask closes the slide. Green, amber and red take flux-slide__status with data-status, and the word is always written.
+
+Not when In a deck somebody presents. Split it instead: a metric or statement for the headline, a list for the highlights, the closing ask for the decision, and the tables in an appendix. Never a third table; that is a document.
+
+htmlCopy`
+
+Production support
+KHELP tickets and incidents in Production, under the standard support SLA.
+
+Overall: Amber
+
+Last month
+
+20 tickets resolved, including 3 Blockers and 7 Criticals. Four more await release or sign-off.
+Two pricing issues closed: same-date departure pricing and trip pricing timing.
+Inventory failures progressing. Allotment and occupancy groups resolved; permissions in progress.
+Key fixes delivered: tax splits, the integration user and duplicated builder lines.
+Next focus: inventory, supplier invoicing and quantity behaviour. Five tickets await your input.
+
+Support measures
+
+MeasureLatestStatus
+
+Open KHELP tickets34Amber
+Open leadership escalations1Amber
+
+Service level compliance, met of due
+
+SeverityResponseUpdateWorkaroundFix or plan
+
+Sev 1—0/1—1/1
+Sev 24/40/4—2/2
+Sev 310/106/7—2/2
+Sev 4————
+
+Decision needed: prioritise the outstanding KHELP tickets beyond the next focus.
+
+Monthly programme update · 28 Oct 2026
+Kaptio owner: Diego · 15
+
+`
 ### Closing
 Use when The ask. One per deck, at the end. A full-bleed photograph or muted background video under the deep-teal overlay makes the action tangible.
 
@@ -416,7 +459,8 @@ The check to run before a deck is finished.
 - The ground changes at least every third slide.
 - There is a beat — a section or statement slide — every four to six slides.
 - The last slide is the ask, over a full-bleed photograph or muted background video with the deep-teal overlay.
-- No slide exceeds twenty-five words, the data layouts aside.
+- No slide exceeds twenty-five words, the data layouts and the status report aside.
+- A status report has written Green, Amber or Red on every status, at most five highlights, two tables and one ask, and appears only in a deck that is sent rather than presented.
 - One accent per slide, and no accent carries text.
 - Every chart bar carries a --flux-bar percentage, and a donut’s two dash values add up to 100.
 - A chart, a donut or a timeline has a caption saying what it shows. A figure without a claim is decoration.

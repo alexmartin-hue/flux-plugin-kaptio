@@ -97,10 +97,12 @@ Consistent spacing and near-square geometry are what make output read as Kaptio 
 - Interface radius is --flux-radius-sm (4px): buttons, fields, cards, tables, notes. --flux-radius-md for modals only.
 - --flux-radius-full is for pills, avatars, radio buttons, switches and the spinner ring, nothing else.
 - Separate sections with --flux-seam-gap.
+- A modal is never wider than --flux-modal-width-max, 90% of the window. Add flux-modal--wide only when a permitted modal must show what a decision affects, such as the read-only summary of an irreversible change. Width never makes a modal suitable for a table, a comparison or a form; those belong in a side panel, a split view or a page.
 - Constrain reading columns to --flux-measure-prose.
 - Text and controls never sit directly against the edge of a bordered or filled surface. Use the component padding token; tables apply inset through their cells, and intentional edge-to-edge media is the exception.
 - Action rows keep the same inline inset as the content above and use a spacing token between actions. Wrap or stack the actions before a control touches the container edge.
 - Do not scale an application with CSS zoom or transform, and do not compress type or spacing to make the whole workflow fit above the fold. Reflow the layout, wrap controls and let the page scroll; wrap wide tables in their horizontal scroll container.
+- Never cut a value off silently. When a value does not fit its column, truncate it with data-truncate, which caps a table cell at --flux-table-truncate-width and, with flux-components.js loaded, shows the full value on hover; never write your own ellipsis or max-width. Never truncate a reference, an amount or a date: let those columns size to their content.
 - Never mix px into a layout built from rem tokens. The root size is fluid, so they diverge as the viewport grows.
 
 ### Elevation
@@ -141,6 +143,23 @@ Flux guarantees contrast and focus. Everything structural is the implementer’s
 - Tabs need roving tabindex: the selected tab is tabindex="0", the rest are tabindex="-1".
 - Table headers need scope. Numeric columns are right-aligned with tabular figures.
 - Choose heading levels for document structure, and size them with tokens.
+
+### Interaction architecture
+
+Kaptio users reference, compare and modify interconnected information. Keep them in context: modals are exceptions, not the default interaction pattern. Mandatory for all new features, redesigned screens and shared components.
+
+- Never use a modal for a task that requires users to reference, compare or modify information outside that modal.
+- Choose the least disruptive pattern that gives the task enough space, context and clarity, in this order: inline editing (Editable cell), expandable sections (Accordion), a contextual side panel (Drawer), a split-view workspace (List and detail), a dedicated page. A modal is the exception.
+- A modal is permitted only when all of these hold: the interaction needs immediate attention or an explicit decision, it is short and self-contained, the user does not need the content behind it, it has no complex navigation, and it has a clear primary action and a clear way to cancel. Examples: confirm deleting a booking, discarding unsaved changes or an irreversible financial action.
+- Never use a modal for creating or editing complex bookings, multi-step workflows, searching and selecting inventory, comparing products, services or prices, assigning passengers to rooms or cabins, editing pricing structures, configuring departures or services, large forms, editable data tables, or anything that needs information from another screen.
+- A modal never opens another modal, and a side panel never opens another side panel.
+- A modal has a descriptive title that states the consequence and an explicit action label such as “Delete booking”, never “OK”. Cancelling preserves the underlying data, and neither a backdrop click nor Escape silently discards changes.
+- Never compress a complex workflow into a modal or side panel to avoid page navigation. When a side panel becomes too complex, promote the task to a dedicated page.
+- Inline edits show validation beside the field, keep the entered value with a clear error when a save fails, and confirm visibly when a save succeeds. Use explicit Save and Cancel when a change is consequential or spans related fields, and never silently save an irreversible or high-impact change.
+- Navigation preserves filters, sorting, selection, draft data and scroll position, and warns before discarding unsaved changes. Represent important workspace state in the URL where practical, so Back behaves predictably.
+- Use progressive disclosure to reduce load, never to hide frequently used primary actions, and never use a modal to reduce visual clutter.
+- On narrow screens a split view stacks and a side panel becomes a full-screen view — never a modal.
+- The same type of task uses the same pattern in every module. A modal outside the permitted uses needs a documented exception approved by the design owner.
 
 ### Themes
 
@@ -328,10 +347,12 @@ Consistent spacing and near-square geometry are what make output read as Kaptio 
 - Interface radius is --flux-radius-sm (4px): buttons, fields, cards, tables, notes. --flux-radius-md for modals only.
 - --flux-radius-full is for pills, avatars, radio buttons, switches and the spinner ring, nothing else.
 - Separate sections with --flux-seam-gap.
+- A modal is never wider than --flux-modal-width-max, 90% of the window. Add flux-modal--wide only when a permitted modal must show what a decision affects, such as the read-only summary of an irreversible change. Width never makes a modal suitable for a table, a comparison or a form; those belong in a side panel, a split view or a page.
 - Constrain reading columns to --flux-measure-prose.
 - Text and controls never sit directly against the edge of a bordered or filled surface. Use the component padding token; tables apply inset through their cells, and intentional edge-to-edge media is the exception.
 - Action rows keep the same inline inset as the content above and use a spacing token between actions. Wrap or stack the actions before a control touches the container edge.
 - Do not scale an application with CSS zoom or transform, and do not compress type or spacing to make the whole workflow fit above the fold. Reflow the layout, wrap controls and let the page scroll; wrap wide tables in their horizontal scroll container.
+- Never cut a value off silently. When a value does not fit its column, truncate it with data-truncate, which caps a table cell at --flux-table-truncate-width and, with flux-components.js loaded, shows the full value on hover; never write your own ellipsis or max-width. Never truncate a reference, an amount or a date: let those columns size to their content.
 - Never mix px into a layout built from rem tokens. The root size is fluid, so they diverge as the viewport grows.
 
 ## Elevation
@@ -372,6 +393,23 @@ Flux guarantees contrast and focus. Everything structural is the implementer’s
 - Tabs need roving tabindex: the selected tab is tabindex="0", the rest are tabindex="-1".
 - Table headers need scope. Numeric columns are right-aligned with tabular figures.
 - Choose heading levels for document structure, and size them with tokens.
+
+## Interaction architecture
+
+Kaptio users reference, compare and modify interconnected information. Keep them in context: modals are exceptions, not the default interaction pattern. Mandatory for all new features, redesigned screens and shared components.
+
+- Never use a modal for a task that requires users to reference, compare or modify information outside that modal.
+- Choose the least disruptive pattern that gives the task enough space, context and clarity, in this order: inline editing (Editable cell), expandable sections (Accordion), a contextual side panel (Drawer), a split-view workspace (List and detail), a dedicated page. A modal is the exception.
+- A modal is permitted only when all of these hold: the interaction needs immediate attention or an explicit decision, it is short and self-contained, the user does not need the content behind it, it has no complex navigation, and it has a clear primary action and a clear way to cancel. Examples: confirm deleting a booking, discarding unsaved changes or an irreversible financial action.
+- Never use a modal for creating or editing complex bookings, multi-step workflows, searching and selecting inventory, comparing products, services or prices, assigning passengers to rooms or cabins, editing pricing structures, configuring departures or services, large forms, editable data tables, or anything that needs information from another screen.
+- A modal never opens another modal, and a side panel never opens another side panel.
+- A modal has a descriptive title that states the consequence and an explicit action label such as “Delete booking”, never “OK”. Cancelling preserves the underlying data, and neither a backdrop click nor Escape silently discards changes.
+- Never compress a complex workflow into a modal or side panel to avoid page navigation. When a side panel becomes too complex, promote the task to a dedicated page.
+- Inline edits show validation beside the field, keep the entered value with a clear error when a save fails, and confirm visibly when a save succeeds. Use explicit Save and Cancel when a change is consequential or spans related fields, and never silently save an irreversible or high-impact change.
+- Navigation preserves filters, sorting, selection, draft data and scroll position, and warns before discarding unsaved changes. Represent important workspace state in the URL where practical, so Back behaves predictably.
+- Use progressive disclosure to reduce load, never to hide frequently used primary actions, and never use a modal to reduce visual clutter.
+- On narrow screens a split view stacks and a side panel becomes a full-screen view — never a modal.
+- The same type of task uses the same pattern in every module. A modal outside the permitted uses needs a documented exception approved by the design owner.
 
 ## Themes
 

@@ -110,4 +110,4 @@ Do
 - Do not reach for a three-column icon grid as a default layout.
 - Do not shrink the whole interface to make every section visible at once.
 - Do not remove component padding to make a layout fit.
-- Do not put every metric in its own card.[PreviousAvatar](/components/avatar/)[NextForms](/patterns/forms/)
+- Do not put every metric in its own card.[PreviousAvatar](/components/avatar/)[NextInteraction architecture](/patterns/interaction/)

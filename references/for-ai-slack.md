@@ -31,9 +31,10 @@ Deck title
 
 Each slide is one . The composition is
 16:9 and scales itself; leftover viewport takes that slide’s ground. Slides advance to
-the right: flux-deck.js draws previous and next arrows, and snapping is CSS, so a swipe
-or a remote works without it. Do not write navigation of your own, and do not add slide
-numbers, dots or a progress bar.
+the right: flux-deck.js draws previous and next arrows and opens an overview of every
+slide on G, and snapping is CSS, so a swipe or a remote works without it. Do not write
+navigation or an overview of your own, and do not add slide numbers, dots or a progress
+bar.
 
 NON-NEGOTIABLE — these hold on every slide
 
@@ -75,6 +76,7 @@ PACING
 - Give the audience a beat every four to six slides: a section divider, or a statement with nothing else on it.
 - Twenty-five words per slide, counting every visible word — kickers, labels and numerals included. Twelve on a statement slide.
 - The data layouts — chart, donut, timeline, journey, infographic — and the agenda are outside that count, because their repeated text is labels rather than prose. They get their own budget: one label and at most one line of explanation per item, and nothing else.
+- The status report is read at a desk, not from the back of a room, so it is outside the count too. Its budget is five highlights of at most two lines, two tables of at most five rows, and one ask. It belongs only in a deck that is sent rather than presented; content beyond that budget goes in the document behind the deck.
 - A labelled diagram earns its words by taking them off the slide. If the lede still explains what the figure already shows, cut the lede, not the labels.
 - An agenda belongs near the front of a deck long enough to have parts, and again before each part with aria-current on the item you are reaching. In a deck of eight slides it is a slide nobody needed.
 - When an agenda is needed, use the agenda-video layout. There is no text-only agenda alternative: the quiet looping visual gives the room a paced opening without competing with the list. Keep the whole video frame visible, bottom-aligned, and at least two-fifths of the slide wide.
@@ -119,6 +121,7 @@ flux-slide--journey    Who, in order. Stages of a process and the hand-off betwe
 flux-slide--quote      Somebody else’s words, where whose words they are matters.
 flux-slide--image      A photograph or screenshot that carries the point on its own.
 flux-slide--grid       A taxonomy: four to six things of the same kind, held on screen together.
+flux-slide--report     A read-ahead deck that is sent rather than presented, such as a monthly programme update with one slide per workstream. The title carries the overall status; up to five highlights sit beside at most two tables of up to five rows; one ask closes the slide. Green, amber and red take flux-slide__status with data-status, and the word is always written.
 flux-slide--closing    The ask. One per deck, at the end. A full-bleed photograph or muted background video under the deep-teal overlay makes the action tangible.
 
 ELEMENTS
@@ -152,6 +155,11 @@ flux-slide__axis          of labels beneath a plot. Same number of items.
 flux-donut               SVG ring. Circumference is 100, so stroke-dasharray is the split.
 flux-slide__cluster      One lead metric plus __cluster-support beside it.
 flux-slide--field        Adds a hairline dot texture to any slide.
+flux-slide__report-head  Status report: title and lede, with the overall flux-slide__status beside them.
+flux-slide__report-body  Status report: __highlights (an h3 and a ul) beside __report-data (up to two tables).
+flux-slide__table         with a , scoped headers and data-numeric on number columns.
+flux-slide__status       Written status with data-status="green|amber|red". Never colour alone.
+flux-slide__ask          The one decision the report needs, at the foot of the slide.
 
 BEFORE YOU SEND IT BACK
 
@@ -160,7 +168,8 @@ BEFORE YOU SEND IT BACK
 - The ground changes at least every third slide.
 - There is a beat — a section or statement slide — every four to six slides.
 - The last slide is the ask, over a full-bleed photograph or muted background video with the deep-teal overlay.
-- No slide exceeds twenty-five words, the data layouts aside.
+- No slide exceeds twenty-five words, the data layouts and the status report aside.
+- A status report has written Green, Amber or Red on every status, at most five highlights, two tables and one ask, and appears only in a deck that is sent rather than presented.
 - One accent per slide, and no accent carries text.
 - Every chart bar carries a --flux-bar percentage, and a donut’s two dash values add up to 100.
 - A chart, a donut or a timeline has a caption saying what it shows. A figure without a claim is decoration.
@@ -178,7 +187,7 @@ BEFORE YOU SEND IT BACK
 - No company-facts slide without an accompanying image — use split-photo.
 - The deck reads correctly with the browser at any window size, because the composition scales as one piece and leftover viewport takes the slide’s ground.
 
-Copy the markup for each layout from the full contract rather than inventing it.`Fetching beats pastingIf the teammate can read a URL at request time, point it at`/decks/llms.txt` instead. That is the complete contract, including copyable markup for all nineteen layouts, and it cannot go stale in a text box someone filled in once.
+Copy the markup for each layout from the full contract rather than inventing it.`Fetching beats pastingIf the teammate can read a URL at request time, point it at`/decks/llms.txt` instead. That is the complete contract, including copyable markup for all twenty layouts, and it cannot go stale in a text box someone filled in once.
 ## Asking for a deck
 The brief handles the design. What it cannot guess is the argument.
 
@@ -216,6 +225,6 @@ bashCopy`npx flux-check deck.html`That catches raw colours, raw dimensions, synt
 ## When it comes out wrong
 Three failures account for most of it, and each has a specific cause.
 
-SymptomCauseFixEvery slide is a title and bulletsThe request was a topic rather than an argument, so there was nothing for the other layouts to hold.Give it the numbers, the counter-argument and the ask.The deck is all one colourGround was set once on the root instead of per slide.Ask it to rotate the ground. The brief says to; long decks are where it slips.It invented CSSA layout it wanted did not exist, and it built one rather than saying so.Ask which layout was missing, then tell us — that is a real gap in the set.The nineteen layouts, with live specimens and the markup for each, are on [Decks](/patterns/decks/).
+SymptomCauseFixEvery slide is a title and bulletsThe request was a topic rather than an argument, so there was nothing for the other layouts to hold.Give it the numbers, the counter-argument and the ask.The deck is all one colourGround was set once on the root instead of per slide.Ask it to rotate the ground. The brief says to; long decks are where it slips.It invented CSSA layout it wanted did not exist, and it built one rather than saying so.Ask which layout was missing, then tell us — that is a real gap in the set.The twenty layouts, with live specimens and the markup for each, are on [Decks](/patterns/decks/).
 
 [PreviousPrototype prompt](/for-ai/prototypes/)[NextDownloads](/resources/downloads/)

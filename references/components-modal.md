@@ -12,7 +12,7 @@ Plain-text source, for agents and clipboard use: [/components/source/modal.txt](
 ## When to use it
 Use when a decision must be made before anything else can continue — confirming a destructive action, or completing a short, self-contained task.
 
-Not thisDo not use a modal for content the user might want to keep beside the page, for long forms, or for non-urgent information. Stacked modals are always a design failure.
+Not thisNever for a task that needs information outside the modal: creating or editing complex bookings, multi-step workflows, searching and selecting inventory, comparing products, services or prices, assigning passengers to rooms or cabins, editing pricing structures, configuring departures or services, large forms or editable tables. Use inline editing, a Drawer, the List and detail split view or a page — see Interaction architecture. Not for non-urgent information. A modal never opens another modal.
 ## Examples
 
 ### Confirmation
@@ -38,7 +38,7 @@ Cancel booking
 ## Anatomy
 PartDescriptionBackdropsurface-backdrop, from the theme.HeaderTitle and a divider.BodySecondary text. Scrolls if it must.FooterRight-aligned. Cancel first, primary action last.
 ## API
-NameKindDescription`dialog`elementUse the native element. Open with showModal(), never by toggling a class.`flux-modal`classThe dialog surface, including its ::backdrop.`flux-modal__header`classDivided title row.`flux-modal__body`classContent region.`flux-modal__footer`classRight-aligned action row.
+NameKindDescription`dialog`elementUse the native element. Open with showModal(), never by toggling a class.`flux-modal`classThe dialog surface, including its ::backdrop.`flux-modal--wide`classWidens the dialog to --flux-modal-width-max, 90% of the window, when a permitted decision must show what it affects, such as the read-only summary of an irreversible change. Never for a table, a comparison or a form.`flux-modal__header`classDivided title row.`flux-modal__body`classContent region.`flux-modal__footer`classRight-aligned action row.
 ## States
 StateTreatmentClosedNot rendered and not focusable.OpenPage behind is inert; focus moves into the dialog.
 ## Keyboard
@@ -57,12 +57,15 @@ The tier-3 and tier-2 tokens this component binds to. Change the token, not the 
 - --flux-modal-shadow
 - --flux-modal-backdrop
 - --flux-modal-width-sm | -md | -lg
+- --flux-modal-width-max
 ## Do and don’t
 Do
 
 - Name the consequence in the title, not "Are you sure?".
-- Label the confirm button with the action itself, so it reads correctly out of context.Don’t
+- Label the confirm button with the action itself, so it reads correctly out of context.
+- Leave the underlying data exactly as it was when the modal is cancelled.Don’t
 
 - Do not tint the backdrop with a brand colour.
 - Do not open a modal from a modal.
-- Do not put a form longer than a few fields inside one.[PreviousCommand palette](/components/command-palette/)[NextDrawer](/components/drawer/)
+- Do not put a form longer than a few fields inside one.
+- Do not use a modal to reduce visual clutter, or to avoid navigating to a page.[PreviousCommand palette](/components/command-palette/)[NextDrawer](/components/drawer/)

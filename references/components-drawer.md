@@ -10,9 +10,9 @@ A full-height panel over the page, from its end edge, to read or edit one record
 Plain-text source, for agents and clipboard use: [/components/source/drawer.txt](/components/source/drawer.txt)
 
 ## When to use it
-Shows a record, or a short task on it, while the page it came from stays in place behind. It is a native dialog opened with showModal(), so focus moves into it, the page behind is inert, Escape or a click outside closes it and focus returns to the button that opened it. The header names the record, the body scrolls on its own, and the action row stays pinned at the bottom.
+Shows a record, or a short task on it, while the page it came from stays in place behind. It is a native dialog opened with showModal(), so focus moves into it, the page behind is inert, Escape or a click outside closes it and focus returns to the button that opened it. Once a field in it has been edited, a click outside no longer closes it, so a stray click cannot dismiss unsaved work. The header names the record, the body scrolls on its own, and the action row stays pinned at the bottom.
 
-Not thisNot for a decision that must be made before anything else; use a Modal. Not for a list and its detail that people move through one after another; use the List and detail split view, which keeps both visible. Not for a long task with steps; give it its own page or a wizard. Never open a drawer from a drawer.
+Not thisNot for a decision that must be made before anything else; use a Modal. Not for a list and its detail that people move through one after another; use the List and detail split view, which keeps both visible. Not for a long task with steps, a large configuration or anything that needs extensive horizontal space; promote it to its own page. Not when the workspace behind must stay usable while the panel is open; use the List and detail split view. Never open a drawer from a drawer.
 ## Examples
 
 ### Record
@@ -54,7 +54,7 @@ Open booking
 
 `
 ### Task
-A form inside the drawer, with method="dialog" so Save closes it. Closing it any other way leaves the fields as they were, so reopening the drawer returns to what was typed.
+A form inside the drawer, with method="dialog" so Save closes it. Closing it any other way leaves the fields as they were, so reopening the drawer returns to what was typed. Once a field has been edited, a click outside no longer closes it; Cancel, the close button or Escape still do.
 
 Assign guide
 
@@ -91,9 +91,9 @@ PartDescriptionOpenerA button with commandfor naming the drawer and command="sho
 ## API
 NameKindDescription`dialog`elementThe native element. Open it with showModal(), never by toggling a class or the open attribute.`flux-drawer`classOn the dialog. Give it an id and aria-labelledby pointing at the title.`flux-drawer--lg`classThe wide drawer, for a record with a table in it.`flux-drawer__header | __heading | __title | __meta | __close`classThe header row: the heading block, its title and context line, and the close button.`flux-drawer__body`classThe scrolling content.`flux-drawer__footer`classThe pinned action row.`flux-drawer__form`classA form wrapping header, body and footer, so a submit button in the footer submits the fields in the body.`commandfor | command`attributeOn a button: the drawer’s id, and show-modal or close. flux-components.js supplies them where the browser does not.
 ## States
-StateTreatmentClosedNot rendered and not focusable.OpenSlides in from the end edge over surface-backdrop. The page behind is inert.Narrow viewportNever wider than the viewport; on a phone it covers the screen.
+StateTreatmentClosedNot rendered and not focusable.OpenSlides in from the end edge over surface-backdrop. The page behind is inert.Narrow viewportAt 48rem and narrower, the width where the App shell drops its rail, the drawer becomes a full-screen view. It stays a dialog with the same header, close button and pinned action row; do not restyle it in a page.
 ## Keyboard
-KeysAction`Escape`Closes the drawer. Native behaviour — do not prevent it.`Tab`Cycles within the drawer only.`Click outside`Closes the drawer. Requires flux-components.js.
+KeysAction`Escape`Closes the drawer. Native behaviour — do not prevent it.`Tab`Cycles within the drawer only.`Click outside`Closes the drawer, unless a field in it has been edited since it opened. Requires flux-components.js.
 ## Accessibility
 
 - showModal() traps focus, makes the page inert and handles Escape; a div-based drawer reimplements all three.

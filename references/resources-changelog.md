@@ -7,6 +7,47 @@ Resources
 # Changelog
 Flux 2.0 is almost entirely additive, and the six places where it is not are the reason it publishes at its own URL rather than over the top of 1.x.
 
+## 2.11.0
+
+### Added
+
+- Slide overview. Press G in any deck that loads flux-deck.js to see every slide as a thumbnail, so a presenter can jump straight to the slide a question is about. Arrow keys move, Enter opens and G or Escape closes. It is a native dialog on the deep ground and is never printed. Existing decks get it without a change, and the new --flux-slide-overview-tile-min sets the narrowest thumbnail.
+## 2.10.0
+
+### Added
+
+- Truncation with hover. data-truncate on a table cell caps a long name or description at the new --flux-table-truncate-width and ends it in an ellipsis. flux-components.js adds the full value as hover text whenever a value is actually cut off, and updates it as the column resizes or the text changes. A new hard rule makes it the only truncation, and never for a reference, an amount or a date.
+### Changed
+
+- Hover text on Flux’s own truncation. Select, Multi-select and Date picker values, App shell labels, the current breadcrumb, Stepper labels and File upload names now show their full text on hover when they are cut off. A title the markup sets itself is left alone.
+## 2.9.1
+
+### Fixed
+
+- Agenda video in Claude. Claude Slides rebuilds each slide from inline values and cannot blend a video into its ground, so the agenda video showed as a black box. The Claude design system now ships flower-blooming-deep.mp4, with the deep-teal ground rendered into the frames to the exact value, and its deck guide explains how Claude rebuilds a template: every value from tokens.json, no effect that exists only in CSS, and Claude’s own video control in place of the Flux pause button.
+## 2.9.0
+
+### Added
+
+- Kaptio Design System for Claude. Flux now generates the design system Claude’s slide editor builds from, at /claude/kaptio-design-system/: the Flux stylesheets, every deck layout as a 1920 × 1080 template, Flux colours, type and spacing in Claude’s token format, the white wordmark, and the deck contract adapted to Claude. Exported Claude decks block external files, so everything a slide needs ships inside it. It regenerates with every build.
+## 2.8.0
+
+### Added
+
+- Status report slide template. A read-ahead layout for decks that are sent rather than presented, such as a monthly programme update: the title with an overall status, up to five highlights beside up to two tables, and one ask. Green, amber and red are always written and take the Badge’s audited pairings. It has its own budget in place of the twenty-five-word count, and existing decks are unchanged.
+### Changed
+
+- Drawer on narrow screens. At 48rem and narrower, the width where the App shell drops its rail, the Drawer becomes a full-screen view, as the interaction architecture requires. Wider viewports are unchanged.
+## 2.7.0
+
+### Added
+
+- Interaction architecture. The mandatory Kaptio standard, Context over modals, is now part of Flux: a new patterns page, a section of llms.txt, and an Interaction architecture section in the hard rules, so it reaches flux.mdc and AGENTS.md. It sets the order of patterns — inline editing, expandable sections, side panels, split views, dedicated pages — and limits a modal to short, blocking decisions.
+- Wide modal. flux-modal--wide opens a modal at the new --flux-modal-width-max, 90% of the window, when a permitted decision must show what it affects. Every modal is now capped at that width, so on a phone it leaves a margin rather than running edge to edge.
+### Changed
+
+- Drawer keeps edited work open. Once a field in a drawer has been edited, a click outside it no longer closes it. Cancel, the close button and Escape still do, and typed values are kept as before.
+- Component guidance. Modal, Drawer and Editable cell now point to the pattern the standard prescribes instead of a modal for complex or consequential edits.
 ## 2.6.0
 
 ### Added
@@ -79,7 +120,7 @@ Flux 2.0 is almost entirely additive, and the six places where it is not are the
 - Component tokens. Tier 3 dimensions and role bindings for all 48 documented components.
 - Component layer. flux-components.css — framework-agnostic CSS built entirely from tier-3 tokens.
 - Date picker. Single-date and date-range calendars with ISO form values, hover range preview and the WAI-ARIA keyboard pattern.
-- Deck layer. flux-deck.css — the presentation surface. A 16:9 canvas that scales as one piece, nineteen slide layouts, and per-slide theming so a deck varies its ground without leaving the contrast audit. Loosens scale, ground, asymmetry and bleed; holds tokens, type and contrast.
+- Deck layer. flux-deck.css — the presentation surface. A 16:9 canvas that scales as one piece, twenty slide layouts, and per-slide theming so a deck varies its ground without leaving the contrast audit. Loosens scale, ground, asymmetry and bleed; holds tokens, type and contrast.
 - Deck contract. A second agent contract at /decks/llms.txt. Separate from llms.txt on purpose: slide rules and product rules disagree, and an agent given both averages them.
 - Deck navigation. flux-deck.js — previous and next arrows, click to advance, click the left quarter to go back, plus the arrow keys, space, Page Up and Down, and Home and End. Snapping stays in CSS, so a deck that never loads the script is still a working deck.
 - Diagram vocabulary. flux-figure__frame, -panel, -link, -label, -note and -value, so an inline SVG carries roles instead of colours and re-themes with its slide. Wrap parts in flux-stage to reveal them in the order you explain them — six stages at most, and every stage shows if the script never loads.

@@ -54,4 +54,4 @@ Do
 - Keep the query when the user navigates away and comes back.Don’t
 
 - Do not hide the label to save space. Put the search in the table toolbar, where its label fits.
-- Do not clear the query when results are empty. The user needs it to correct the typo.[PreviousSlider](/components/slider/)[NextCard](/components/card/)
+- Do not clear the query when results are empty. The user needs it to correct the typo.[PreviousQuantity](/components/quantity/)[NextCard](/components/card/)

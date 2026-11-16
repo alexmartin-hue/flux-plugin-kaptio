@@ -196,13 +196,13 @@ generic even when every value is correct.
 
 ## Components
 
-48 components are documented with live specimens, markup, states, keyboard
+49 components are documented with live specimens, markup, states, keyboard
 behaviour and token bindings. Read the plain-text source before building one
 from scratch:
 
 https://flux.kaptio.com/components/source/.txt
 
-Available: button, input, select, date-picker, checkbox, switch, slider, search, card, description-list, metric, chart, heatmap, timeline, itinerary, calendar, map, flow, app-shell, spinner, progress, skeleton, accordion, toast, reorder, board, editable-cell, tooltip, empty-state, breadcrumbs, pagination, segmented-control, stepper, walkthrough, split-view, file-upload, assistant-panel, rich-text-editor, badge, table, menu, kbd, command-palette, modal, drawer, note, tabs, avatar.
+Available: button, input, select, date-picker, checkbox, switch, slider, quantity, search, card, description-list, metric, chart, heatmap, timeline, itinerary, calendar, map, flow, app-shell, spinner, progress, skeleton, accordion, toast, reorder, board, editable-cell, tooltip, empty-state, breadcrumbs, pagination, segmented-control, stepper, walkthrough, split-view, file-upload, assistant-panel, rich-text-editor, badge, table, menu, kbd, command-palette, modal, drawer, note, tabs, avatar.
 
 If the repository already has a component for the job, extend it. Do not create
 a second implementation of a documented component.

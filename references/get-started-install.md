@@ -19,7 +19,7 @@ Pinned, versioned, published to the Kaptio GitLab registry.
 
 bashCopy`# .npmrc at the repo root. The registry is private, so every install authenticates.
 @kaptio:registry=https://gitlab.com/api/v4/projects/80171946/packages/npm/
-//gitlab.com/api/v4/projects/80171946/packages/npm/:_authToken=${CI_JOB_TOKEN}`bashCopy`npm install @kaptio/flux-tokens@2.11.0`A pipeline in another project can read the package with `CI_JOB_TOKEN` once that project is on the job token allowlist of `kaptio1/kaptio-tooling/kaptio-flux`. Ask a maintainer to add it. Locally, set `CI_JOB_TOKEN` to a personal access token with the `read_api` scope; npm fails on the unset variable otherwise.
+//gitlab.com/api/v4/projects/80171946/packages/npm/:_authToken=${CI_JOB_TOKEN}`bashCopy`npm install @kaptio/flux-tokens@2.12.0`A pipeline in another project can read the package with `CI_JOB_TOKEN` once that project is on the job token allowlist of `kaptio1/kaptio-tooling/kaptio-flux`. Ask a maintainer to add it. Locally, set `CI_JOB_TOKEN` to a personal access token with the `read_api` scope; npm fails on the unset variable otherwise.
 
 cssCopy`/* In your root stylesheet, before anything of your own. */
 @import "@kaptio/flux-tokens/flux.css";`ImportGives you`@kaptio/flux-tokens/flux.css`Fonts, all three tiers, base rules. The usual choice.`@kaptio/flux-tokens/flux-tokens.css`Tokens only. Use when you self-host fonts.`@kaptio/flux-tokens/flux.json`Every token as data, for tooling.`@kaptio/flux-tokens/flux-tailwind.css`The Tailwind v4 preset.
@@ -36,7 +36,7 @@ Every stock colour family resolves to the nearest Flux ramp step, and steps 700 
 
 NeverArbitrary-value syntax — `bg-[#056F82]`, `p-[14px]`,`text-[15px]`. It bypasses the token layer entirely, and it is invisible to every theme.
 ## The component layer
-Optional. Working CSS for the 48 documented components, built from tier-3 tokens.
+Optional. Working CSS for the 49 documented components, built from tier-3 tokens.
 
 cssCopy`@import "@kaptio/flux-tokens/flux.css";
 @import "@kaptio/flux-tokens/flux-components.css";`htmlCopy``Import it and `.flux-button`, `.flux-card` and the rest work immediately, in all three themes. Or read it as the reference implementation and reproduce the same token bindings in React, Lightning Web Components or whatever the project uses — the bindings are the contract, not the class names.
@@ -66,7 +66,7 @@ return () => table.removeEventListener('flux-sort', onSort);
 
 return …;`NoteKey a component on its data, not on its position, so a re-render moves the enhanced element rather than handing its listeners to a different record.
 ## What each artifact contains
-FileSizeContents`flux.css`53.7 kBFont imports, 822 tokens across three tiers and three themes, base rules.`flux-tokens.css`51.9 kBThe same tokens, without font imports or base rules.`flux.json`146.0 kBEvery token as structured data, grouped by tier and theme.`flux-tailwind.css`21.9 kBTailwind v4 theme block. Clears defaults, remaps names.`flux-components.css`157.7 kBThe 48 components, as framework-agnostic CSS.`flux-components.js`104.7 kBBehaviour for the interactive components: keyboard handling, form values and invoker commands.
+FileSizeContents`flux.css`54.1 kBFont imports, 828 tokens across three tiers and three themes, base rules.`flux-tokens.css`52.3 kBThe same tokens, without font imports or base rules.`flux.json`147.0 kBEvery token as structured data, grouped by tier and theme.`flux-tailwind.css`21.9 kBTailwind v4 theme block. Clears defaults, remaps names.`flux-components.css`159.7 kBThe 49 components, as framework-agnostic CSS.`flux-components.js`107.1 kBBehaviour for the interactive components: keyboard handling, form values and invoker commands.
 ## Verify the install
 Three checks that catch the usual failures.
 

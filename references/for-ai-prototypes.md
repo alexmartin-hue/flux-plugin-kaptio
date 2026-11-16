@@ -42,6 +42,7 @@ Components — choose from this list before writing any markup:
 - Checkbox and radio (checkbox): On-or-off choices and one-of-many choices, each with its label beside it.
 - Switch (switch): An on or off setting that takes effect the moment it changes.
 - Slider (slider): A duration, count or amount chosen by dragging along a bounded scale, as one value or a range.
+- Quantity (quantity): A small whole number set with minus and plus buttons, or typed: travellers, rooms, nights.
 - Search (search): A search field with its icon, a clear button and the number of results.
 - Card (card): Groups related content into one surface on the layer above.
 - Description list (description-list): Labelled values in a row or a stack. The summary block at the top of a record.

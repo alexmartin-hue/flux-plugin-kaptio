@@ -5,7 +5,7 @@ Source: https://flux.kaptio.com/components
 Components
 
 # Components
-48 components, each documented to the same shape: a live specimen, the exact markup behind it, the tokens it binds to, and the accessibility contract it has to keep.
+49 components, each documented to the same shape: a live specimen, the exact markup behind it, the tokens it binds to, and the accessibility contract it has to keep.
 
 - [Button
 
@@ -28,6 +28,9 @@ An on or off setting that takes effect the moment it changes.](/components/switc
 - [Slider
 
 A duration, count or amount chosen by dragging along a bounded scale, as one value or a range.](/components/slider/)
+- [Quantity
+
+A small whole number set with minus and plus buttons, or typed: travellers, rooms, nights.](/components/quantity/)
 - [Search
 
 A search field with its icon, a clear button and the number of results.](/components/search/)

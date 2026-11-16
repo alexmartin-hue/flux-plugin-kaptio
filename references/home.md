@@ -61,7 +61,7 @@ Flux is designed to be consumed by language models as much as by people. The who
 Individual components are at `/components/source/.txt`. Repository rules for Cursor, Claude Code and Copilot are at [For AI → Repository rules](/for-ai/rules/).
 
 ## Components
-48, documented to one shape. Each one shows a live specimen above the exact markup that produced it.
+49, documented to one shape. Each one shows a live specimen above the exact markup that produced it.
 
 - [Button
 
@@ -84,6 +84,9 @@ An on or off setting that takes effect the moment it changes.](/components/switc
 - [Slider
 
 A duration, count or amount chosen by dragging along a bounded scale, as one value or a range.](/components/slider/)
+- [Quantity
+
+A small whole number set with minus and plus buttons, or typed: travellers, rooms, nights.](/components/quantity/)
 - [Search
 
 A search field with its icon, a clear button and the number of results.](/components/search/)

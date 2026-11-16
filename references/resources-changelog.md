@@ -7,6 +7,11 @@ Resources
 # Changelog
 Flux 2.0 is almost entirely additive, and the six places where it is not are the reason it publishes at its own URL rather than over the top of 1.x.
 
+## 2.12.0
+
+### Added
+
+- Quantity. A new component for a small count set with minus and plus buttons, such as adults, children or rooms. The value between the buttons is a text field with role="spinbutton", so it can be typed and stepped with the arrow keys, Page Up and Down, and Home and End. Each button is disabled at its bound, and a typed value is brought back within bounds. It never uses input type="number", whose spin arrows draw in the operating system style.
 ## 2.11.0
 
 ### Added
@@ -117,7 +122,7 @@ Flux 2.0 is almost entirely additive, and the six places where it is not are the
 - Three themes. light, dark and deep, switched with data-flux-theme on any element. Light is byte-identical to Flux 1.x.
 - Layer model. layer-00 through layer-03 plus hover states, so nested surfaces stay legible without hand-picked greys in any theme.
 - JetBrains Mono as a second voice. Promoted from a code font to a documented voice at 400, 500 and 700, for data rather than language.
-- Component tokens. Tier 3 dimensions and role bindings for all 48 documented components.
+- Component tokens. Tier 3 dimensions and role bindings for all 49 documented components.
 - Component layer. flux-components.css — framework-agnostic CSS built entirely from tier-3 tokens.
 - Date picker. Single-date and date-range calendars with ISO form values, hover range preview and the WAI-ARIA keyboard pattern.
 - Deck layer. flux-deck.css — the presentation surface. A 16:9 canvas that scales as one piece, twenty slide layouts, and per-slide theming so a deck varies its ground without leaving the contrast audit. Loosens scale, ground, asymmetry and bleed; holds tokens, type and contrast.

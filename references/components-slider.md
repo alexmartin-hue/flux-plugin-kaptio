@@ -107,4 +107,4 @@ Do
 - Do not use a slider for a value people need exactly, such as a price; use a number Input.
 - Do not hide the value text and leave the handle position to say it.
 - Do not explain the value in text below the track. Use the info bubble.
-- Do not put two independent sliders on one track. A shared track is only for a minimum and maximum of the same quantity.[PreviousSwitch](/components/switch/)[NextSearch](/components/search/)
+- Do not put two independent sliders on one track. A shared track is only for a minimum and maximum of the same quantity.[PreviousSwitch](/components/switch/)[NextQuantity](/components/quantity/)

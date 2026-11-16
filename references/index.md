@@ -52,6 +52,7 @@ Scraped from https://flux.kaptio.com. Regenerate: `python scripts/scrape_flux.py
 - [/components/pagination/](components-pagination.md)
 - [/components/progress](components-progress.md)
 - [/components/progress/](components-progress.md)
+- [/components/quantity/](components-quantity.md)
 - [/components/reorder/](components-reorder.md)
 - [/components/rich-text-editor/](components-rich-text-editor.md)
 - [/components/search/](components-search.md)

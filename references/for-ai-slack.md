@@ -48,7 +48,7 @@ NON-NEGOTIABLE — these hold on every slide
 - Product accents colour type and data: the oversized mark, the list numerals, chart bars, a donut arc. Never decoration — no bar on the edge of a card, no rule beside a label — and never a word you are meant to read.
 - Interface radius stays --flux-radius-sm. A slide is not a reason for a soft corner.
 - No gradient fills, no glassmorphism, no glow, no neon, no blur behind content, no gradient mesh. The one exception is flux-slide__caption on an image slide: its built-in scrim, clear to black, keeps type legible on a photograph. Never write a gradient of your own.
-- No emoji as an icon system.
+- Every icon is Phosphor: Regular, or Duotone with flux-slide__icon. No other set, no other weight and no emoji as icons.
 - Animate opacity and transform. Never width, height, top, left, margin or padding.
 - Deck videos are decorative and muted. They pause off-slide, respect reduced motion, and always have the Flux pause control. Background video with the deep-teal overlay is allowed on the cover and the closing ask; the agenda keeps its own video-backed layout. Nowhere else.
 - The agenda video shows its complete frame: never crop it. Bottom-align it inside a full-height media region that occupies at least two-fifths of the slide, so the visual remains substantial beside the agenda.
@@ -140,6 +140,7 @@ flux-slide__agenda-video Decorative muted video for the agenda archetype.
 flux-slide__quote        With flux-slide__attribution.
 flux-slide__quote-figure  around the quote, with a  attribution. Adds the oversized opening mark.
 flux-slide__cells         of four to six items: an h3 and one line each, on hairlines.
+flux-slide__icon         Phosphor Duotone SVG. Line in the icon colour, tone layer in light Seagreen, or light yellow or Kaptio Teal with data-tone="yellow" or "kaptio-teal".
 flux-slide__tiles        With flux-slide__tile children. Boxed; prefer __cells.
 flux-slide__media        Full-bleed image or muted video. Cover and closing sit it under the teal overlay; image slides sit type on a caption or a plate.
 flux-slide__caption      Title and lede centred at the foot of an image slide, over the built-in scrim.

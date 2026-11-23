@@ -23,6 +23,14 @@ The dominant colour. `primary-400` is the interactive teal, `primary-800`is the 
 - --flux-primary-200#B4D4DA
 - --flux-primary-100#E6F1F2
 - --flux-primary-50#EFF5F5
+### Kaptio Teal — graphic only
+The light cyan beside Seagreen, for illustration fills, diagram keys and marks. No step reaches 4.5:1 on a light ground, so it never carries text and never replaces `primary` in an interface role.
+
+- --flux-kaptio-teal-600#449DBF
+- --flux-kaptio-teal-400#67D6FB
+- --flux-kaptio-teal-300#98E5FC
+- --flux-kaptio-teal-200#C9F3FE
+- --flux-kaptio-teal-100#EDFBFF
 ### Bumble-Me Yellow — call to action
 Reserved. See [the yellow rule](#yellow) below.
 

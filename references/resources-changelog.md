@@ -7,6 +7,22 @@ Resources
 # Changelog
 Flux 2.0 is almost entirely additive, and the six places where it is not are the reason it publishes at its own URL rather than over the top of 1.x.
 
+## 2.14.0
+
+### Added
+
+- Kaptio Teal. The light cyan of the brand palette is now a primitive family, --flux-kaptio-teal-100 to -600, separate from Seagreen. It is graphic only — fills, marks and diagram keys — because no step reaches 4.5:1 on a light ground. It is documented on the Colour page.
+### Changed
+
+- Phosphor Regular icons. Every icon in Flux now comes from Phosphor Regular (MIT, @phosphor-icons/core), replacing the hand-drawn 16px set. That covers component markup, the icons flux-components.js and flux-deck.js draw at runtime, the breadcrumb separator and the docs navigation. Icons are inline, filled with currentColor and sized by each component exactly as before, so colour, theming and layout are unchanged. Copied markup now uses viewBox="0 0 256 256" with fill="currentColor"; older markup with the 16px icons still renders.
+- Unsorted table header. An unsorted sortable column shows the Phosphor caret-up-down mark, and a sorted one shows a single centred caret in the sort direction.
+- Icon rule. The agent contract names Phosphor Regular as the only icon set: no other weight in product UI, no second set and no emoji as icons.
+- Duotone icons in decks. A slide may use Phosphor Duotone with the new flux-slide__icon class. The line takes the ground’s icon colour and the tone layer takes a light Seagreen, --flux-slide-icon-tone, or with data-tone="yellow" or "kaptio-teal" a light yellow or light Kaptio Teal. A dark or deep slide always takes yellow, and no accent changes the tone. The new --flux-slide-icon-size sets it at 3rem. Product UI stays on Regular.
+## 2.13.0
+
+### Added
+
+- Groups in the App shell rail. A rail item can now be a parent: a button with aria-expanded that shows and hides its child destinations, indented beneath it, one level deep. A group holding the current page opens on load, and a closed one marks its parent in bold text-brand. In a collapsed rail the children open as a flyout beside the rail, a native popover with light dismiss, Escape and focus return. On a narrow screen the sheet shows the same tree. Existing rails are unchanged.
 ## 2.12.0
 
 ### Added

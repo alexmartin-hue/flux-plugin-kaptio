@@ -84,6 +84,7 @@ Scraped from https://flux.kaptio.com. Regenerate: `python scripts/scrape_flux.py
 - [/foundations/accessibility/](foundations-accessibility.md)
 - [/foundations/color/](foundations-color.md)
 - [/foundations/elevation/](foundations-elevation.md)
+- [/foundations/icons/](foundations-icons.md)
 - [/foundations/layout/](foundations-layout.md)
 - [/foundations/motion/](foundations-motion.md)
 - [/foundations/tokens](foundations-tokens.md)

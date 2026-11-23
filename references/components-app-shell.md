@@ -16,7 +16,7 @@ Not thisNot for a single task with a start and an end, such as a booking or a se
 ## Examples
 
 ### Shell with sectioned rail
-Property mapping is the current destination. Collapse the rail from its foot; at 48rem and below the rail moves behind the menu button in the top bar. The contained modifier frames the shell for this preview; an application leaves it off and fills the viewport.
+Properties, under the Mapping group, is the current destination, so its group opens and the page loads with it in view. Collapse the rail from its foot; at 48rem and below the rail moves behind the menu button in the top bar. The contained modifier frames the shell for this preview; an application leaves it off and fills the viewport.
 
 [Skip to content](#shell-main)
 
@@ -30,7 +30,13 @@ Connectors
 
 Setup
 
-- [Property mapping](#)
+Mapping
+
+- [Properties](#)
+
+- [Room types](#)
+
+- [Rate plans4](#)
 
 - [Content import](#)
 
@@ -65,7 +71,12 @@ Requests3
 
 Setup
 
-Property mapping
+Mapping
+
+Properties
+Room types
+Rate plans4
+
 Content import
 Network import
 
@@ -86,13 +97,13 @@ Match each supplier property to its Kaptio service before content is imported.
 
 `
 ## Anatomy
-PartDescriptionSkip linkThe first focusable element. Hidden until focused, then jumps to the main column.RailA nav labelled with the product name, on layer-01 with a hairline against the main column.ProductThe product mark, filled with its --flux-product-* accent, and the product name. Links to the product home.SectionsGroups of destinations, each with a short mono label. Three or four sections at most.ItemAn icon, a label and an optional count. The current destination carries aria-current="page".CollapseAt the foot of the rail. Reduces the rail to its icons on a wide screen.Top barThe menu button on a narrow screen, the search entry point, and the session context with the avatar.MainThe page itself: its h1, then its content. It scrolls beneath the sticky top bar.
+PartDescriptionSkip linkThe first focusable element. Hidden until focused, then jumps to the main column.RailA nav labelled with the product name, on layer-01 with a hairline against the main column.ProductThe product mark, filled with its --flux-product-* accent, and the product name. Links to the product home.SectionsGroups of destinations, each with a short mono label. Three or four sections at most.ItemAn icon, a label and an optional count. The current destination carries aria-current="page".GroupOptional. A parent button with an icon, a label and a chevron, and its child destinations indented beneath it. One level deep, never more.CollapseAt the foot of the rail. Reduces the rail to its icons on a wide screen.Top barThe menu button on a narrow screen, the search entry point, and the session context with the avatar.MainThe page itself: its h1, then its content. It scrolls beneath the sticky top bar.
 ## API
-NameKindDescription`flux-shell`classThe grid. Fills the viewport and holds the rail, the top bar and the main column.`data-flux-shell`attributeWires collapse, the narrow sheet and the search shortcut. Requires flux-components.js.`flux-shell--contained`classFrames the shell at --flux-shell-contained-height for previews and documentation. The search shortcut is not bound, so the host page keeps its own.`data-collapsed`attributeOn flux-shell. Set it at render time to start collapsed, for example from a saved preference.`flux-shell__skip`classThe skip link. Its href names the main column.`flux-shell__rail`classThe nav element. Give it an id for the menu button’s aria-controls and an aria-label with the product name.`flux-shell__product`classThe product link, with flux-shell__mark and flux-shell__product-name inside.`flux-shell__mark`classThe square mark. Set --flux-shell-mark to the product’s accent, such as var(--flux-product-edge).`flux-shell__product-meta`classOptional span inside the product name, such as Kaptio Edge.`flux-shell__nav`classThe scrolling list of sections.`flux-shell__section`classOne group: a flux-shell__section-label span and a flux-shell__list ul labelled by it.`flux-shell__item`classA link with an svg icon, a flux-shell__label span and an optional flux-shell__count span.`aria-current="page"`attributeOn the item for the current destination. Fills the item and sets its label in bold.`flux-shell__footer`classHolds the collapse button, a flux-shell__item with flux-shell__collapse and data-flux-shell-collapse.`flux-shell__topbar`classThe header element.`data-flux-shell-menu`attributeOn a ghost Button with flux-shell__menu, aria-controls and aria-expanded. Shown at 48rem and below.`data-flux-shell-search`attributeOn the flux-shell__search button. Click and ⌘K or Ctrl K dispatch a bubbling flux-shell-search event; open the product’s search in a Modal from it.`flux-shell__actions`classThe end of the top bar: flux-shell__context in mono and an Avatar.`flux-shell__main`classThe main element, with the id the skip link names and tabindex="-1".
+NameKindDescription`flux-shell`classThe grid. Fills the viewport and holds the rail, the top bar and the main column.`data-flux-shell`attributeWires collapse, the narrow sheet and the search shortcut. Requires flux-components.js.`flux-shell--contained`classFrames the shell at --flux-shell-contained-height for previews and documentation. The search shortcut is not bound, so the host page keeps its own.`data-collapsed`attributeOn flux-shell. Set it at render time to start collapsed, for example from a saved preference.`flux-shell__skip`classThe skip link. Its href names the main column.`flux-shell__rail`classThe nav element. Give it an id for the menu button’s aria-controls and an aria-label with the product name.`flux-shell__product`classThe product link, with flux-shell__mark and flux-shell__product-name inside.`flux-shell__mark`classThe square mark. Set --flux-shell-mark to the product’s accent, such as var(--flux-product-edge).`flux-shell__product-meta`classOptional span inside the product name, such as Kaptio Edge.`flux-shell__nav`classThe scrolling list of sections.`flux-shell__section`classOne group: a flux-shell__section-label span and a flux-shell__list ul labelled by it.`flux-shell__item`classA link with an svg icon, a flux-shell__label span and an optional flux-shell__count span.`aria-current="page"`attributeOn the item for the current destination. Fills the item and sets its label in bold.`flux-shell__group`classAn li holding a parent button and its sublist, in place of an item.`flux-shell__parent`classWith flux-shell__item, on a button type="button" with aria-expanded and aria-controls naming its sublist. An svg icon, a flux-shell__label and an svg with flux-shell__chevron. It opens the group; it is never a destination itself.`flux-shell__sublist`classThe ul of children, with the id the parent controls. A group holds items, never another group.`flux-shell__subitem`classWith flux-shell__item, on each child link: a flux-shell__label and an optional count, no icon.`flux-shell__footer`classHolds the collapse button, a flux-shell__item with flux-shell__collapse and data-flux-shell-collapse.`flux-shell__topbar`classThe header element.`data-flux-shell-menu`attributeOn a ghost Button with flux-shell__menu, aria-controls and aria-expanded. Shown at 48rem and below.`data-flux-shell-search`attributeOn the flux-shell__search button. Click and ⌘K or Ctrl K dispatch a bubbling flux-shell-search event; open the product’s search in a Modal from it.`flux-shell__actions`classThe end of the top bar: flux-shell__context in mono and an Avatar.`flux-shell__main`classThe main element, with the id the skip link names and tabindex="-1".
 ## States
-StateTreatmentCurrentaria-current="page" fills the item in surface-selected, sets the label in bold text-brand and the icon in icon-brand. Weight and fill change, so colour is not the only signal.HoverBackground layer-hover-01 and text-primary. Colour only; nothing moves.CollapsedThe rail narrows to --flux-shell-rail-collapsed-width. Labels, counts and section labels stay in the accessibility tree; each item gains a title with its label, and a hairline separates the sections.NarrowAt 48rem and below the rail leaves the grid. The menu button opens it as a sheet over a backdrop, with --flux-shell-sheet-shadow because it floats. The top bar and main column become inert while it is open.
+StateTreatmentCurrentaria-current="page" fills the item in surface-selected, sets the label in bold text-brand and the icon in icon-brand. Weight and fill change, so colour is not the only signal.HoverBackground layer-hover-01 and text-primary. Colour only; nothing moves.Group openThe chevron turns to point up and the children show beneath the parent. A group holding the current destination opens on load.Group closed, holding the current pageThe parent label turns bold text-brand and its icon icon-brand, so the current destination can be found inside a closed group or a collapsed rail.CollapsedThe rail narrows to --flux-shell-rail-collapsed-width. Labels, counts and section labels stay in the accessibility tree; each item gains a title with its label, and a hairline separates the sections. A parent opens its children as a flyout beside the rail, on surface-overlay with shadow-md, which closes on Escape, on a click outside or when a child is chosen.NarrowAt 48rem and below the rail leaves the grid. The menu button opens it as a sheet over a backdrop, with --flux-shell-sheet-shadow because it floats. The top bar and main column become inert while it is open.
 ## Keyboard
-KeysAction`Tab`Skip link first, then the rail, the top bar and the main column, in that order.`Enter`On the skip link, moves focus to the main column.`⌘K / Ctrl K`Activates the search entry point from anywhere on the page.`Escape`Closes the narrow sheet and returns focus to the menu button.
+KeysAction`Tab`Skip link first, then the rail, the top bar and the main column, in that order.`Enter`On the skip link, moves focus to the main column.`⌘K / Ctrl K`Activates the search entry point from anywhere on the page.`Enter / Space`On a parent, opens or closes its group, or its flyout when the rail is collapsed.`Escape`Closes an open flyout and returns focus to its parent; otherwise closes the narrow sheet and returns focus to the menu button.
 ## Accessibility
 
 - Use nav, header and main, so each region is a landmark. Label the nav with the product name.
@@ -100,6 +111,8 @@ KeysAction`Tab`Skip link first, then the rail, the top bar and the main column, 
 - Label each list by its section label with aria-labelledby, so "Setup, list, 3 items" is announced.
 - Keep labels in the accessibility tree when collapsed. The rail hides them visually, never with display: none.
 - Opening the sheet moves focus to the current item; closing it returns focus to the menu button.
+- A parent is a button with aria-expanded, not a link, so it is announced as "Mapping, collapsed" and never navigates. Put the group's overview page, if there is one, first among its children.
+- In a collapsed rail the flyout is a popover the parent controls: Tab moves from the parent into it, and Escape returns focus to the parent.
 ## Tokens
 The tier-3 and tier-2 tokens this component binds to. Change the token, not the component.
 
@@ -109,15 +122,19 @@ The tier-3 and tier-2 tokens this component binds to. Change the token, not the 
 - --flux-shell-item-height | -item-gap | -item-padding-x | -item-radius | -icon-size
 - --flux-shell-item-text | -item-hover | -item-hover-text | -item-current-bg | -item-current-text | -item-icon | -item-current-icon
 - --flux-shell-mark | -mark-size
+- --flux-shell-subitem-indent | -flyout-width | -flyout-bg | -flyout-border | -flyout-shadow
 ## Do and don’t
 Do
 
 - Name destinations by what the user finds there, such as Requests or Plans, not by the team that owns them.
 - Remember the collapsed state per user, and render data-collapsed on the server or before first paint so the rail does not jump.
 - Show a count only when it is work waiting for the user, such as open requests.
+- Use a group when one area has several destinations of the same kind, such as Properties, Room types and Rate plans under Mapping, and leave every other item flat.
 - Put the page title in the main column’s h1, where it scrolls with the page, and keep the top bar for search and context.Don’t
 
 - Do not number rail items. A rail is a set of places; a sequence belongs in a Flow.
+- Do not nest a group inside a group. If an area needs a third level, give it Tabs or a List and detail inside the page.
+- Do not make the parent a link as well as a toggle. One control, one job.
 - Do not set the rail on a dark or brand ground. It is layer-01, like every other surface around content.
 - Do not put a count in a pill or a badge. A count is not a status.
 - Do not hide items for a role by greying them out. Leave them out, or keep them and explain on the destination why it is locked.

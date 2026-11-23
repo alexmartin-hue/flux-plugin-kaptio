@@ -86,6 +86,7 @@ Most of the palette cannot carry text. Treating a mid-tone accent as a text colo
 - Map every domain status deliberately before rendering it. When sibling states have materially different consequences, leaving every badge on the neutral base style is a defect.
 - A workflow stage is not automatically a warning. Use the yellow pending status only when waiting, delay or required attention is part of the meaning; otherwise use the neutral badge.
 - Product accents (--flux-product-*) are graphic only: fills, marks, diagram keys. Never text, never a global theme.
+- Kaptio Teal (--flux-kaptio-teal-*), the light cyan, is graphic only in the same way. It is not Seagreen: never use it for text, an interface role or in place of primary.
 - Chart series take --flux-chart-1 to -4 in order, and --flux-chart-muted for a comparison such as last year. A heatmap takes the --flux-chart-sequential-1 to -5 ramp. Never a chart library’s palette, a product accent or a status colour.
 - Never use colour as the only signal for a state.
 
@@ -178,7 +179,7 @@ generic even when every value is correct.
 - No gradient fills on interface surfaces. Flat colour, or nothing.
 - No decorative coloured bar along the edge of a card.
 - No coloured dot beside a heading.
-- No emoji as an icon system. Use a consistent icon set.
+- Every icon is Phosphor Regular (https://phosphoricons.com, package @phosphor-icons/core), inline, filled with currentColor and sized by the component. No other weight in product UI, no second icon set, and no emoji as icons.
 - No glow, no neon, no glassmorphism, no heavy blur behind content.
 - No centred body copy. Centre a heading and a lede at most.
 - No three-column feature grid of icon-plus-heading-plus-paragraph as a default layout.
@@ -336,6 +337,7 @@ Most of the palette cannot carry text. Treating a mid-tone accent as a text colo
 - Map every domain status deliberately before rendering it. When sibling states have materially different consequences, leaving every badge on the neutral base style is a defect.
 - A workflow stage is not automatically a warning. Use the yellow pending status only when waiting, delay or required attention is part of the meaning; otherwise use the neutral badge.
 - Product accents (--flux-product-*) are graphic only: fills, marks, diagram keys. Never text, never a global theme.
+- Kaptio Teal (--flux-kaptio-teal-*), the light cyan, is graphic only in the same way. It is not Seagreen: never use it for text, an interface role or in place of primary.
 - Chart series take --flux-chart-1 to -4 in order, and --flux-chart-muted for a comparison such as last year. A heatmap takes the --flux-chart-sequential-1 to -5 ramp. Never a chart library’s palette, a product accent or a status colour.
 - Never use colour as the only signal for a state.
 
@@ -425,7 +427,7 @@ A component that references roles works in three themes for free. A component th
 - No gradient fills on interface surfaces. Flat colour, or nothing.
 - No decorative coloured bar along the edge of a card.
 - No coloured dot beside a heading.
-- No emoji as an icon system. Use a consistent icon set.
+- Every icon is Phosphor Regular (https://phosphoricons.com, package @phosphor-icons/core), inline, filled with currentColor and sized by the component. No other weight in product UI, no second icon set, and no emoji as icons.
 - No glow, no neon, no glassmorphism, no heavy blur behind content.
 - No centred body copy. Centre a heading and a lede at most.
 - No three-column feature grid of icon-plus-heading-plus-paragraph as a default layout.

@@ -20,7 +20,7 @@ Each of these is a defect in Kaptio output.
 - No gradient fills on interface surfaces. Flat colour, or nothing.
 - No decorative coloured bar along the edge of a card.
 - No coloured dot beside a heading.
-- No emoji as an icon system. Use a consistent icon set.
+- Every icon is Phosphor Regular (https://phosphoricons.com, package @phosphor-icons/core), inline, filled with currentColor and sized by the component. No other weight in product UI, no second icon set, and no emoji as icons.
 - No glow, no neon, no glassmorphism, no heavy blur behind content.
 - No centred body copy. Centre a heading and a lede at most.
 - No three-column feature grid of icon-plus-heading-plus-paragraph as a default layout.

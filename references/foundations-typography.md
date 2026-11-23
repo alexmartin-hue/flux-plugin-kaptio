@@ -119,4 +119,4 @@ Do
 - Do not use text-xs for paragraphs, table cells, controls or primary values.
 - Do not shrink type to fit more content above the fold.
 - Do not mix px into a layout built from rem tokens.
-- Do not use another sans-serif family. Lexend everywhere, except prototypes, which load exactly two through flux-prototype.css.[PreviousColour](/foundations/color/)[NextLayout & spacing](/foundations/layout/)
+- Do not use another sans-serif family. Lexend everywhere, except prototypes, which load exactly two through flux-prototype.css.[PreviousColour](/foundations/color/)[NextIcons](/foundations/icons/)

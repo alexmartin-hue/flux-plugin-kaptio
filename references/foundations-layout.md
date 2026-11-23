@@ -57,4 +57,4 @@ Do
 - Do not shrink an application with CSS zoom or transform.
 - Do not compress type or row spacing to put the whole workflow above the fold.
 - Do not round product controls beyond 4px.
-- Do not use radius-full on anything that is not a pill or an avatar.[PreviousTypography](/foundations/typography/)[NextElevation & layers](/foundations/elevation/)
+- Do not use radius-full on anything that is not a pill or an avatar.[PreviousIcons](/foundations/icons/)[NextElevation & layers](/foundations/elevation/)

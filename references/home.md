@@ -47,6 +47,9 @@ Nested surfaces stay legible without anyone hand-picking greys, in every theme.]
 - [A second voice
 
 JetBrains Mono Variable at three weights, for the metadata, identifiers and structural labels Lexend was never meant to carry.](/foundations/typography/)
+- [One icon set
+
+Phosphor Regular everywhere, inline and filled with currentColor, so every icon themes with its text. Decks may add Duotone in one light Flux tone.](/foundations/icons/)
 - [Verified contrast
 
 Every text and non-text pairing is checked against WCAG 2.2 AA on every build, with body and primary text held to AAA. The build fails before the site does.](/foundations/accessibility/)
